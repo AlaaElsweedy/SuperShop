@@ -1,0 +1,20 @@
+{
+  "skip": "Skip",
+  "next": "Next",
+  "previous": "Previous",
+  "finish": "Finish",
+  "signInToYourAccount": "Sign in to your account",
+  "signIn": "Sign In",
+  "sign_up": "SIGN UP",
+  "full_name": "Full Name",
+  "email": "Email",
+  "password": "Password",
+  "phone": "Phone",
+  "explore": "Explore",
+  "explore_body": "Choose Whatever Product you wish for in the easiest way possible.",
+  "shipping": "Shipping",
+  "payment": "Make the Payment",
+  "shipping_body": "Your Order will be shipped to you as fast as possible by your carrier.",
+  "payment_body": "Pay in the safest way possible either by cash or credit cards.",
+  "have_account": "Don't have an account?"
+}
