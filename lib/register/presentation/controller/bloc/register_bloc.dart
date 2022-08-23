@@ -11,6 +11,7 @@ import '../../../domain/usecases/user_sign_up_usecase.dart';
 
 part 'register_event.dart';
 part 'register_state.dart';
+//part 'register_bloc.freezed.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final UserLoginUseCase userLoginUseCase;
@@ -25,7 +26,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   }
 
   FutureOr<void> _userLogin(
-      UserSignInEvent event, Emitter<RegisterState> emit) async {
+    UserSignInEvent event,
+    Emitter<RegisterState> emit,
+  ) async {
+    emit(state.copyWith(registerState: RequestState.isLoading));
+
     final result = await userLoginUseCase(
       UserLoginParameters(
         email: event.email,

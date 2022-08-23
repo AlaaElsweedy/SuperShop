@@ -7,7 +7,7 @@ class RegisterState extends Equatable {
 
   const RegisterState({
     this.movieDetail,
-    this.registerState = RequestState.isLoading,
+    this.registerState = RequestState.initial,
     this.networkExceptions,
   });
 

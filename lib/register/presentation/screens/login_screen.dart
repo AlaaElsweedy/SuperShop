@@ -1,16 +1,16 @@
-import 'package:buildcondition/buildcondition.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:queen_validators/queen_validators.dart';
 import 'package:supershop/core/error/network_exceptions.dart';
 import 'package:supershop/core/services/service_locator.dart';
+import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/enums.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
 import 'package:supershop/core/utils/token_secure_storage.dart';
 import 'package:supershop/register/presentation/controller/bloc/register_bloc.dart';
 import 'package:supershop/register/presentation/screens/home_screen.dart';
-import 'package:supershop/register/presentation/screens/on_boarding_screen.dart';
 import '../../../general/components.dart';
 import 'package:supershop/translations/locale_keys.g.dart';
 
@@ -25,41 +25,53 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<RegisterBloc>(
         create: (context) => sl<RegisterBloc>(),
-        child: BlocConsumer<RegisterBloc, RegisterState>(
+        child: BlocListener<RegisterBloc, RegisterState>(
           listener: (context, state) {
+            print(state);
+
             if (state.registerState == RequestState.success) {
-              TokenSecureStorage.saveSecureToken(
-                state.movieDetail!.registerData.token,
-              ).then((value) {
-                navigateAndFinish(context, HomeScreen());
+              Navigator.of(context)
+                  .pushAndRemoveUntil(
+                MaterialPageRoute(
+                  builder: (context) => HomeScreen(),
+                ),
+                (route) => false,
+              )
+                  .then((value) {
+                TokenSecureStorage.saveSecureToken(
+                  state.movieDetail!.registerData.token,
+                );
               });
+
               print('token is:/// ${state.movieDetail!.registerData.token}');
             }
 
-            switch (state.registerState) {
-              case RequestState.isLoading:
-                showLoading(context);
-                break;
-
-              case RequestState.success:
-                // navigateAndFinish(context, HomeScreen());
-                break;
-
-              case RequestState.error:
-                showError(
-                  context,
-                  state.networkExceptions!,
-                );
-                break;
-            }
+            // state.when(
+            //   initial: () => showLoading(context),
+            //   loading: () => showLoading(context),
+            //   success: (register) {
+            //     TokenSecureStorage.saveSecureToken(
+            //       register.registerData.token,
+            //     ).then((value) {
+            //       navigateAndFinish(context, HomeScreen());
+            //     });
+            //   },
+            //   error: (networkExceptions) {
+            //     showError(
+            //       context,
+            //       networkExceptions,
+            //     );
+            //   },
+            // );
           },
-          builder: (context, state) {
-            return Scaffold(
-              body: SafeArea(
+          child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            body: Center(
+              child: SingleChildScrollView(
                 child: Form(
                   key: _formKey,
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: AppSize.paddingAll,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -70,77 +82,79 @@ class LoginScreen extends StatelessWidget {
                         Row(
                           children: [
                             BuildSecondHeader(
-                              title: LocaleKeys.have_account.tr(),
+                              title: LocaleKeys.haveAccount.tr(),
                             ),
                             CustomTextButton(
                               onPressed: () {},
-                              child: LocaleKeys.sign_up.tr(),
+                              child: LocaleKeys.signUp.tr(),
                             ),
                           ],
                         ),
                         CustomTextFormField(
                           context: context,
                           hintText: LocaleKeys.email.tr(),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter your email';
-                            }
-                            return null;
-                          },
+                          validator: qValidator([
+                            IsRequired(LocaleKeys.emailValidator.tr()),
+                            IsEmail(LocaleKeys.emailAddressFormat.tr()),
+                          ]),
                           controller: emailController,
                           type: TextInputType.emailAddress,
                         ),
-                        const SizedBox(height: 15.0),
+                        AppSize.sizedBox15,
                         CustomTextFormField(
                           context: context,
                           hintText: LocaleKeys.password.tr(),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter your password';
-                            }
-                            return null;
-                          },
+                          validator: qValidator([
+                            IsRequired(LocaleKeys.passwordValidator.tr()),
+                            MinLength(
+                              8,
+                              LocaleKeys.passwordLengthValidator.tr(),
+                            ),
+                          ]),
                           controller: passwordController,
                           type: TextInputType.text,
                         ),
-                        BuildCondition(
-                          condition:
-                              state.registerState == RequestState.isLoading,
-                          builder: (context) => CustomButton(
-                            title: LocaleKeys.signIn.tr(),
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                FocusScope.of(context).unfocus();
-                                context.read<RegisterBloc>().add(
-                                      UserSignInEvent(
-                                        email: emailController.text,
-                                        password: passwordController.text,
-                                      ),
-                                    );
-                              }
-                            },
-                          ),
-                          fallback: (context) => const Center(
-                            child: CircularProgressIndicator(),
-                          ),
+                        AppSize.sizedBox15,
+                        BlocBuilder<RegisterBloc, RegisterState>(
+                          builder: (context, state) {
+                            if (state.registerState == RequestState.isLoading) {
+                              return showLoading();
+                            }
+                            print('Builder State $state');
+
+                            return CustomButton(
+                              title: LocaleKeys.signIn.tr(),
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  FocusScope.of(context).unfocus();
+                                  context.read<RegisterBloc>().add(
+                                        UserSignInEvent(
+                                          emailController.text,
+                                          passwordController.text,
+                                        ),
+                                      );
+                                }
+                              },
+                            );
+                          },
                         ),
                       ],
                     ),
                   ),
                 ),
               ),
-            );
-          },
+            ),
+          ),
         ));
   }
 
-  Widget showLoading(BuildContext context) {
+  showLoading() {
     return const Center(
       child: CircularProgressIndicator(),
     );
   }
 
-  showError(BuildContext context, NetworkExceptions errorMessage) {
+  showError(NetworkExceptions errorMessage) {
     return Fluttertoast.showToast(
       msg: NetworkExceptions.getErrorMessage(errorMessage),
       toastLength: Toast.LENGTH_LONG,

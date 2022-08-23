@@ -21,18 +21,22 @@ class CodegenLoader extends AssetLoader{
   "finish": "إنهاء",
   "signInToYourAccount": "قم بتسجيل الدخول إلى حسابك",
   "signIn": "تسجيل الدخول",
-  "sign_up": "تسجيل",
+  "signUp": "تسجيل",
   "email": "البريد الإلكتروني",
   "password": "الرقم السري",
   "phone": "رقم الهاتف",
   "explore": "استكشف",
-  "explore_body": "اختر أي منتج تريده بأسهل طريقة ممكنة",
   "shipping": "الشحن",
   "payment": "الدفع",
-  "shipping_body": "سيتم شحن طلبك إليك في أسرع وقت ممكن من قبل شركة الشحن الخاصة بك",
-  "payment_body": "ادفع بأكثر الطرق أمانًا سواء نقدًا أو ببطاقات الائتمان",
-  "full_name": "الاسم بالكامل",
-  "have_account": "ليس لديك حساب؟"
+  "shippingBody": "سيتم شحن طلبك إليك في أسرع وقت ممكن من قبل شركة الشحن الخاصة بك",
+  "paymentBody": "ادفع بأكثر الطرق أمانًا سواء نقدًا أو ببطاقات الائتمان",
+  "fullName": "الاسم بالكامل",
+  "haveAccount": "ليس لديك حساب؟",
+  "emailValidator": "من فضلك ادخل البريد الالكتروني ...",
+  "passwordValidator": "من فضلك ادخل كلمة المرور ...",
+  "passwordLengthValidator": "كلمة المرور يجب ان تحتوي علي الاقل علي ٨ ارقام.",
+  "emailAddressFormat": "يرجى إدخال البريد الإلكتروني الصحيح...",
+  "exploreBody": "اختر أي منتج تريده بأسهل طريقة ممكنة"
 };
 static const Map<String,dynamic> en = {
   "skip": "Skip",
@@ -41,18 +45,22 @@ static const Map<String,dynamic> en = {
   "finish": "Finish",
   "signInToYourAccount": "Sign in to your account",
   "signIn": "SIGN IN",
-  "sign_up": "SIGN UP",
-  "full_name": "Full Name",
+  "signUp": "SIGN UP",
+  "fullName": "Full Name",
   "email": "Email",
   "password": "Password",
   "phone": "Phone",
   "explore": "Explore",
-  "explore_body": "Choose Whatever Product you wish for in the easiest way possible.",
+  "exploreBody": "Choose Whatever Product you wish for in the easiest way possible.",
   "shipping": "Shipping",
   "payment": "Make the Payment",
-  "shipping_body": "Your Order will be shipped to you as fast as possible by your carrier.",
-  "payment_body": "Pay in the safest way possible either by cash or credit cards.",
-  "have_account": "Don't have an account?"
+  "shippingBody": "Your Order will be shipped to you as fast as possible by your carrier.",
+  "haveAccount": "Don't have an account?",
+  "emailValidator": "Please enter your email ...",
+  "passwordValidator": "Please enter your password...",
+  "passwordLengthValidator": "Password must has at least 8 numbers.",
+  "emailAddressFormat": "Please enter a valid email...",
+  "paymentBody": "Pay in the safest way possible either by cash or credit cards."
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../app_colors.dart';
@@ -32,14 +34,18 @@ class LightTheme {
         //disabledColor: AppColors.grey,
       ),
       textTheme: const TextTheme(
-        bodyMedium: TextStyle(
+        titleMedium: TextStyle(
           color: AppColors.mediumTextColorLight,
           fontSize: 28.0,
           fontWeight: FontWeight.bold,
         ),
-        bodySmall: TextStyle(
+        titleSmall: TextStyle(
           color: AppColors.smallTextColorLight,
           fontSize: 13.0,
+        ),
+        bodyMedium: TextStyle(
+          color: AppColors.primaryFontColor,
+          fontSize: 18.0,
         ),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -53,37 +59,31 @@ class LightTheme {
             ),
           ),
         ),
-        // hintColor: AppColors.lightThemeTextFieldHintColor,
-        // textSelectionTheme: const TextSelectionThemeData(
-        //   cursorColor: AppColors.lightThemeTextFieldCursorColor,
-        // ),
-        // inputDecorationTheme: const InputDecorationTheme(
-        //   fillColor: AppColors.lightThemeTextFieldFillColor,
-        //   prefixIconColor: AppColors.lightThemeTextFieldBorderColor,
-        //   suffixIconColor: AppColors.lightThemeTextFieldBorderColor,
-        //   border: OutlineInputBorder(
-        //     borderSide: BorderSide(
-        //       color: AppColors.lightThemeTextFieldBorderColor,
-        //     ),
-        //   ),
-        //   enabledBorder: OutlineInputBorder(
-        //     borderSide: BorderSide(
-        //       color: AppColors.lightThemeTextFieldBorderColor,
-        //     ),
-        //   ),
-        //   focusedBorder: OutlineInputBorder(
-        //     borderSide: BorderSide(
-        //       color: AppColors.lightThemeTextFieldFocusedBorderColor,
-        //       width: 1.5,
-        //     ),
-        //   ),
-        //   errorBorder: OutlineInputBorder(
-        //     borderSide: BorderSide(
-        //       color: AppColors.lightThemeTextFieldErrorBorderColor,
-        //     ),
-        //   ),
-        //   errorStyle: TextStyle(
-        //     color: AppColors.lightThemeTextFieldValidationColor,
-        //   ),
-      ));
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25.0),
+        hintStyle: const TextStyle(
+          color: AppColors.textFiledHintColorLight,
+        ),
+        filled: true,
+        fillColor: AppColors.textFiledFillColorLight,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: const BorderSide(
+            color: AppColors.textFiledFillColorLight,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: const BorderSide(
+            color: AppColors.textFiledFillColorLight,
+          ),
+        ),
+
+        //prefixIconColor: AppColors.lightThemeTextFieldBorderColor,
+        // suffixIconColor: AppColors.lightThemeTextFieldBorderColor,
+      ),
+      textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: AppColors.cursorColorLight));
 }

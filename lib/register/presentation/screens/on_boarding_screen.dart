@@ -34,17 +34,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     BoardingModel(
       image: 'assets/images/explore.svg',
       title: LocaleKeys.explore.tr(),
-      body: LocaleKeys.explore_body.tr(),
+      body: LocaleKeys.exploreBody.tr(),
     ),
     BoardingModel(
       image: 'assets/images/free_shipping.svg',
       title: LocaleKeys.shipping.tr(),
-      body: LocaleKeys.shipping_body.tr(),
+      body: LocaleKeys.shippingBody.tr(),
     ),
     BoardingModel(
       image: 'assets/images/payment.svg',
       title: LocaleKeys.payment.tr(),
-      body: LocaleKeys.payment_body.tr(),
+      body: LocaleKeys.paymentBody.tr(),
     ),
   ];
   bool isLast = false;

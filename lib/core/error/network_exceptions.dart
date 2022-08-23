@@ -155,7 +155,8 @@ abstract class NetworkExceptions with _$NetworkExceptions {
     }, sendTimeout: () {
       errorMessage = "Send timeout in connection with API server";
     }, unableToProcess: () {
-      errorMessage = "Unable to process the data";
+      errorMessage =
+          "This credentials does not meet any of our records, please make sure you have entered the right credentials";
     }, defaultError: (String error) {
       errorMessage = error;
     }, formatException: () {

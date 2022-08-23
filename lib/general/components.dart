@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:supershop/core/utils/app_string.dart';
 import '../core/utils/styles/app_colors.dart';
 
 void navigateTo(context, widget) => Navigator.push(
@@ -34,30 +37,13 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: Theme.of(context).textTheme.bodyMedium,
       validator: validator,
       controller: controller,
       keyboardType: type,
       obscureText: isPassword,
       decoration: InputDecoration(
         hintText: hintText,
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-          borderSide: const BorderSide(
-            color: AppColors.textFiledLight,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-          borderSide: const BorderSide(
-            color: AppColors.textFiledLight,
-          ),
-        ),
-        filled: true,
-        fillColor: AppColors.mediumTextColorLight,
-        contentPadding: const EdgeInsets.only(left: 34, top: 40),
-        hintStyle: const TextStyle(
-          color: Colors.grey,
-        ),
       ),
     );
   }
@@ -75,7 +61,7 @@ class BuildHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.bodyMedium,
+      style: Theme.of(context).textTheme.titleMedium,
     );
   }
 }
@@ -97,7 +83,7 @@ class BuildSecondHeader extends StatelessWidget {
     return Text(
       title,
       textAlign: textAlign,
-      style: Theme.of(context).textTheme.bodySmall,
+      style: Theme.of(context).textTheme.titleSmall,
     );
   }
 }

@@ -7,17 +7,21 @@ abstract class  LocaleKeys {
   static const finish = 'finish';
   static const signInToYourAccount = 'signInToYourAccount';
   static const signIn = 'signIn';
-  static const sign_up = 'sign_up';
+  static const signUp = 'signUp';
   static const email = 'email';
   static const password = 'password';
   static const phone = 'phone';
   static const explore = 'explore';
-  static const explore_body = 'explore_body';
   static const shipping = 'shipping';
   static const payment = 'payment';
-  static const shipping_body = 'shipping_body';
-  static const payment_body = 'payment_body';
-  static const full_name = 'full_name';
-  static const have_account = 'have_account';
+  static const shippingBody = 'shippingBody';
+  static const paymentBody = 'paymentBody';
+  static const fullName = 'fullName';
+  static const haveAccount = 'haveAccount';
+  static const emailValidator = 'emailValidator';
+  static const passwordValidator = 'passwordValidator';
+  static const passwordLengthValidator = 'passwordLengthValidator';
+  static const emailAddressFormat = 'emailAddressFormat';
+  static const exploreBody = 'exploreBody';
 
 }
