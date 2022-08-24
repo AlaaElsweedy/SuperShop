@@ -9,16 +9,19 @@
   "fullName": "Full Name",
   "email": "Email",
   "password": "Password",
-  "phone": "Phone",
+  "phone": "Phone Number",
   "explore": "Explore",
   "exploreBody": "Choose Whatever Product you wish for in the easiest way possible.",
   "shipping": "Shipping",
   "payment": "Make the Payment",
   "shippingBody": "Your Order will be shipped to you as fast as possible by your carrier.",
-  "haveAccount": "Don't have an account?",
+  "haveAccount": "Already have an account!",
   "emailValidator": "Please enter your email ...",
   "passwordValidator": "Please enter your password...",
   "passwordLengthValidator": "Password must has at least 8 numbers.",
   "emailAddressFormat": "Please enter a valid email...",
-  "paymentBody": "Pay in the safest way possible either by cash or credit cards."
+  "paymentBody": "Pay in the safest way possible either by cash or credit cards.",
+  "requiredField": "This field is required",
+  "isPhoneNumber": "This number is incorrect",
+  "haveNotAccount": "Don't have an account?"
 }

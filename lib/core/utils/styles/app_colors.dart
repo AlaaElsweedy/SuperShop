@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const primaryColorLight = Color(0xfffc6011);
   static const backgroundColorLight = Color(0xffffffff);
+  static const errorColorLight = Colors.red;
 
   //Text
   static const primaryFontColor = Color(0xff4A4B4D);

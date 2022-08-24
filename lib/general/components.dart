@@ -1,7 +1,6 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:supershop/core/utils/app_string.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:supershop/core/error/network_exceptions.dart';
 import '../core/utils/styles/app_colors.dart';
 
 void navigateTo(context, widget) => Navigator.push(
@@ -14,6 +13,24 @@ void navigateAndFinish(context, widget) {
     context,
     MaterialPageRoute(builder: (context) => widget),
     (route) => false,
+  );
+}
+
+showLoading() {
+  return const Center(
+    child: CircularProgressIndicator(),
+  );
+}
+
+showError(NetworkExceptions errorMessage) {
+  return Fluttertoast.showToast(
+    msg: NetworkExceptions.getErrorMessage(errorMessage),
+    toastLength: Toast.LENGTH_LONG,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 1,
+    backgroundColor: AppColors.errorColorLight,
+    textColor: Colors.white,
+    fontSize: 16.0,
   );
 }
 

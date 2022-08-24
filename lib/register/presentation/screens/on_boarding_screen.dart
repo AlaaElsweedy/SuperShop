@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:supershop/core/utils/app_size.dart';
 import '../../../core/utils/styles/app_colors.dart';
 import '../../../general/components.dart';
 import 'login_screen.dart';
@@ -79,7 +80,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: AppSize.paddingAll,
         child: Column(
           children: [
             Expanded(
@@ -127,7 +128,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     } else {
                       pageController.nextPage(
                         duration: const Duration(
-                          milliseconds: 30,
+                          milliseconds: 75,
                         ),
                         curve: Curves.fastLinearToSlowEaseIn,
                       );
@@ -152,17 +153,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           Expanded(
             child: SvgPicture.asset(model.image),
           ),
-          const SizedBox(height: 30.0),
+          AppSize.sizedBox28,
           Text(
             model.title,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
-          const SizedBox(height: 15.0),
+          AppSize.sizedBox15,
           Text(
             model.body,
-            style: Theme.of(context).textTheme.bodySmall,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
-          const SizedBox(height: 30.0),
+          AppSize.sizedBox28,
         ],
       );
 }

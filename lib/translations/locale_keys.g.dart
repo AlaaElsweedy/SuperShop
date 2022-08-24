@@ -23,5 +23,8 @@ abstract class  LocaleKeys {
   static const passwordLengthValidator = 'passwordLengthValidator';
   static const emailAddressFormat = 'emailAddressFormat';
   static const exploreBody = 'exploreBody';
+  static const requiredField = 'requiredField';
+  static const isPhoneNumber = 'isPhoneNumber';
+  static const haveNotAccount = 'haveNotAccount';
 
 }
