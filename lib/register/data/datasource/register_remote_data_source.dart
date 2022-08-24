@@ -1,7 +1,7 @@
 import '../../../core/error/exception.dart';
 import '../../../core/helpers/dio_helper.dart';
 import '../../../core/network/api_constance.dart';
-import '../../../core/network/error_messgae_model.dart';
+import '../../../core/network/error_message_model.dart';
 import '../models/register_model.dart';
 import '../../domain/usecases/user_login_usecase.dart';
 import '../../domain/usecases/user_sign_up_usecase.dart';

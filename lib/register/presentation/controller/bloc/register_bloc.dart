@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../core/error/network_exceptions.dart';
-import '../../../domain/entities/register.dart';
 import '../../../domain/usecases/user_sign_up_usecase.dart';
 
 part 'register_bloc.freezed.dart';

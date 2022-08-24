@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../network/error_messgae_model.dart';
+import '../network/error_message_model.dart';
 
 part 'network_exceptions.freezed.dart';
 

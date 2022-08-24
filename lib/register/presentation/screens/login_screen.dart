@@ -5,8 +5,8 @@ import 'package:queen_validators/queen_validators.dart';
 import 'package:supershop/core/services/service_locator.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/token_secure_storage.dart';
+import 'package:supershop/home/presentation/screens/home_screen.dart';
 import 'package:supershop/register/presentation/controller/bloc/login_bloc.dart';
-import 'package:supershop/register/presentation/screens/home_screen.dart';
 import 'package:supershop/register/presentation/screens/sign_up__screen.dart';
 import '../../../general/components.dart';
 import 'package:supershop/translations/locale_keys.g.dart';
@@ -28,18 +28,12 @@ class LoginScreen extends StatelessWidget {
             initial: () => showLoading(),
             loading: () => showLoading(),
             success: (register) {
-              Navigator.of(context)
-                  .pushAndRemoveUntil(
-                MaterialPageRoute(
-                  builder: (context) => const HomeScreen(),
-                ),
-                (route) => false,
-              )
-                  .then((value) {
-                TokenSecureStorage.saveSecureToken(
-                  register.registerData.token,
-                );
+              TokenSecureStorage.saveSecureToken(
+                register.registerData.token,
+              ).then((value) {
+                navigateAndFinish(context, HomeScreen());
               });
+              print('token is:/// ${register.registerData.token}');
             },
             error: (networkExceptions) {
               showError(
