@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../app_colors.dart';
@@ -6,6 +5,11 @@ import '../app_colors.dart';
 class LightTheme {
   static final lightTheme = ThemeData.light().copyWith(
       appBarTheme: const AppBarTheme(
+        titleTextStyle: TextStyle(
+          fontSize: 20.0,
+          fontWeight: FontWeight.bold,
+          color: AppColors.appBarTitleColorLight,
+        ),
         backgroundColor: AppColors.backgroundColorLight,
         actionsIconTheme: IconThemeData(
           color: AppColors.primaryColorLight,

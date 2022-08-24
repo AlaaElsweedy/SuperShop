@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppColors {
@@ -20,4 +19,6 @@ class AppColors {
   static const textFiledHintColorLight = Color(0xffB6B7B7);
 
   static const cursorColorLight = Color(0xfffc6011);
+
+  static const appBarTitleColorLight = Color(0xff4A4B4D);
 }

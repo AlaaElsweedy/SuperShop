@@ -10,13 +10,10 @@ class DioHelper {
       BaseOptions(
         baseUrl: ApiConstance.baseUrl,
         receiveDataWhenStatusError: true,
-        connectTimeout: 30 * 1000,
-        receiveTimeout: 30 * 1000,
+        //connectTimeout: 30 * 1000,
+        //receiveTimeout: 30 * 1000,
       ),
     );
-    // dio.options.baseUrl = ApiConstance.baseUrl;
-    // dio.options.connectTimeout = 1 * 1000;
-    // dio.options.receiveTimeout = 10 * 1000;
 
     dio.interceptors.add(LogInterceptor(
       requestBody: true,

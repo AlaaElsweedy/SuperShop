@@ -27,8 +27,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  bloc: ^8.1.0
   build_runner: ^2.2.0
-  buildcondition: ^0.0.4
   cached_network_image: ^3.2.1
   carousel_slider: ^4.1.1
   cupertino_icons: ^1.0.2
@@ -48,8 +48,6 @@ dependencies:
   json_annotation: ^4.6.0
   json_serializable: ^6.3.1
   queen_validators: ^1.0.0
-  retrofit: ^3.0.1+1
-  retrofit_generator: ^4.0.3+1
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
   smooth_page_indicator: ^1.0.0+2
