@@ -23,5 +23,12 @@
   "paymentBody": "Pay in the safest way possible either by cash or credit cards.",
   "requiredField": "This field is required",
   "isPhoneNumber": "This number is incorrect",
-  "haveNotAccount": "Don't have an account?"
+  "haveNotAccount": "Don't have an account?",
+  "home": "Home",
+  "settings": "Settings",
+  "favorites": "Favorites",
+  "categories": "categories",
+  "newProducts": "New Products",
+  "cart": "Cart",
+  "orders": "Orders"
 }

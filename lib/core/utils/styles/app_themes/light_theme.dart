@@ -1,92 +1,102 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import '../app_colors.dart';
 
 class LightTheme {
   static final lightTheme = ThemeData.light().copyWith(
-      appBarTheme: const AppBarTheme(
-        titleTextStyle: TextStyle(
-          fontSize: 20.0,
-          fontWeight: FontWeight.bold,
-          color: AppColors.appBarTitleColorLight,
-        ),
-        backgroundColor: AppColors.backgroundColorLight,
-        actionsIconTheme: IconThemeData(
-          color: AppColors.primaryColorLight,
-        ),
-        elevation: 0.0,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          //For Android
-          statusBarColor: AppColors.backgroundColorLight,
-          //For apps with a dark background:
-          // For Android (light icons)
-          statusBarIconBrightness: Brightness.dark,
-          // For iOS (light icons)
-          statusBarBrightness: Brightness.light,
-        ),
+    appBarTheme: const AppBarTheme(
+      titleTextStyle: TextStyle(
+        fontSize: 20.0,
+        fontWeight: FontWeight.bold,
+        color: AppColors.appBarTitleColorLight,
       ),
-      scaffoldBackgroundColor: AppColors.backgroundColorLight,
-      primaryColor: AppColors.primaryColorLight,
-      // colorScheme: const ColorScheme.light().copyWith(
-      //   primary: AppColors.lightThemePrimary,
-      //   secondary: AppColors.accentColor,
-      // ),
-      //iconTheme: const IconThemeData(color: AppColors.iconColorLight),
-      buttonTheme: const ButtonThemeData(
-        buttonColor: AppColors.primaryColorLight,
-        //disabledColor: AppColors.grey,
+      backgroundColor: AppColors.backgroundColorLight,
+      actionsIconTheme: IconThemeData(
+        color: AppColors.primaryColorLight,
       ),
-      textTheme: const TextTheme(
-        titleMedium: TextStyle(
-          color: AppColors.mediumTextColorLight,
-          fontSize: 28.0,
-          fontWeight: FontWeight.bold,
-        ),
-        titleSmall: TextStyle(
-          color: AppColors.smallTextColorLight,
-          fontSize: 13.0,
-        ),
-        bodyMedium: TextStyle(
-          color: AppColors.primaryFontColor,
-          fontSize: 18.0,
-        ),
+      elevation: 0.0,
+      systemOverlayStyle: SystemUiOverlayStyle(
+        //For Android
+        statusBarColor: AppColors.backgroundColorLight,
+        //For apps with a dark background:
+        // For Android (light icons)
+        statusBarIconBrightness: Brightness.dark,
+        // For iOS (light icons)
+        statusBarBrightness: Brightness.light,
       ),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: AppColors.primaryColorLight,
+    ),
+    scaffoldBackgroundColor: AppColors.backgroundColorLight,
+    primaryColor: AppColors.primaryColorLight,
+    // colorScheme: const ColorScheme.light().copyWith(
+    //   primary: AppColors.lightThemePrimary,
+    //   secondary: AppColors.accentColor,
+    // ),
+    //iconTheme: const IconThemeData(color: AppColors.iconColorLight),
+    buttonTheme: const ButtonThemeData(
+      buttonColor: AppColors.primaryColorLight,
+      //disabledColor: AppColors.grey,
+    ),
+    textTheme: const TextTheme(
+      titleMedium: TextStyle(
+        color: AppColors.mediumTextColorLight,
+        fontSize: 28.0,
+        fontWeight: FontWeight.bold,
       ),
-      textButtonTheme: TextButtonThemeData(
-        style: ButtonStyle(
-          textStyle: MaterialStateProperty.all(
-            const TextStyle(
-              color: AppColors.primaryColorLight,
-            ),
+      titleSmall: TextStyle(
+        color: AppColors.smallTextColorLight,
+        fontSize: 13.0,
+      ),
+      bodyMedium: TextStyle(
+        color: AppColors.mediumTextColorLight,
+        fontSize: 18.0,
+      ),
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: AppColors.primaryColorLight,
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        textStyle: MaterialStateProperty.all(
+          const TextStyle(
+            color: AppColors.primaryColorLight,
           ),
         ),
       ),
-      inputDecorationTheme: InputDecorationTheme(
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25.0),
-        hintStyle: const TextStyle(
-          color: AppColors.textFiledHintColorLight,
-        ),
-        filled: true,
-        fillColor: AppColors.textFiledFillColorLight,
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-          borderSide: const BorderSide(
-            color: AppColors.textFiledFillColorLight,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-          borderSide: const BorderSide(
-            color: AppColors.textFiledFillColorLight,
-          ),
-        ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      iconColor: AppColors.iconTextFiledColorLight,
 
-        //prefixIconColor: AppColors.lightThemeTextFieldBorderColor,
-        // suffixIconColor: AppColors.lightThemeTextFieldBorderColor,
+      contentPadding:
+          const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25.0),
+      hintStyle: const TextStyle(
+        color: AppColors.textFiledHintColorLight,
       ),
-      textSelectionTheme: const TextSelectionThemeData(
-          cursorColor: AppColors.cursorColorLight));
+      filled: true,
+      fillColor: AppColors.textFiledFillColorLight,
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(5),
+        borderSide: const BorderSide(
+          color: AppColors.textFiledFillColorLight,
+        ),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(5),
+        borderSide: const BorderSide(
+          color: AppColors.textFiledFillColorLight,
+        ),
+      ),
+
+      //prefixIconColor: AppColors.lightThemeTextFieldBorderColor,
+      // suffixIconColor: AppColors.lightThemeTextFieldBorderColor,
+    ),
+    textSelectionTheme:
+        const TextSelectionThemeData(cursorColor: AppColors.cursorColorLight),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: AppColors.bottomNavBackgroundColorLight,
+      selectedItemColor: AppColors.selectedItemNavBarColorLight,
+      unselectedItemColor: AppColors.unSelectedItemNavBarColorLight,
+    ),
+  );
 }

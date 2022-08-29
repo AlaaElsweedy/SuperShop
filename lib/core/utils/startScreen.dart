@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:supershop/core/utils/constance.dart';
-import 'package:supershop/core/utils/token_secure_storage.dart';
-import 'package:supershop/home/presentation/screens/home_screen.dart';
-import 'package:supershop/register/presentation/screens/login_screen.dart';
-import 'package:supershop/register/presentation/screens/on_boarding_screen.dart';
+import 'package:supershop/features/home/presentation/screens/home_layout.dart';
+import 'package:supershop/features/register/presentation/screens/on_boarding_screen.dart';
+import 'package:supershop/features/register/presentation/screens/login_screen.dart';
+import 'constance.dart';
+import 'token_secure_storage.dart';
 
 Future<Widget> startScreen() async {
   Widget startWidget;
@@ -21,7 +21,7 @@ Future<Widget> startScreen() async {
       startWidget = LoginScreen();
     }
   } else {
-    startWidget = const HomeScreen();
+    startWidget = const HomeLayout();
   }
   return startWidget;
 }

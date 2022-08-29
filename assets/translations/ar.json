@@ -23,5 +23,12 @@
   "exploreBody": "اختر أي منتج تريده بأسهل طريقة ممكنة",
   "requiredField": "هذا الحقل مطلوب",
   "isPhoneNumber": "هذا الرقم غير صحيح",
-  "haveNotAccount": "ليس لديك حساب؟"
+  "haveNotAccount": "ليس لديك حساب؟",
+  "home": "الصفحة الرئيسية",
+  "settings": "الاعدادات",
+  "favorites": "المفضلة",
+  "categories": "الأقسام",
+  "newProducts": "وصلنا حديثا",
+  "cart": "عربة التسوق",
+  "orders": "الطلبات"
 }
