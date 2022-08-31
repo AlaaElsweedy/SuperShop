@@ -1,15 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
 import 'package:supershop/features/home/domain/entities/favorites/get_favorites.dart';
+import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
 
 class FavoriteItemComponent extends StatelessWidget {
   final GetFavorites data;
+  final Map<int, bool> favorites;
 
   const FavoriteItemComponent({
-    Key? key,
+    super.key,
     required this.data,
-  }) : super(key: key);
+    required this.favorites,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +47,7 @@ class FavoriteItemComponent extends StatelessWidget {
                   ),
               ],
             ),
-            const SizedBox(
-              width: 20.0,
-            ),
+            const SizedBox(width: 20.0),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,29 +84,34 @@ class FavoriteItemComponent extends StatelessWidget {
                           ),
                         ),
                       const Spacer(),
-                      IconButton(
-                        onPressed: () {
-                          // AppCubit.get(context)
-
-                          //     .changeFavoritesData(model.favoriteProducts.id);
+                      BlocBuilder<FavoritesBloc, FavoritesState>(
+                        builder: (context, state) {
+                          return IconButton(
+                            onPressed: () {
+                              context.read<FavoritesBloc>().add(
+                                    ChangeFavoriteStatusEvent(
+                                      productId: data.favoriteProducts.id,
+                                      products: favorites,
+                                    ),
+                                  );
+                              context.read<FavoritesBloc>().add(
+                                    AddOrRemoveFavoriteProductsEvent(
+                                      data.favoriteProducts.id,
+                                    ),
+                                  );
+                            },
+                            icon: const CircleAvatar(
+                              radius: 15.0,
+                              backgroundColor:
+                                  AppColors.backgroundFavoriteColorLight,
+                              child: Icon(
+                                Icons.favorite,
+                                size: 14.0,
+                                color: AppColors.favoriteIconColorLight,
+                              ),
+                            ),
+                          );
                         },
-                        icon: const CircleAvatar(
-                          radius: 15.0,
-                          backgroundColor:
-
-                              // AppCubit.get(context).favorites[model.favoriteProducts.id]
-
-                              //     ? defaultColor
-
-                              //     : Colors.grey,
-
-                              Colors.grey,
-                          child: Icon(
-                            Icons.favorite_border,
-                            size: 14.0,
-                            color: Colors.white,
-                          ),
-                        ),
                       ),
                     ],
                   ),

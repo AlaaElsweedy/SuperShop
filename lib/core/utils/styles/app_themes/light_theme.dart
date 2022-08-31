@@ -15,6 +15,7 @@ class LightTheme {
       actionsIconTheme: IconThemeData(
         color: AppColors.primaryColorLight,
       ),
+      iconTheme: IconThemeData(color: AppColors.appBarIconColorLight),
       elevation: 0.0,
       systemOverlayStyle: SystemUiOverlayStyle(
         //For Android

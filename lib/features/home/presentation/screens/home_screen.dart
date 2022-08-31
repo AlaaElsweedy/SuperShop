@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/error/network_exceptions.dart';
 import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/app_string.dart';
 import 'package:supershop/features/home/presentation/components/carousal_slider_component.dart';
 import 'package:supershop/features/home/presentation/components/categories_component.dart';
 import 'package:supershop/features/home/presentation/components/grid_product_item_component.dart';
-import 'package:supershop/features/home/presentation/controller/home_bloc/home_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
+import 'package:supershop/features/home/presentation/screens/favorites_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   final Map<int, bool> favorites = {};
@@ -19,10 +19,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
-      buildWhen: (previous, current) => previous != current,
       builder: (context, state) {
         {
-          print(state);
+          print('Home screen State $state');
           return state.when(
             loading: () => showLoading(),
             success: (homeData) {
@@ -30,6 +29,18 @@ class HomeScreen extends StatelessWidget {
                 favorites.addAll({element.id: element.isFavorite});
               }
               return Scaffold(
+                appBar: AppBar(
+                  actions: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                FavoritesScreen(favorites: favorites),
+                          ));
+                        },
+                        icon: const Icon(Icons.favorite))
+                  ],
+                ),
                 body: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(

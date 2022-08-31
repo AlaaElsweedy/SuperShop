@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:supershop/features/home/domain/entities/favorites/post_favorites_data.dart';
 
 class PostFavorite extends Equatable {
-  final String status;
+  final bool status;
   final String message;
   final PostFavoritesData favoritesData;
 

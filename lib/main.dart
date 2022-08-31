@@ -1,6 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:supershop/features/register/presentation/screens/login_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/categories_bloc/categories_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
 import 'package:supershop/localization/localization_service.dart';
 
 import 'core/helpers/dio_helper.dart';
@@ -8,7 +11,6 @@ import 'core/services/service_locator.dart';
 import 'core/utils/app_string.dart';
 import 'core/utils/startScreen.dart';
 import 'core/utils/styles/app_themes/light_theme.dart';
-import 'core/utils/token_secure_storage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,14 +40,29 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: AppString.appName,
-      debugShowCheckedModeBanner: false,
-      theme: LightTheme.lightTheme,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      home: startWidget,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => sl<HomeBloc>()..add(const GetHomeDataEvent()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              sl<CategoriesBloc>()..add(const GetCategoriesDataEvent()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              sl<FavoritesBloc>()..add(GetFavoriteProductEvent()),
+        ),
+      ],
+      child: MaterialApp(
+        title: AppString.appName,
+        debugShowCheckedModeBanner: false,
+        theme: LightTheme.lightTheme,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        home: startWidget,
+      ),
     );
   }
 }

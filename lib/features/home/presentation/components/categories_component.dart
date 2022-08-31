@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/features/home/domain/entities/categories/categories_product_data.dart';
-import 'package:supershop/features/home/presentation/controller/categories_bloc/categories_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/categories_bloc/categories_bloc.dart';
 
 class CategoriesComponent extends StatelessWidget {
   const CategoriesComponent({
@@ -15,7 +15,7 @@ class CategoriesComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CategoriesBloc, CategoriesState>(
       builder: (context, state) {
-        print('categories State $state');
+        print('categories Home State $state');
         return state.when(
           loading: () => showLoading(),
           success: (categories) {

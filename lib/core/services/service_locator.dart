@@ -6,11 +6,9 @@ import 'package:supershop/features/home/domain/usecases/add_product_to_favorite_
 import 'package:supershop/features/home/domain/usecases/get_categories_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_favorite_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_home_data_usecase.dart';
-import 'package:supershop/features/home/presentation/controller/categories_bloc/categories_bloc.dart';
-import 'package:supershop/features/home/presentation/controller/cubit/nav_bar_cubit.dart';
-import 'package:supershop/features/home/presentation/controller/get_favorites/get_favorites_bloc.dart';
-import 'package:supershop/features/home/presentation/controller/home_bloc/home_bloc.dart';
-import 'package:supershop/features/home/presentation/controller/post_favorites/post_favorites_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/categories_bloc/categories_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
 import 'package:supershop/features/register/data/datasource/register_remote_data_source.dart';
 import 'package:supershop/features/register/data/repository/register_repository.dart';
 import 'package:supershop/features/register/domain/repository/register_base_repository.dart';
@@ -29,12 +27,10 @@ class ServiceLocator {
     sl.registerFactory(() => LoginBloc(sl()));
     sl.registerFactory(() => HomeBloc(sl()));
     sl.registerFactory(() => CategoriesBloc(sl()));
-    sl.registerFactory(() => GetFavoritesBloc(sl()));
-    sl.registerFactory(() => PostFavoritesBloc(sl()));
+    sl.registerFactory(() => FavoritesBloc(sl(), sl()));
 
     //CUBIT
     sl.registerFactory(() => PasswordVisibilityBloc());
-    sl.registerFactory(() => NavBarCubit());
 
 // USECASES
     sl.registerLazySingleton(() => UserLoginUseCase(baseRepository: sl()));

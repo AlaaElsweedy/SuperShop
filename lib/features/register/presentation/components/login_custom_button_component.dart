@@ -23,7 +23,7 @@ class LoginCustomButtonComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
-        print('Login Screen $state');
+        //print('Login Screen $state');
         if (state is LoginLoadingState) {
           return showLoading();
         }

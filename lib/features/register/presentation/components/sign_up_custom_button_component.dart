@@ -27,7 +27,7 @@ class SignUpCustomButtonComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<RegisterBloc, RegisterState>(
       builder: (context, state) {
-        print('Sign Up Screen $state');
+        //print('Sign Up Screen $state');
         if (state is RegisterLoadingState) {
           return showLoading();
         }

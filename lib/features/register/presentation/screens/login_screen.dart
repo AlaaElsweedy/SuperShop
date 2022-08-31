@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen_validators/queen_validators.dart';
 import 'package:supershop/core/components/build_header.dart';
 import 'package:supershop/core/components/build_second_header.dart';
-import 'package:supershop/core/components/custom_button_component.dart';
 import 'package:supershop/core/components/custom_text_button_component.dart';
 import 'package:supershop/core/components/custom_text_form_field_component.dart';
 import 'package:supershop/core/components/navigation_component.dart';
@@ -16,7 +15,6 @@ import 'package:supershop/core/utils/token_secure_storage.dart';
 import 'package:supershop/features/home/presentation/screens/home_layout.dart';
 import 'package:supershop/features/register/presentation/components/login_custom_button_component.dart';
 import 'package:supershop/features/register/presentation/components/login_password_field_component.dart';
-import 'package:supershop/features/register/presentation/controller/cubit/password_visibility_cubit.dart';
 import 'package:supershop/features/register/presentation/controller/login_bloc/login_bloc.dart';
 import 'package:supershop/generated/locale_keys.g.dart';
 import 'sign_up_screen.dart';
@@ -42,10 +40,9 @@ class LoginScreen extends StatelessWidget {
                 register.registerData.token,
               ).then((value) {
                 token = register.registerData.token;
-                print('value is $token');
                 navigateAndFinish(context, const HomeLayout());
               });
-              print('token is:/// ${register.registerData.token}');
+              //print('token is:/// ${register.registerData.token}');
             },
             error: (networkExceptions) {
               showError(

@@ -1,4 +1,4 @@
-import 'package:supershop/features/home/data/models/favorites/favorite_products_model.dart';
+import 'package:supershop/features/home/data/models/favorites/get_favorite_product_model.dart';
 import 'package:supershop/features/home/domain/entities/favorites/get_favorites.dart';
 
 class GetFavoritesModel extends GetFavorites {
@@ -8,7 +8,7 @@ class GetFavoritesModel extends GetFavorites {
 
   factory GetFavoritesModel.fromJson(Map<String, dynamic> json) {
     return GetFavoritesModel(
-      favoriteProducts: FavoriteProductsModel.fromJson(json['product']),
+      favoriteProducts: FavoriteProductModel.fromJson(json['product']),
     );
   }
 }

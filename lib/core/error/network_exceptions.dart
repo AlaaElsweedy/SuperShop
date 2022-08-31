@@ -47,7 +47,6 @@ abstract class NetworkExceptions with _$NetworkExceptions {
   const factory NetworkExceptions.unexpectedError() = UnexpectedError;
 
   static NetworkExceptions handleResponse(Response? response) {
-    //TODO : to be refactored
     ErrorMessageModel errorModel = ErrorMessageModel.fromJson(response?.data);
 
     int statusCode = response?.statusCode ?? 0;
@@ -110,7 +109,7 @@ abstract class NetworkExceptions with _$NetworkExceptions {
           networkExceptions = const NetworkExceptions.unexpectedError();
         }
         return networkExceptions;
-      } on FormatException catch (e) {
+      } on FormatException catch (_) {
         return const NetworkExceptions.formatException();
       } catch (_) {
         return const NetworkExceptions.unexpectedError();

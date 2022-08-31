@@ -13,13 +13,14 @@ class AddProductToFavoriteUseCase
 
   @override
   Future<Either<NetworkExceptions, PostFavorite>> call(
-      AddProductToFavoriteUseCaseParameters parameters) async {
+    AddProductToFavoriteUseCaseParameters parameters,
+  ) async {
     return await homeBaseRepository.changeFavoriteProductsStatus(parameters);
   }
 }
 
 class AddProductToFavoriteUseCaseParameters extends Equatable {
-  final String productId;
+  final int productId;
 
   const AddProductToFavoriteUseCaseParameters(this.productId);
 

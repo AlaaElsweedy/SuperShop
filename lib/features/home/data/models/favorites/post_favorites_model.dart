@@ -13,7 +13,7 @@ class PostFavoritesModel extends PostFavorite {
     return PostFavoritesModel(
       status: json['status'],
       message: json['message'],
-      favoritesData: PostFavoritesDataModel.fromJson(json),
+      favoritesData: PostFavoritesDataModel.fromJson(json['data']),
     );
   }
 }

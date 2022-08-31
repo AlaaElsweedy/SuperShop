@@ -15,11 +15,13 @@ class AppColors {
   //Icons
   static const favoriteIconColorLight = Colors.white;
   static const unFavoriteIconColorLight = Color(0xffB6B7B7);
+  static const appBarIconColorLight = Color(0xff4A4B4D);
 
   //BACKGROUND
   static const backgroundColorLight = Color(0xffffffff);
   static const backgroundFavoriteColorLight = Colors.red;
   static const backgroundUnFavoriteColorLight = Color(0xffF2F2F2);
+  static const backgroundProgressIndicatorColorLight = Color(0xFFFF9040);
 
   //TextField
   static const textFiledFillColorLight = Color(0xffF2F2F2);

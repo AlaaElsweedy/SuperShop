@@ -1,7 +1,7 @@
-import 'package:supershop/features/home/domain/entities/favorites/favorite_products.dart';
+import 'package:supershop/features/home/domain/entities/favorites/get_favorite_product.dart';
 
-class FavoriteProductsModel extends FavoriteProducts {
-  const FavoriteProductsModel({
+class FavoriteProductModel extends GetFavoriteProduct {
+  const FavoriteProductModel({
     required super.id,
     required super.price,
     required super.oldPrice,
@@ -11,8 +11,8 @@ class FavoriteProductsModel extends FavoriteProducts {
     required super.description,
   });
 
-  factory FavoriteProductsModel.fromJson(Map<String, dynamic> json) {
-    return FavoriteProductsModel(
+  factory FavoriteProductModel.fromJson(Map<String, dynamic> json) {
+    return FavoriteProductModel(
       id: json['id'],
       price: json['price'],
       oldPrice: json['old_price'],

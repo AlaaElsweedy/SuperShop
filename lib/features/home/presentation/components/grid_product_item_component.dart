@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
 import 'package:supershop/features/home/domain/entities/home/product.dart';
+import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
 
 class GridProductItemComponent extends StatelessWidget {
   final Product product;
@@ -69,34 +71,48 @@ class GridProductItemComponent extends StatelessWidget {
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
-                    Card(
-                      elevation: 1,
-                      color: favorites[product.id]!
-                          ? AppColors.backgroundFavoriteColorLight
-                          : AppColors.backgroundUnFavoriteColorLight,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: IconButton(
-                        padding: EdgeInsets.zero,
-                        icon: Icon(
-                          favorites[product.id]!
-                              ? Icons.favorite
-                              : Icons.favorite_border,
+                    BlocBuilder<FavoritesBloc, FavoritesState>(
+                      builder: (context, state) {
+                        return Card(
+                          elevation: 1,
                           color: favorites[product.id]!
-                              ? AppColors.favoriteIconColorLight
-                              : AppColors.unFavoriteIconColorLight,
-                        ),
-                        onPressed: () {
-                          //favorites[product.id] = !favorites[product.id]!;
-                        },
-                      ),
+                              ? AppColors.backgroundFavoriteColorLight
+                              : AppColors.backgroundUnFavoriteColorLight,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: IconButton(
+                            padding: EdgeInsets.zero,
+                            icon: Icon(
+                              favorites[product.id]!
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: favorites[product.id]!
+                                  ? AppColors.favoriteIconColorLight
+                                  : AppColors.unFavoriteIconColorLight,
+                            ),
+                            onPressed: () {
+                              context
+                                  .read<FavoritesBloc>()
+                                  .add(ChangeFavoriteStatusEvent(
+                                    productId: product.id,
+                                    products: favorites,
+                                  ));
+                              context.read<FavoritesBloc>().add(
+                                    AddOrRemoveFavoriteProductsEvent(
+                                      product.id,
+                                    ),
+                                  );
+                            },
+                          ),
+                        );
+                      },
                     )
                   ],
                 ),
                 if (product.discount != 0)
                   Text(
-                    '\$ ${product.oldPrice.toString()}',
+                    '\$${product.oldPrice.toString()}',
                     style: const TextStyle(
                       color: Colors.grey,
                       decoration: TextDecoration.lineThrough,

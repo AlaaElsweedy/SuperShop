@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/features/home/domain/entities/categories/categories_product_data.dart';
-import 'package:supershop/features/home/presentation/controller/categories_bloc/categories_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/categories_bloc/categories_bloc.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CategoriesBloc, CategoriesState>(
       builder: (context, state) {
-        print('categories state $state');
+        print('categories Screen state $state');
         return state.when(
           loading: () => showLoading(),
           success: (categories) {

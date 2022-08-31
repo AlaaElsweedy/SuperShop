@@ -4,8 +4,14 @@ import 'package:supershop/core/error/network_exceptions.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
 
 showLoading() {
-  return const Center(
-    child: CircularProgressIndicator(),
+  return Container(
+    color: AppColors.backgroundColorLight,
+    child: const Center(
+      child: CircularProgressIndicator(
+        backgroundColor: AppColors.backgroundProgressIndicatorColorLight,
+        color: AppColors.primaryColorLight,
+      ),
+    ),
   );
 }
 

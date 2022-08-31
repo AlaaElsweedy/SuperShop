@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:supershop/features/home/presentation/screens/home_layout.dart';
+import 'package:supershop/features/home/presentation/screens/home_screen.dart';
 import 'package:supershop/features/register/presentation/screens/on_boarding_screen.dart';
 import 'package:supershop/features/register/presentation/screens/login_screen.dart';
 import 'constance.dart';
@@ -12,7 +12,7 @@ Future<Widget> startScreen() async {
   Object? onBoardingSeen = prefs.get('isOnBoardingSeen');
 
   token = await TokenSecureStorage.readSecureToken();
-  print('Main token $token');
+  //print('Main token $token');
 
   if (token == null) {
     if (onBoardingSeen == null) {
@@ -21,7 +21,7 @@ Future<Widget> startScreen() async {
       startWidget = LoginScreen();
     }
   } else {
-    startWidget = const HomeLayout();
+    startWidget = HomeScreen();
   }
   return startWidget;
 }

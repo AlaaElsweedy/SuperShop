@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:supershop/features/home/domain/entities/favorites/favorite_products.dart';
+import 'package:supershop/features/home/domain/entities/favorites/post_favorite_product.dart';
 
 class PostFavoritesData extends Equatable {
-  final FavoriteProducts favoriteProducts;
+  final PostFavoriteProduct favoriteProducts;
 
   const PostFavoritesData({
     required this.favoriteProducts,

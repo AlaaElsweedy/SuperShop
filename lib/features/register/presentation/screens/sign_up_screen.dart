@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen_validators/queen_validators.dart';
 import 'package:supershop/core/components/build_header.dart';
 import 'package:supershop/core/components/build_second_header.dart';
-import 'package:supershop/core/components/custom_button_component.dart';
 import 'package:supershop/core/components/custom_text_button_component.dart';
 import 'package:supershop/core/components/custom_text_form_field_component.dart';
 import 'package:supershop/core/components/navigation_component.dart';
@@ -13,7 +12,6 @@ import 'package:supershop/core/services/service_locator.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/features/register/presentation/components/sign_up_custom_button_component.dart';
 import 'package:supershop/features/register/presentation/components/sign_up_password_field_component.dart';
-import 'package:supershop/features/register/presentation/controller/cubit/password_visibility_cubit.dart';
 import 'package:supershop/features/register/presentation/controller/register_bloc/register_bloc.dart';
 import 'package:supershop/generated/locale_keys.g.dart';
 

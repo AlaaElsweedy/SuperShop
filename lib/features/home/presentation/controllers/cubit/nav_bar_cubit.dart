@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:supershop/features/home/presentation/controller/cubit/nav_bar_state.dart';
+import 'package:supershop/features/home/presentation/controllers/cubit/nav_bar_state.dart';
 import 'package:supershop/features/home/presentation/screens/categories_screen.dart';
 import 'package:supershop/features/home/presentation/screens/favorites_screen.dart';
 import 'package:supershop/features/home/presentation/screens/home_screen.dart';
