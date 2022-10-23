@@ -4,7 +4,7 @@ class FavoritesState extends Equatable {
   final GetFavoriteProducts? getFavoriteProducts;
   final RequestState getFavoritesState;
   final NetworkExceptions? getFavoriteErrorMessage;
-  final PostFavorite? addOrRemoveFavoriteProducts;
+  final PostFavoriteProducts? addOrRemoveFavoriteProducts;
   final RequestState addOrRemoveFavoritesState;
   final NetworkExceptions? addOrRemoveFavoriteErrorMessage;
 
@@ -33,7 +33,7 @@ class FavoritesState extends Equatable {
     GetFavoriteProducts? getFavoriteProducts,
     RequestState? getFavoritesState,
     NetworkExceptions? getFavoriteErrorMessage,
-    PostFavorite? addOrRemoveFavoriteProducts,
+    PostFavoriteProducts? addOrRemoveFavoriteProducts,
     RequestState? addOrRemoveFavoritesState,
     NetworkExceptions? addOrRemoveFavoriteErrorMessage,
   }) {

@@ -29,7 +29,7 @@ class SignUpCustomButtonComponent extends StatelessWidget {
       builder: (context, state) {
         //print('Sign Up Screen $state');
         if (state is RegisterLoadingState) {
-          return showLoading();
+          return const ShowCircularLoading();
         }
 
         return CustomButton(

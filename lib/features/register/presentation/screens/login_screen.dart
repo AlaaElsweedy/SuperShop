@@ -33,8 +33,8 @@ class LoginScreen extends StatelessWidget {
       child: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
           state.when(
-            initial: () => showLoading(),
-            loading: () => showLoading(),
+            initial: () => const ShowCircularLoading(),
+            loading: () => const ShowCircularLoading(),
             success: (register) {
               TokenSecureStorage.saveSecureToken(
                 register.registerData.token,
@@ -45,7 +45,7 @@ class LoginScreen extends StatelessWidget {
               //print('token is:/// ${register.registerData.token}');
             },
             error: (networkExceptions) {
-              showError(
+              showToastError(
                 networkExceptions,
               );
             },

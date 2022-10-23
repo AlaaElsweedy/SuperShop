@@ -25,7 +25,7 @@ class LoginCustomButtonComponent extends StatelessWidget {
       builder: (context, state) {
         //print('Login Screen $state');
         if (state is LoginLoadingState) {
-          return showLoading();
+          return const ShowCircularLoading();
         }
 
         return CustomButton(

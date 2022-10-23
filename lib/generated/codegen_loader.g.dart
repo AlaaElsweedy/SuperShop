@@ -46,7 +46,12 @@ class CodegenLoader extends AssetLoader{
   "categories": "الأقسام",
   "newProducts": "وصلنا حديثا",
   "cart": "عربة التسوق",
-  "orders": "الطلبات"
+  "orders": "الطلبات",
+  "favoritesEmpty": "المفضلة فارغة!",
+  "freeDelivery": "توصيل مجاني يوم",
+  "offerDetails": "تفاصيل العرض",
+  "productDetails": "تفاصيل المنتج",
+  "addToCart": "اضافة الي عربة التسوق"
 };
 static const Map<String,dynamic> en = {
   "skip": "Skip",
@@ -80,7 +85,12 @@ static const Map<String,dynamic> en = {
   "categories": "categories",
   "newProducts": "New Products",
   "cart": "Cart",
-  "orders": "Orders"
+  "orders": "Orders",
+  "favoritesEmpty": "No Favorites!",
+  "freeDelivery": "free delivery on",
+  "offerDetails": "Offer Details",
+  "productDetails": "Product Details",
+  "addToCart": "Add To Cart"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

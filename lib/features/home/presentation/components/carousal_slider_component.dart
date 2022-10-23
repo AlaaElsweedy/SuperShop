@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:supershop/features/home/domain/entities/home/home.model.dart';
+import 'package:supershop/features/home/domain/entities/home/get_home.dart';
 
 class CarousalSliderComponent extends StatelessWidget {
-  final Home homeBanner;
+  final GetHome homeBanner;
 
   const CarousalSliderComponent({
     Key? key,

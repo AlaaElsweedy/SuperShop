@@ -2,11 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
-import 'package:supershop/features/home/domain/entities/favorites/get_favorites.dart';
+import 'package:supershop/features/home/domain/entities/favorites/get_favorite_product.dart';
 import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
 
 class FavoriteItemComponent extends StatelessWidget {
-  final GetFavorites data;
+  final GetFavoriteProduct data;
   final Map<int, bool> favorites;
 
   const FavoriteItemComponent({

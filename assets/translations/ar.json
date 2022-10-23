@@ -30,5 +30,10 @@
   "categories": "الأقسام",
   "newProducts": "وصلنا حديثا",
   "cart": "عربة التسوق",
-  "orders": "الطلبات"
+  "orders": "الطلبات",
+  "favoritesEmpty": "المفضلة فارغة!",
+  "freeDelivery": "توصيل مجاني يوم",
+  "offerDetails": "تفاصيل العرض",
+  "productDetails": "تفاصيل المنتج",
+  "addToCart": "اضافة الي عربة التسوق"
 }

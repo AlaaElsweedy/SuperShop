@@ -30,5 +30,10 @@
   "categories": "categories",
   "newProducts": "New Products",
   "cart": "Cart",
-  "orders": "Orders"
+  "orders": "Orders",
+  "favoritesEmpty": "No Favorites!",
+  "freeDelivery": "free delivery on",
+  "offerDetails": "Offer Details",
+  "productDetails": "Product Details",
+  "addToCart": "Add To Cart"
 }

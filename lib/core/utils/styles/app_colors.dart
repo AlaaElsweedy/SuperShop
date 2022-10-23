@@ -7,6 +7,8 @@ class AppColors {
 
   static const pageIndicatorActiveDotColorLight = Color(0xfffc6011);
   static const pageIndicatorInActiveDotColorLight = Color(0xff7C7D7E);
+  static const discountColorLight = Colors.red;
+  static const productInfoColorLight = Colors.green;
 
   //Text
   static const mediumTextColorLight = Color(0xff4A4B4D);
@@ -16,6 +18,7 @@ class AppColors {
   static const favoriteIconColorLight = Colors.white;
   static const unFavoriteIconColorLight = Color(0xffB6B7B7);
   static const appBarIconColorLight = Color(0xff4A4B4D);
+  static const iconColorLight = Color(0xfffc6011);
 
   //BACKGROUND
   static const backgroundColorLight = Color(0xffffffff);

@@ -23,4 +23,7 @@ class ChangeFavoriteStatusEvent extends FavoritesEvent {
     required this.productId,
     required this.products,
   });
+
+  @override
+  List<Object> get props => [productId, products];
 }

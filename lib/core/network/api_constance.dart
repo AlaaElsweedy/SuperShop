@@ -6,4 +6,9 @@ class ApiConstance {
   static const categoriesPath = '/categories';
   static const postFavoritesPath = '/favorites';
   static const getFavoritesPath = '/favorites';
+  static const postCartPath = '/carts';
+  static const searchProductsPath = '/products/search';
+
+  static String productDetailsPath(int id) => '/products/$id';
+  static String categoryProductsPath(int id) => '/categories/$id';
 }

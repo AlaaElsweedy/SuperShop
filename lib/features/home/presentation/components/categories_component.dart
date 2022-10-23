@@ -1,43 +1,33 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/features/home/domain/entities/categories/categories_product_data.dart';
-import 'package:supershop/features/home/presentation/controllers/categories_bloc/categories_bloc.dart';
+import 'package:supershop/features/home/domain/entities/categories/get_categories.dart';
+import 'package:supershop/features/home/domain/entities/categories/get_category_data.dart';
 
 class CategoriesComponent extends StatelessWidget {
+  final GetCategories categories;
+
   const CategoriesComponent({
     Key? key,
+    required this.categories,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoriesBloc, CategoriesState>(
-      builder: (context, state) {
-        print('categories Home State $state');
-        return state.when(
-          loading: () => showLoading(),
-          success: (categories) {
-            return ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => CategoryItem(
-                data: categories.data.products[index],
-              ),
-              separatorBuilder: (context, index) => AppSize.sizedBoxW10,
-              itemCount: categories.data.products.length,
-            );
-          },
-          error: (networkExceptions) => showError(networkExceptions),
-        );
-      },
+    return ListView.separated(
+      physics: const BouncingScrollPhysics(),
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, index) => CategoryItem(
+        data: categories.data.products[index],
+      ),
+      separatorBuilder: (context, index) => AppSize.sizedBoxW10,
+      itemCount: categories.data.products.length,
     );
   }
 }
 
 class CategoryItem extends StatelessWidget {
-  final CategoriesProductData data;
+  final GetCategoryData data;
 
   const CategoryItem({super.key, required this.data});
 

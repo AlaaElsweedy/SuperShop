@@ -7,8 +7,8 @@ import 'package:supershop/core/error/network_exceptions.dart';
 import 'package:supershop/core/usecase/base_use_case.dart';
 import 'package:supershop/core/utils/enums.dart';
 import 'package:supershop/features/home/domain/entities/favorites/get_favorite_products.dart';
-import 'package:supershop/features/home/domain/entities/favorites/post_favorites.dart';
-import 'package:supershop/features/home/domain/usecases/add_product_to_favorite_usecase.dart';
+import 'package:supershop/features/home/domain/entities/favorites/post_favorite_products.dart';
+import 'package:supershop/features/home/domain/usecases/add_or_remove_favorite_product.dart';
 import 'package:supershop/features/home/domain/usecases/get_favorite_products_usecase.dart';
 
 part 'favorites_event.dart';
@@ -16,7 +16,7 @@ part 'favorites_state.dart';
 
 class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
   final GetFavoriteProductsUseCase getFavoriteProductsUseCase;
-  final AddProductToFavoriteUseCase addProductToFavoriteUseCase;
+  final AddOrRemoveFavoriteProductUseCase addProductToFavoriteUseCase;
 
   FavoritesBloc(
     this.getFavoriteProductsUseCase,
@@ -53,7 +53,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     Emitter<FavoritesState> emit,
   ) async {
     final result = await addProductToFavoriteUseCase(
-      AddProductToFavoriteUseCaseParameters(event.productId),
+      AddOrRemoveFavoriteProductUseCaseParameters(event.productId),
     );
     result.fold(
       (l) {

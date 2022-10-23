@@ -16,13 +16,13 @@ class DioHelper {
     );
 
     dio.interceptors.add(LogInterceptor(
-      requestBody: true,
-      error: true,
-      requestHeader: false,
-      responseHeader: false,
-      request: true,
-      responseBody: true,
-    ));
+        // request: true,
+        // requestBody: true,
+        // responseBody: true,
+        // error: true,
+        // requestHeader: false,
+        // responseHeader: false,
+        ));
   }
 
   static Future<Response> postData({

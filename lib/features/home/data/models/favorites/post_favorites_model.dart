@@ -1,8 +1,8 @@
-import 'package:supershop/features/home/domain/entities/favorites/post_favorites.dart';
+import 'package:supershop/features/home/domain/entities/favorites/post_favorite_products.dart';
 
 import 'package:supershop/features/home/data/models/favorites/post_favorites_data_model.dart';
 
-class PostFavoritesModel extends PostFavorite {
+class PostFavoritesModel extends PostFavoriteProducts {
   const PostFavoritesModel({
     required super.status,
     required super.message,

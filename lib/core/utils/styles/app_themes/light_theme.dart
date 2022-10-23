@@ -15,7 +15,7 @@ class LightTheme {
       actionsIconTheme: IconThemeData(
         color: AppColors.primaryColorLight,
       ),
-      iconTheme: IconThemeData(color: AppColors.appBarIconColorLight),
+      iconTheme: IconThemeData(color: AppColors.iconColorLight),
       elevation: 0.0,
       systemOverlayStyle: SystemUiOverlayStyle(
         //For Android
@@ -27,13 +27,15 @@ class LightTheme {
         statusBarBrightness: Brightness.light,
       ),
     ),
+    primaryIconTheme: const IconThemeData(color: AppColors.iconColorLight),
+
     scaffoldBackgroundColor: AppColors.backgroundColorLight,
     primaryColor: AppColors.primaryColorLight,
     // colorScheme: const ColorScheme.light().copyWith(
     //   primary: AppColors.lightThemePrimary,
     //   secondary: AppColors.accentColor,
     // ),
-    //iconTheme: const IconThemeData(color: AppColors.iconColorLight),
+    iconTheme: const IconThemeData(color: AppColors.iconColorLight),
     buttonTheme: const ButtonThemeData(
       buttonColor: AppColors.primaryColorLight,
       //disabledColor: AppColors.grey,
@@ -52,9 +54,23 @@ class LightTheme {
         color: AppColors.mediumTextColorLight,
         fontSize: 18.0,
       ),
+      bodySmall: TextStyle(
+        color: AppColors.mediumTextColorLight,
+        fontSize: 18.0,
+        fontWeight: FontWeight.bold,
+      ),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: AppColors.primaryColorLight,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        textStyle: MaterialStateProperty.all(
+          const TextStyle(
+            color: AppColors.primaryColorLight,
+          ),
+        ),
+      ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(

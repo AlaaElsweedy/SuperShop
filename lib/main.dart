@@ -1,9 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:supershop/features/home/presentation/controllers/categories_bloc/categories_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
+import 'package:supershop/features/home/presentation/screens/product_details_screen.dart';
 import 'package:supershop/localization/localization_service.dart';
 
 import 'core/helpers/dio_helper.dart';
@@ -22,11 +23,15 @@ void main() async {
 
   Widget startWidget = await startScreen();
 
-  runApp(
-    initialLocalization(
-        child: MyApp(
-      startWidget: startWidget,
-    )),
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
+    (value) {
+      runApp(
+        initialLocalization(
+            child: MyApp(
+          startWidget: startWidget,
+        )),
+      );
+    },
   );
 }
 
@@ -43,11 +48,9 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => sl<HomeBloc>()..add(const GetHomeDataEvent()),
-        ),
-        BlocProvider(
-          create: (context) =>
-              sl<CategoriesBloc>()..add(const GetCategoriesDataEvent()),
+          create: (context) => sl<HomeBloc>()
+            ..add(GetHomeDataEvent())
+            ..add(GetCategoriesEvent()),
         ),
         BlocProvider(
           create: (context) =>

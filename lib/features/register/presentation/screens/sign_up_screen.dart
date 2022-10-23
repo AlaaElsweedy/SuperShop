@@ -33,10 +33,10 @@ class SignUpScreen extends StatelessWidget {
       child: BlocListener<RegisterBloc, RegisterState>(
         listener: (context, state) {
           state.when(
-            initial: () => showLoading(),
-            loading: () => showLoading(),
+            initial: () => const ShowCircularLoading(),
+            loading: () => const ShowCircularLoading(),
             success: () => navigateTo(context, LoginScreen()),
-            error: (networkExceptions) => showError(networkExceptions),
+            error: (networkExceptions) => showToastError(networkExceptions),
           );
         },
         child: Scaffold(

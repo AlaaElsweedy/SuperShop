@@ -1,11 +1,13 @@
 import 'package:buildcondition/buildcondition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:supershop/core/components/custom_drawer.dart';
 import 'package:supershop/core/components/screen_status.dart';
-import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/enums.dart';
 import 'package:supershop/features/home/presentation/components/favorite_item_component.dart';
 import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
+import 'package:supershop/generated/locale_keys.g.dart';
 
 class FavoritesScreen extends StatelessWidget {
   final Map<int, bool> favorites;
@@ -23,12 +25,13 @@ class FavoritesScreen extends StatelessWidget {
 
         switch (state.getFavoritesState) {
           case RequestState.isLoading:
-            return showLoading();
+            return const ShowLinearLoading();
 
           case RequestState.success:
             return Scaffold(
+              drawer: const CustomDrawer(),
               appBar: AppBar(
-                title: const Text('Favorites'),
+                title: const Text(LocaleKeys.favorites),
               ),
               body: BuildCondition(
                 condition:
@@ -46,10 +49,9 @@ class FavoritesScreen extends StatelessWidget {
                 fallback: (context) => Center(
                   child: Column(
                     children: [
-                      Image.asset('assets/images/no_favorites.svg'),
-                      AppSize.sizedBox10,
+                      SvgPicture.asset('assets/images/no_favorites.svg'),
                       Text(
-                        'NoFavorites',
+                        'No Favorites!',
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ],
@@ -59,7 +61,9 @@ class FavoritesScreen extends StatelessWidget {
             );
 
           case RequestState.error:
-            return showError(state.getFavoriteErrorMessage!);
+            return ShowError(
+              networkExceptions: state.getFavoriteErrorMessage!,
+            );
         }
       },
     );

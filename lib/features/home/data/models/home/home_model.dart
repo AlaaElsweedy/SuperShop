@@ -1,7 +1,7 @@
-import 'package:supershop/features/home/domain/entities/home/home.model.dart';
+import 'package:supershop/features/home/domain/entities/home/get_home.dart';
 import 'package:supershop/features/home/data/models/home/home_data_model.dart';
 
-class HomeModel extends Home {
+class HomeModel extends GetHome {
   const HomeModel({
     required super.status,
     required super.data,

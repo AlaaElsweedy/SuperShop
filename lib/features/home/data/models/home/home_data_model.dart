@@ -1,8 +1,8 @@
 import 'package:supershop/features/home/data/models/home/banner_model.dart';
 import 'package:supershop/features/home/data/models/home/product_model.dart';
-import 'package:supershop/features/home/domain/entities/home/home_data.dart';
+import 'package:supershop/features/home/domain/entities/home/get_home_data.dart';
 
-class HomeDataModel extends HomeData {
+class HomeDataModel extends GetHomeData {
   const HomeDataModel({
     required super.banners,
     required super.products,

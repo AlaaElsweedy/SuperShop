@@ -1,6 +1,6 @@
-import 'package:supershop/features/home/domain/entities/favorites/post_favorite_product.dart';
+import 'package:supershop/features/home/domain/entities/favorites/post_favorite_product_data.dart';
 
-class PostFavoriteProductModel extends PostFavoriteProduct {
+class PostFavoriteProductModel extends PostFavoriteProductData {
   const PostFavoriteProductModel({
     required super.id,
     required super.price,

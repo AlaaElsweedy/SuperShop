@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supershop/core/services/service_locator.dart';
-import 'package:supershop/features/home/presentation/controllers/categories_bloc/categories_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
 import 'package:supershop/features/home/presentation/screens/categories_screen.dart';
 import 'package:supershop/features/home/presentation/screens/favorites_screen.dart';
@@ -37,11 +36,7 @@ class _HomeLayoutState extends State<HomeLayout> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => sl<HomeBloc>()..add(const GetHomeDataEvent()),
-        ),
-        BlocProvider(
-          create: (context) =>
-              sl<CategoriesBloc>()..add(const GetCategoriesDataEvent()),
+          create: (context) => sl<HomeBloc>()..add(GetHomeDataEvent()),
         ),
       ],
       child: Scaffold(
