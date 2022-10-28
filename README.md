@@ -1,16 +1,14 @@
 # supershop
 
-A new Flutter project.
+A new open source E-commerce App created using Flutter, API and Bloc as State Management.
 
-## Getting Started
+# Features :
 
-This project is a starting point for a Flutter application.
+* Sign-In, Sign-Up and LogOut.
+* Using Clean Architecture, Custom widgets and Clean reusable code.
+* Using Bloc as a state management.
+* Using API.
+* Support Localization.
+* Using Responsive UI (soon).
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Give a ⭐️ if you like the project.. Thanks!
