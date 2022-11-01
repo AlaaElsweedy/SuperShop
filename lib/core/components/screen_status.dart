@@ -23,9 +23,6 @@ class ShowCircularLoading extends StatelessWidget {
 }
 
 class ShowLinearLoading extends StatelessWidget {
-  //background transparent
-  //color opacity
-  //wrap with card elevation 0 color opacity
   const ShowLinearLoading({
     Key? key,
   }) : super(key: key);
@@ -74,6 +71,18 @@ showToastError(NetworkExceptions errorMessage) {
     gravity: ToastGravity.BOTTOM,
     timeInSecForIosWeb: 1,
     backgroundColor: AppColors.toastErrorColorLight,
+    textColor: AppColors.toastTextMessageColorLight,
+    fontSize: 16.0,
+  );
+}
+
+showSuccessMessage(String message) {
+  return Fluttertoast.showToast(
+    msg: message,
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 1,
+    backgroundColor: AppColors.productInfoColorLight,
     textColor: AppColors.toastTextMessageColorLight,
     fontSize: 16.0,
   );

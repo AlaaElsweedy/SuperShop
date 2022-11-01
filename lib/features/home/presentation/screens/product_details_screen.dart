@@ -1,24 +1,30 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:supershop/core/components/custom_app_bar.dart';
+import 'package:supershop/core/components/custom_row_button.dart';
 import 'package:supershop/core/components/my_divider.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/enums.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
+import 'package:supershop/features/home/domain/entities/products/get_product_detail_data.dart';
+import 'package:supershop/features/home/presentation/controllers/cart/cart_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
+import 'package:supershop/generated/locale_keys.g.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  final PageController productImages = PageController();
+  final PageController productImagesController = PageController();
 
   ProductDetailsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
+      buildWhen: (previous, current) =>
+          previous.getProductDetailsState != current.getProductDetailsState,
       builder: (context, state) {
         print('Product Detail State $state');
         switch (state.getProductDetailsState) {
@@ -29,11 +35,11 @@ class ProductDetailsScreen extends StatelessWidget {
             var product = state.getProductDetails!.data;
             return Scaffold(
               appBar: const CustomAppBar(),
-              body: Column(
-                children: [
-                  SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Padding(
+              body: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    Padding(
                       padding: AppSize.paddingAll,
                       child: Column(
                         children: [
@@ -41,9 +47,10 @@ class ProductDetailsScreen extends StatelessWidget {
                             width: double.infinity,
                             child: Text(
                               product.name,
-                              style: const TextStyle(fontSize: 20),
+                              style: Theme.of(context).textTheme.bodyLarge,
                             ),
                           ),
+                          AppSize.sizedBox10,
                           SizedBox(
                             height: 400,
                             width: double.infinity,
@@ -51,7 +58,7 @@ class ProductDetailsScreen extends StatelessWidget {
                               alignment: AlignmentDirectional.topEnd,
                               children: [
                                 PageView.builder(
-                                  controller: productImages,
+                                  controller: productImagesController,
                                   itemBuilder: (context, index) =>
                                       CachedNetworkImage(
                                     imageUrl: product.images[index],
@@ -63,13 +70,13 @@ class ProductDetailsScreen extends StatelessWidget {
                           ),
                           AppSize.sizedBox10,
                           SmoothPageIndicator(
-                            controller: productImages,
+                            controller: productImagesController,
                             count: product.images.length,
                             effect: const ExpandingDotsEffect(
                               dotColor:
                                   AppColors.pageIndicatorInActiveDotColorLight,
                               activeDotColor:
-                                  AppColors.pageIndicatorInActiveDotColorLight,
+                                  AppColors.pageIndicatorActiveDotColorLight,
                               expansionFactor: 4,
                               dotHeight: 7,
                               dotWidth: 10,
@@ -81,48 +88,22 @@ class ProductDetailsScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'EGP '
-                                ''
-                                '${product.price}',
-                                style: Theme.of(context).textTheme.bodySmall,
+                                '${LocaleKeys.currency.tr()} ${product.price}',
+                                style:
+                                    Theme.of(context).textTheme.displayMedium,
                               ),
+                              if (product.discount != 0) AppSize.sizedBox10,
                               if (product.discount != 0)
-                                Row(
-                                  children: [
-                                    Text(
-                                      'EGP' '${product.oldPrice}',
-                                      style: const TextStyle(
-                                        color: Colors.grey,
-                                        decoration: TextDecoration.lineThrough,
-                                      ),
-                                    ),
-                                    AppSize.sizedBoxW5,
-                                    Text(
-                                      '${product.discount}% OFF',
-                                      style: const TextStyle(
-                                        color: AppColors.discountColorLight,
-                                      ),
-                                    ),
-                                  ],
+                                Text(
+                                  '${LocaleKeys.currency.tr()} ${product.oldPrice}',
+                                  style:
+                                      Theme.of(context).textTheme.displaySmall,
                                 ),
                               AppSize.sizedBox15,
                               const MyDivider(),
                               AppSize.sizedBox15,
-                              Row(
-                                children: [
-                                  const Text(
-                                    'FREE delivery by ',
-                                    style: TextStyle(
-                                      color: AppColors.productInfoColorLight,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(getDateTomorrow()),
-                                ],
-                              ),
-                              AppSize.sizedBox15,
                               Text(
-                                'Overview',
+                                LocaleKeys.offerDetails.tr(),
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
                               AppSize.sizedBox15,
@@ -130,38 +111,13 @@ class ProductDetailsScreen extends StatelessWidget {
                               AppSize.sizedBox20,
                             ],
                           ),
-                          const SizedBox(
-                            height: 40,
-                            width: double.infinity,
-                          ),
                         ],
                       ),
                     ),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    height: 60,
-                    color: AppColors.backgroundColorLight,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 15,
-                    ),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.shopping_cart_outlined),
-                          AppSize.sizedBoxW10,
-                          Text(
-                            'Add to Cart',
-                            style: Theme.of(context).textTheme.bodySmall,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                    AddToCartButton(product: product),
+                    AppSize.sizedBox10,
+                  ],
+                ),
               ),
             );
 
@@ -175,8 +131,49 @@ class ProductDetailsScreen extends StatelessWidget {
   }
 }
 
-String getDateTomorrow() {
-  DateTime dateTime = DateTime.now().add(const Duration(days: 1));
-  String date = DateFormat.yMMMd().format(dateTime);
-  return date;
+class AddToCartButton extends StatelessWidget {
+  const AddToCartButton({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+
+  final GetProductDetailData product;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<CartBloc, CartState>(
+      builder: (context, state) {
+        print('Cart Screen in details $state');
+        if (state.addCartProductState == RequestState.isLoading) {
+          return const ShowCircularLoading();
+        }
+
+        return Padding(
+          padding: AppSize.paddingAll,
+          child: CartBloc.cartIds.contains(product.id)
+              ? Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: AppColors.productGridViewColorLight,
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  child: Text(
+                    LocaleKeys.inCart.tr(),
+                  ),
+                )
+              : CustomRowButton(
+                  title: LocaleKeys.addToCart.tr(),
+                  onPressed: () {
+                    context
+                        .read<CartBloc>()
+                        .add(AddCartProductEvent(product.id));
+                  },
+                  icon: Icons.shopping_cart,
+                ),
+        );
+      },
+    );
+  }
 }

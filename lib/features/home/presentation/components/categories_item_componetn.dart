@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:supershop/core/components/navigation_component.dart';
+import 'package:supershop/core/components/navigation.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/features/home/domain/entities/categories/get_category_data.dart';
 import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';

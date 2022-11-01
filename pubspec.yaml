@@ -40,6 +40,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
+  flutter_screenutil: ^5.5.4
   flutter_secure_storage: ^6.0.0
   flutter_svg: ^1.1.4
   fluttertoast: ^8.0.9

@@ -50,6 +50,11 @@ class LightTheme {
         color: AppColors.smallTextColorLight,
         fontSize: 13.0,
       ),
+      bodyLarge: TextStyle(
+        color: AppColors.mediumTextColorLight,
+        fontSize: 22.0,
+        fontWeight: FontWeight.bold,
+      ),
       bodyMedium: TextStyle(
         color: AppColors.mediumTextColorLight,
         fontSize: 18.0,
@@ -59,15 +64,32 @@ class LightTheme {
         fontSize: 18.0,
         fontWeight: FontWeight.bold,
       ),
+
+      //PRICE
+      displayMedium: TextStyle(
+        fontSize: 19,
+        color: AppColors.normalTextRedColorLight,
+        fontWeight: FontWeight.bold,
+      ),
+
+      //OLD PRICE
+      displaySmall: TextStyle(
+        fontSize: 16,
+        color: AppColors.mediumTextColorLight,
+        decoration: TextDecoration.lineThrough,
+      ),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: AppColors.primaryColorLight,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
+        minimumSize: MaterialStateProperty.all(const Size(double.infinity, 45)),
+        backgroundColor:
+            MaterialStateProperty.all(Color(AppColors.primaryColorLight.value)),
         textStyle: MaterialStateProperty.all(
           const TextStyle(
-            color: AppColors.primaryColorLight,
+            color: AppColors.normalTextWitheColorLight,
           ),
         ),
       ),

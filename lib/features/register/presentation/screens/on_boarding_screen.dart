@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:supershop/core/components/navigation_component.dart';
+import 'package:supershop/core/components/navigation.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
+import 'package:supershop/features/register/presentation/screens/sign_up_screen.dart';
 import 'package:supershop/generated/locale_keys.g.dart';
-import 'login_screen.dart';
 
 class BoardingModel {
   final String image;
@@ -56,7 +56,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       if (value) {
         navigateAndFinish(
           context,
-          LoginScreen(),
+          SignUpScreen(),
         );
       }
     });

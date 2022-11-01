@@ -10,7 +10,6 @@ import 'package:supershop/features/home/domain/entities/categories/get_category_
 import 'package:supershop/features/home/domain/entities/home/get_home.dart';
 import 'package:supershop/features/home/domain/entities/products/get_product_details.dart';
 import 'package:supershop/features/home/domain/entities/products/search_product.dart';
-import 'package:supershop/features/home/domain/entities/products/search_products.dart';
 import 'package:supershop/features/home/domain/usecases/get_categories_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_category_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_product_details_usecase.dart';

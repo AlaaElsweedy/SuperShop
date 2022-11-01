@@ -9,10 +9,14 @@ class AppColors {
   static const pageIndicatorInActiveDotColorLight = Color(0xff7C7D7E);
   static const discountColorLight = Colors.red;
   static const productInfoColorLight = Colors.green;
+  static const productGridViewColorLight = Color(0xffB6B7B7);
+  static const deleteColorLight = Colors.red;
 
   //Text
   static const mediumTextColorLight = Color(0xff4A4B4D);
   static const smallTextColorLight = Color(0xff7C7D7E);
+  static const normalTextWitheColorLight = Colors.white;
+  static const normalTextRedColorLight = Colors.red;
 
   //Icons
   static const favoriteIconColorLight = Colors.white;

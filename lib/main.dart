@@ -2,9 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/address/address_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/cart/cart_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
-import 'package:supershop/features/home/presentation/screens/product_details_screen.dart';
+import 'package:supershop/features/home/presentation/controllers/orders/orders_bloc.dart';
 import 'package:supershop/localization/localization_service.dart';
 
 import 'core/helpers/dio_helper.dart';
@@ -20,7 +22,6 @@ void main() async {
   ServiceLocator.init();
 
   await EasyLocalization.ensureInitialized();
-
   Widget startWidget = await startScreen();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
@@ -55,6 +56,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               sl<FavoritesBloc>()..add(GetFavoriteProductEvent()),
+        ),
+        BlocProvider(
+          create: (context) => sl<CartBloc>()..add(GetCartProductsEvent()),
+        ),
+        BlocProvider(
+          create: (context) => sl<AddressBloc>()..add(GetAddressesEvent()),
+        ),
+        BlocProvider(
+          create: (context) => sl<OrdersBloc>()..add(GetOrdersEvent()),
         ),
       ],
       child: MaterialApp(

@@ -3,6 +3,7 @@ import '../utils/styles/app_colors.dart';
 
 class CustomTextButton extends StatelessWidget {
   final String child;
+  final double fontSize;
   final VoidCallback onPressed;
   final FontWeight fontWeight;
 
@@ -11,6 +12,7 @@ class CustomTextButton extends StatelessWidget {
     this.fontWeight = FontWeight.bold,
     required this.onPressed,
     required this.child,
+    this.fontSize = 15,
   }) : super(key: key);
 
   @override
@@ -20,6 +22,7 @@ class CustomTextButton extends StatelessWidget {
       child: Text(
         child,
         style: TextStyle(
+          fontSize: fontSize,
           color: AppColors.primaryColorLight,
           fontWeight: fontWeight,
         ),

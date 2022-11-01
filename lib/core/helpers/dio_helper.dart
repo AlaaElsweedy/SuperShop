@@ -15,14 +15,14 @@ class DioHelper {
       ),
     );
 
-    dio.interceptors.add(LogInterceptor(
-        // request: true,
-        // requestBody: true,
-        // responseBody: true,
-        // error: true,
-        // requestHeader: false,
-        // responseHeader: false,
-        ));
+    // dio.interceptors.add(LogInterceptor(
+    //     request: true,
+    //     requestBody: true,
+    //     responseBody: true,
+    //     error: true,
+    //     requestHeader: false,
+    //     responseHeader: false,
+    //     ));
   }
 
   static Future<Response> postData({
@@ -31,14 +31,14 @@ class DioHelper {
     required Map<String, dynamic> data,
     String lang = 'en',
     String? token,
-  }) {
+  }) async {
     dio.options.headers = {
       'lang': lang,
       'Authorization': token ?? '',
       'Content-Type': 'application/json',
     };
 
-    return dio.post(
+    return await dio.post(
       path,
       queryParameters: query,
       data: data,
@@ -50,16 +50,51 @@ class DioHelper {
     Map<String, dynamic>? query,
     String lang = 'en',
     String? token,
-  }) {
+  }) async {
     dio.options.headers = {
       'lang': lang,
       'Authorization': token ?? '',
       'Content-Type': 'application/json',
     };
 
-    return dio.get(
+    return await dio.get(
       path,
       queryParameters: query,
     );
+  }
+
+  static Future<Response> updateData({
+    required String path,
+    Map<String, dynamic>? query,
+    required Map<String, dynamic> data,
+    String lang = 'en',
+    String? token,
+  }) async {
+    dio.options.headers = {
+      'lang': lang,
+      'Authorization': token ?? '',
+      'Content-Type': 'application/json',
+    };
+
+    return await dio.put(
+      path,
+      queryParameters: query,
+      data: data,
+    );
+  }
+
+  static Future<Response> deleteData({
+    required String path,
+    Map<String, dynamic>? query,
+    String lang = 'en',
+    String? token,
+  }) async {
+    dio.options.headers = {
+      'lang': lang,
+      'Authorization': token ?? '',
+      'Content-Type': 'application/json',
+    };
+
+    return await dio.delete(path);
   }
 }

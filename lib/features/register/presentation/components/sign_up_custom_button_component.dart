@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:supershop/core/components/custom_button_component.dart';
+import 'package:supershop/core/components/custom_button.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/features/register/presentation/controller/register_bloc/register_bloc.dart';
 import 'package:supershop/generated/locale_keys.g.dart';

@@ -38,5 +38,32 @@ abstract class  LocaleKeys {
   static const offerDetails = 'offerDetails';
   static const productDetails = 'productDetails';
   static const addToCart = 'addToCart';
+  static const discount = 'discount';
+  static const currency = 'currency';
+  static const soon = 'soon';
+  static const shippingFee = 'shippingFee';
+  static const noFee = 'noFee';
+  static const totalPrice = 'totalPrice';
+  static const moveToWishlist = 'moveToWishlist';
+  static const logout = 'logout';
+  static const inCart = 'inCart';
+  static const subTotal = 'subTotal';
+  static const vat = 'vat';
+  static const delete = 'delete';
+  static const items = 'items';
+  static const checkout = 'checkout';
+  static const addOrder = 'addOrder';
+  static const addresses = 'addresses';
+  static const addAddress = 'addAddress';
+  static const thankYou = 'thankYou';
+  static const orderProcessing = 'orderProcessing';
+  static const backHome = 'backHome';
+  static const yourAddress = 'yourAddress';
+  static const name = 'name';
+  static const city = 'city';
+  static const region = 'region';
+  static const details = 'details';
+  static const notes = 'notes';
+  static const save = 'save';
 
 }

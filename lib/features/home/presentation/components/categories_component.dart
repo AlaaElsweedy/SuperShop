@@ -43,9 +43,7 @@ class CategoryItem extends StatelessWidget {
           fit: BoxFit.cover,
         ),
         Container(
-          color: Colors.black.withOpacity(
-            .8,
-          ),
+          color: Colors.black.withOpacity(0.8),
           width: 100.0,
           child: Text(
             data.name,

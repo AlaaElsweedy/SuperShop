@@ -1,8 +1,9 @@
 import 'package:buildcondition/buildcondition.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:supershop/core/components/custom_drawer.dart';
+import 'package:supershop/core/components/my_divider.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/utils/enums.dart';
 import 'package:supershop/features/home/presentation/components/favorite_item_component.dart';
@@ -29,9 +30,8 @@ class FavoritesScreen extends StatelessWidget {
 
           case RequestState.success:
             return Scaffold(
-              drawer: const CustomDrawer(),
               appBar: AppBar(
-                title: const Text(LocaleKeys.favorites),
+                title: Text(LocaleKeys.favorites.tr()),
               ),
               body: BuildCondition(
                 condition:
@@ -42,7 +42,7 @@ class FavoritesScreen extends StatelessWidget {
                     data: state.getFavoriteProducts!.data.favoritesData[index],
                     favorites: favorites,
                   ),
-                  separatorBuilder: (context, index) => const Divider(),
+                  separatorBuilder: (context, index) => const MyDivider(),
                   itemCount:
                       state.getFavoriteProducts!.data.favoritesData.length,
                 ),
@@ -51,7 +51,7 @@ class FavoritesScreen extends StatelessWidget {
                     children: [
                       SvgPicture.asset('assets/images/no_favorites.svg'),
                       Text(
-                        'No Favorites!',
+                        LocaleKeys.favoritesEmpty.tr(),
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ],

@@ -1,10 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supershop/core/components/custom_drawer.dart';
-import 'package:supershop/core/components/navigation_component.dart';
+import 'package:supershop/core/components/navigation.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/enums.dart';
+import 'package:supershop/core/utils/styles/app_colors.dart';
 import 'package:supershop/features/home/presentation/components/carousal_slider_component.dart';
 import 'package:supershop/features/home/presentation/components/categories_component.dart';
 import 'package:supershop/features/home/presentation/components/product_grid_view_component.dart';
@@ -22,6 +24,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
+      buildWhen: (previous, current) =>
+          previous.getHomeDataState != current.getHomeDataState,
       builder: (context, state) {
         {
           print('Home screen State $state');
@@ -36,16 +40,14 @@ class HomeScreen extends StatelessWidget {
                 });
               }
               return Scaffold(
-                drawer: const CustomDrawer(),
+                drawer: CustomDrawer(favorites: favorites),
                 appBar: AppBar(
                   actions: [
                     IconButton(
                       onPressed: () {
                         navigateTo(
                           context,
-                          FavoritesScreen(
-                            favorites: favorites,
-                          ),
+                          FavoritesScreen(favorites: favorites),
                         );
                       },
                       icon: const Icon(Icons.favorite),
@@ -61,15 +63,14 @@ class HomeScreen extends StatelessWidget {
                         homeBanner: state.getHomeData!,
                       ),
                       AppSize.sizedBox15,
-                      const Padding(
-                        padding: EdgeInsets.only(left: 8.0),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
                         child: Text(
-                          LocaleKeys.categories,
-                          style: TextStyle(
-                            fontSize: 24,
-                          ),
+                          LocaleKeys.categories.tr(),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ),
+                      AppSize.sizedBox10,
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 8),
                         height: 100,
@@ -78,19 +79,17 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       AppSize.sizedBox20,
-                      const Padding(
-                        padding: EdgeInsets.only(left: 8.0),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
                         child: Text(
-                          LocaleKeys.newProducts,
-                          style: TextStyle(
-                            fontSize: 24,
-                          ),
+                          LocaleKeys.newProducts.tr(),
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 22.0),
                         child: Container(
-                          color: Colors.grey,
+                          color: AppColors.productGridViewColorLight,
                           child: ProductGridViewComponent(
                             homeDta: state.getHomeData!,
                             favorites: favorites,
@@ -103,10 +102,7 @@ class HomeScreen extends StatelessWidget {
               );
 
             case RequestState.error:
-              return const Center(
-                child: Text('Opps!, Somthing wrong!!'),
-              );
-            //return showError(state.getHomeErrorMessage!);
+              return ShowError(networkExceptions: state.getHomeErrorMessage!);
           }
         }
       },

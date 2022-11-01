@@ -1,13 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:supershop/core/components/navigation_component.dart';
+import 'package:supershop/core/components/navigation.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
 import 'package:supershop/features/home/domain/entities/home/get_home.dart';
 import 'package:supershop/features/home/domain/entities/home/product.dart';
 import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
 import 'package:supershop/features/home/presentation/screens/product_details_screen.dart';
+import 'package:supershop/generated/locale_keys.g.dart';
 
 class ProductGridViewComponent extends StatelessWidget {
   final GetHome homeDta;
@@ -53,7 +55,7 @@ class GridProductItemComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: AppColors.backgroundColorLight,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -64,7 +66,8 @@ class GridProductItemComponent extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    BlocProvider.of<HomeBloc>(context)
+                    context
+                        .read<HomeBloc>()
                         .add(GetProductDetailsEvent(product.id));
                     navigateTo(context, ProductDetailsScreen());
                   },
@@ -77,13 +80,13 @@ class GridProductItemComponent extends StatelessWidget {
                 ),
                 if (product.discount != 0)
                   Container(
-                    color: Colors.red,
+                    color: AppColors.discountColorLight,
                     padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: const Text(
-                      'DISCOUNT',
-                      style: TextStyle(
+                    child: Text(
+                      LocaleKeys.discount.tr(),
+                      style: const TextStyle(
                         fontSize: 10,
-                        color: Colors.white,
+                        color: AppColors.normalTextWitheColorLight,
                       ),
                     ),
                   ),
@@ -104,58 +107,17 @@ class GridProductItemComponent extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '\$${product.price}',
-                      style: const TextStyle(
-                        color: AppColors.primaryColorLight,
-                      ),
+                      '${LocaleKeys.currency.tr()} ${product.price}',
+                      style: Theme.of(context).textTheme.displayMedium,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    BlocBuilder<FavoritesBloc, FavoritesState>(
-                      builder: (context, state) {
-                        return Card(
-                          elevation: 1,
-                          color: favorites[product.id]!
-                              ? AppColors.backgroundFavoriteColorLight
-                              : AppColors.backgroundUnFavoriteColorLight,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: IconButton(
-                            padding: EdgeInsets.zero,
-                            icon: Icon(
-                              favorites[product.id]!
-                                  ? Icons.favorite
-                                  : Icons.favorite_border,
-                              color: favorites[product.id]!
-                                  ? AppColors.favoriteIconColorLight
-                                  : AppColors.unFavoriteIconColorLight,
-                            ),
-                            onPressed: () {
-                              context
-                                  .read<FavoritesBloc>()
-                                  .add(ChangeFavoriteStatusEvent(
-                                    productId: product.id,
-                                    products: favorites,
-                                  ));
-                              context.read<FavoritesBloc>().add(
-                                    AddOrRemoveFavoriteProductsEvent(
-                                      product.id,
-                                    ),
-                                  );
-                            },
-                          ),
-                        );
-                      },
-                    ),
+                    FavoriteIconButton(favorites: favorites, product: product),
                   ],
                 ),
                 if (product.discount != 0)
                   Text(
-                    '\$${product.oldPrice.toString()}',
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      decoration: TextDecoration.lineThrough,
-                    ),
+                    '${LocaleKeys.currency.tr()} ${product.oldPrice.toString()}',
+                    style: Theme.of(context).textTheme.displaySmall,
                     overflow: TextOverflow.ellipsis,
                   ),
               ],
@@ -163,6 +125,56 @@ class GridProductItemComponent extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class FavoriteIconButton extends StatelessWidget {
+  const FavoriteIconButton({
+    Key? key,
+    required this.favorites,
+    required this.product,
+  }) : super(key: key);
+
+  final Map<int, bool> favorites;
+  final Product product;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<FavoritesBloc, FavoritesState>(
+      builder: (context, state) {
+        return Card(
+          elevation: 1,
+          color: favorites[product.id]!
+              ? AppColors.backgroundFavoriteColorLight
+              : AppColors.backgroundUnFavoriteColorLight,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: IconButton(
+            padding: EdgeInsets.zero,
+            icon: Icon(
+              favorites[product.id]! ? Icons.favorite : Icons.favorite_border,
+              color: favorites[product.id]!
+                  ? AppColors.favoriteIconColorLight
+                  : AppColors.unFavoriteIconColorLight,
+            ),
+            onPressed: () {
+              context.read<FavoritesBloc>().add(
+                    ChangeFavoriteStatusEvent(
+                      productId: product.id,
+                      products: favorites,
+                    ),
+                  );
+              context.read<FavoritesBloc>().add(
+                    AddOrRemoveFavoriteProductsEvent(
+                      product.id,
+                    ),
+                  );
+            },
+          ),
+        );
+      },
     );
   }
 }

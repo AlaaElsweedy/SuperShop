@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:supershop/core/components/categories_item_component.dart';
+import 'package:supershop/core/components/custom_app_bar.dart';
+import 'package:supershop/core/components/custom_drawer.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/utils/enums.dart';
+import 'package:supershop/features/home/presentation/components/categories_item_componetn.dart';
 import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -11,6 +13,8 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
+      buildWhen: (previous, current) =>
+          previous.getCategoriesState != current.getCategoriesState,
       builder: (context, state) {
         print('categories Screen state $state');
         switch (state.getCategoriesState) {
@@ -19,6 +23,8 @@ class CategoriesScreen extends StatelessWidget {
 
           case RequestState.success:
             return Scaffold(
+              appBar: const CustomAppBar(),
+              drawer: const CustomDrawer(),
               body: ListView.separated(
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) => CategoriesItemComponent(

@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:supershop/features/home/domain/entities/cart/post_cart_product_data.dart';
+import 'package:supershop/features/home/domain/entities/cart/add_cart_product_data.dart';
 
-class PostCartProductInfo extends Equatable {
+class AddCartProductInfo extends Equatable {
   final int id;
   final int quantity;
-  final PostCartProductData cartProduct;
+  final AddCartProductData cartProduct;
 
-  const PostCartProductInfo({
+  const AddCartProductInfo({
     required this.id,
     required this.quantity,
     required this.cartProduct,
