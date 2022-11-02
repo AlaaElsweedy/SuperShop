@@ -6,6 +6,7 @@ import 'package:supershop/features/home/domain/usecases/add_address_usecase.dart
 import 'package:supershop/features/home/domain/usecases/add_cart_product_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_or_remove_favorite_product.dart';
 import 'package:supershop/features/home/domain/usecases/add_order_usecase.dart';
+import 'package:supershop/features/home/domain/usecases/cancel_order_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/delete_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_cart_products_usecase.dart';
@@ -44,7 +45,7 @@ class ServiceLocator {
     sl.registerFactory(() => FavoritesBloc(sl(), sl()));
     sl.registerFactory(() => CartBloc(sl(), sl(), sl(), sl()));
     sl.registerFactory(() => AddressBloc(sl(), sl()));
-    sl.registerFactory(() => OrdersBloc(sl(), sl()));
+    sl.registerFactory(() => OrdersBloc(sl(), sl(), sl()));
 
 // USECASES
     sl.registerLazySingleton(() => UserLoginUseCase(baseRepository: sl()));
@@ -69,6 +70,7 @@ class ServiceLocator {
 
     sl.registerLazySingleton(() => AddOrderUseCase(sl()));
     sl.registerLazySingleton(() => GetOrdersUseCase(sl()));
+    sl.registerLazySingleton(() => CancelOrderUseCase(sl()));
 
 // REPOSITORY
     sl.registerLazySingleton<RegisterBaseRepository>(

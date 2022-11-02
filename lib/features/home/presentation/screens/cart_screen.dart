@@ -1,27 +1,29 @@
 import 'package:buildcondition/buildcondition.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supershop/core/components/custom_app_bar.dart';
 import 'package:supershop/core/components/custom_button.dart';
-import 'package:supershop/core/components/custom_row_text_button.dart';
 import 'package:supershop/core/components/my_divider.dart';
 import 'package:supershop/core/components/navigation.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/enums.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
-import 'package:supershop/features/home/domain/entities/cart/get_cart_items.dart';
 import 'package:supershop/features/home/presentation/components/cart_item_component.dart';
 import 'package:supershop/features/home/presentation/controllers/cart/cart_bloc.dart';
 import 'package:supershop/features/home/presentation/screens/addresses_screen.dart';
 import 'package:supershop/generated/locale_keys.g.dart';
 
 class CartScreen extends StatelessWidget {
+  final Map<int, bool> favorites;
+
   final TextEditingController productController = TextEditingController();
 
-  CartScreen({Key? key}) : super(key: key);
+  CartScreen({
+    Key? key,
+    this.favorites = const {},
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +40,8 @@ class CartScreen extends StatelessWidget {
             var total = state.getCartProducts!.getCart.totalPrice;
             var cartLength = products.length;
 
-            var fee = subTotal * (0.8 / 100);
-            var shippingFee = fee.toStringAsFixed(2);
-            var totalPrice = (total + fee).toStringAsFixed(2);
+            var shippingFee = subTotal * (0.9 / 100);
+            var totalPrice = (total + shippingFee);
 
             return Scaffold(
               appBar: const CustomAppBar(),
@@ -53,15 +54,12 @@ class CartScreen extends StatelessWidget {
                               RequestState.isLoading ||
                           state.updateCartProductsState ==
                               RequestState.isLoading)
-                        const LinearProgressIndicator(
-                          backgroundColor:
-                              AppColors.backgroundProgressIndicatorColorLight,
-                          color: AppColors.primaryColorLight,
-                        ),
+                        const ShowLinearLoading(),
                       Expanded(
                         child: ListView.separated(
                           physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) => CartItemComponent(
+                            favorites: favorites,
                             productController: productController,
                             item: products[index],
                           ),
@@ -84,7 +82,7 @@ class CartScreen extends StatelessWidget {
                                 ),
                                 const Spacer(),
                                 Text(
-                                  '${LocaleKeys.currency.tr()} $subTotal',
+                                  '${LocaleKeys.currency.tr()} ${NumberFormat.currency(decimalDigits: 2, symbol: "").format(subTotal)}',
                                   style:
                                       Theme.of(context).textTheme.displaySmall,
                                 ),
@@ -99,7 +97,7 @@ class CartScreen extends StatelessWidget {
                                 ),
                                 const Spacer(),
                                 Text(
-                                  '${LocaleKeys.currency.tr()} $shippingFee',
+                                  '${LocaleKeys.currency.tr()} ${NumberFormat.currency(decimalDigits: 2, symbol: "").format(shippingFee)}',
                                   style: const TextStyle(
                                     color: AppColors.productInfoColorLight,
                                   ),
@@ -126,7 +124,7 @@ class CartScreen extends StatelessWidget {
                                 ),
                                 const Spacer(),
                                 Text(
-                                  '${LocaleKeys.currency.tr()} $totalPrice',
+                                  '${LocaleKeys.currency.tr()} ${NumberFormat.currency(decimalDigits: 2, symbol: "").format(totalPrice)}',
                                   style:
                                       Theme.of(context).textTheme.displayMedium,
                                 ),

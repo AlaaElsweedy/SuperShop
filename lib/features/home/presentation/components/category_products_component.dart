@@ -9,10 +9,10 @@ import 'package:supershop/features/home/presentation/controllers/home/home_bloc.
 import 'package:supershop/features/home/presentation/screens/product_details_screen.dart';
 import 'package:supershop/generated/locale_keys.g.dart';
 
-class CategoryProductItemComponent extends StatelessWidget {
+class CategoryProductsItemComponent extends StatelessWidget {
   final GetCategoryProductData product;
 
-  const CategoryProductItemComponent({
+  const CategoryProductsItemComponent({
     Key? key,
     required this.product,
   }) : super(key: key);
@@ -21,7 +21,7 @@ class CategoryProductItemComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.read<HomeBloc>().add(GetCategoryProductsEvent(product.id));
+        context.read<HomeBloc>().add(GetProductDetailsEvent(product.id));
         navigateTo(context, ProductDetailsScreen());
       },
       child: Container(

@@ -14,6 +14,7 @@ import 'package:supershop/features/home/data/models/favorites/get_favorite_produ
 import 'package:supershop/features/home/data/models/favorites/post_favorites_model.dart';
 import 'package:supershop/features/home/data/models/home/home_model.dart';
 import 'package:supershop/features/home/data/models/orders/add_order_model.dart';
+import 'package:supershop/features/home/data/models/orders/cancel_order_model.dart';
 import 'package:supershop/features/home/data/models/orders/get_orders_model.dart';
 import 'package:supershop/features/home/data/models/products/get_product_details_model.dart';
 import 'package:supershop/features/home/data/models/products/search_product_model.dart';
@@ -21,6 +22,7 @@ import 'package:supershop/features/home/data/models/profile/get_or_update_profil
 import 'package:supershop/features/home/domain/usecases/add_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_cart_product_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_order_usecase.dart';
+import 'package:supershop/features/home/domain/usecases/cancel_order_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/delete_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/delete_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_category_products_usecase.dart';
@@ -75,6 +77,8 @@ abstract class HomeBaseRemoteDataSource {
       DeleteAddressUseCaseParameters parameters);
 
   Future<GetOrdersModel> getOrders();
+
+  Future<CancelOrderModel> cancelOrder(CancelOrderUseCaseParameters parameters);
 
   Future<AddOrderModel> addOrder(AddOrderUseCaseParameters parameters);
 }
@@ -405,6 +409,23 @@ class HomeRemoteDataSource extends HomeBaseRemoteDataSource {
 
     if (response.statusCode == 200) {
       return AddOrDeleteAddressModel.fromJson(response.data);
+    } else {
+      throw ServerException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data),
+      );
+    }
+  }
+
+  @override
+  Future<CancelOrderModel> cancelOrder(
+      CancelOrderUseCaseParameters parameters) async {
+    final response = await DioHelper.getData(
+      path: ApiConstance.cancelOrderPath(parameters.orderId),
+      token: token,
+    );
+
+    if (response.statusCode == 200) {
+      return CancelOrderModel.fromJson(response.data);
     } else {
       throw ServerException(
         errorMessageModel: ErrorMessageModel.fromJson(response.data),

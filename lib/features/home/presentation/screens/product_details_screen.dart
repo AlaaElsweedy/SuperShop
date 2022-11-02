@@ -18,7 +18,9 @@ import 'package:supershop/generated/locale_keys.g.dart';
 class ProductDetailsScreen extends StatelessWidget {
   final PageController productImagesController = PageController();
 
-  ProductDetailsScreen({Key? key}) : super(key: key);
+  ProductDetailsScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

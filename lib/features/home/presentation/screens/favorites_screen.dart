@@ -26,7 +26,7 @@ class FavoritesScreen extends StatelessWidget {
 
         switch (state.getFavoritesState) {
           case RequestState.isLoading:
-            return const ShowLinearLoading();
+            return const ShowBarLinearLoading();
 
           case RequestState.success:
             return Scaffold(
@@ -49,7 +49,7 @@ class FavoritesScreen extends StatelessWidget {
                 fallback: (context) => Center(
                   child: Column(
                     children: [
-                      SvgPicture.asset('assets/images/no_favorites.svg'),
+                      SvgPicture.asset('assets/images/no_data.svg'),
                       Text(
                         LocaleKeys.favoritesEmpty.tr(),
                         style: Theme.of(context).textTheme.titleMedium,

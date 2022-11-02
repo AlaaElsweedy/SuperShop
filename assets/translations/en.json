@@ -62,5 +62,11 @@
   "region": "Region",
   "details": "Details",
   "notes": "Notes",
-  "save": "Save"
+  "save": "Save",
+  "orderId": "Order ID:",
+  "totalPriceOrder": "Total Price:",
+  "cancel": "Cancel",
+  "cancelOrder": "Are you Sure about canceling the Order?",
+  "noOrders": "You have no orders in progress!",
+  "savedOrders": "All your orders will be saved here to access their state anytime."
 }

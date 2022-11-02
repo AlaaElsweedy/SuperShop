@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supershop/features/home/presentation/controllers/address/address_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/cart/cart_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
@@ -67,14 +68,19 @@ class MyApp extends StatelessWidget {
           create: (context) => sl<OrdersBloc>()..add(GetOrdersEvent()),
         ),
       ],
-      child: MaterialApp(
-        title: AppString.appName,
-        debugShowCheckedModeBanner: false,
-        theme: LightTheme.lightTheme,
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        home: startWidget,
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) => MaterialApp(
+          title: AppString.appName,
+          debugShowCheckedModeBanner: false,
+          theme: LightTheme.lightTheme,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          home: startWidget,
+        ),
       ),
     );
   }

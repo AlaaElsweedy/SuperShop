@@ -10,6 +10,7 @@ import 'package:supershop/features/home/domain/entities/favorites/get_favorite_p
 import 'package:supershop/features/home/domain/entities/favorites/post_favorite_products.dart';
 import 'package:supershop/features/home/domain/entities/home/get_home.dart';
 import 'package:supershop/features/home/domain/entities/orders/add_order.dart';
+import 'package:supershop/features/home/domain/entities/orders/cancel_orders.dart';
 import 'package:supershop/features/home/domain/entities/orders/get_orders.dart';
 import 'package:supershop/features/home/domain/entities/products/get_product_details.dart';
 import 'package:supershop/features/home/domain/entities/products/search_product.dart';
@@ -18,6 +19,7 @@ import 'package:supershop/features/home/domain/usecases/add_address_usecase.dart
 import 'package:supershop/features/home/domain/usecases/add_cart_product_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_or_remove_favorite_product.dart';
 import 'package:supershop/features/home/domain/usecases/add_order_usecase.dart';
+import 'package:supershop/features/home/domain/usecases/cancel_order_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/delete_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/delete_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_category_products_usecase.dart';
@@ -62,6 +64,9 @@ abstract class HomeBaseRepository {
       AddOrderUseCaseParameters parameters);
 
   Future<Either<NetworkExceptions, GetOrders>> getOrders();
+
+  Future<Either<NetworkExceptions, CancelOrder>> cancelOrder(
+      CancelOrderUseCaseParameters parameters);
 
   Future<Either<NetworkExceptions, AddOrDeleteAddress>> addAddress(
       AddAddressUseCaseParameters parameters);

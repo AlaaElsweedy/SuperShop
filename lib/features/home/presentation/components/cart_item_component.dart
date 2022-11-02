@@ -7,16 +7,19 @@ import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
 import 'package:supershop/features/home/domain/entities/cart/get_cart_items.dart';
 import 'package:supershop/features/home/presentation/controllers/cart/cart_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
 import 'package:supershop/generated/locale_keys.g.dart';
 
 class CartItemComponent extends StatelessWidget {
   final TextEditingController productController;
   final GetCartItems item;
+  final Map<int, bool> favorites;
 
   const CartItemComponent({
     Key? key,
     required this.item,
     required this.productController,
+    this.favorites = const {},
   }) : super(key: key);
 
   @override
@@ -133,21 +136,44 @@ class CartItemComponent extends StatelessWidget {
                     ),
                   ],
                 ),
-                const VerticalDivider(),
-                CustomRowTextButton(
-                  text: LocaleKeys.moveToWishlist.tr(),
-                  textColor: AppColors.mediumTextColorLight,
-                  icon: Icons.favorite_border,
-                  iconColor: AppColors.mediumTextColorLight,
-                  function: () {},
+                BlocBuilder<FavoritesBloc, FavoritesState>(
+                  builder: (context, state) {
+                    return !favorites[item.getCartProduct.id]!
+                        ? Row(
+                            children: [
+                              const VerticalDivider(),
+                              CustomRowTextButton(
+                                text: LocaleKeys.moveToWishlist.tr(),
+                                textColor: AppColors.mediumTextColorLight,
+                                icon: Icons.favorite_border,
+                                iconColor: AppColors.mediumTextColorLight,
+                                onPressed: () {
+                                  print('sa');
+                                  context.read<FavoritesBloc>().add(
+                                        ChangeFavoriteStatusEvent(
+                                          productId: item.getCartProduct.id,
+                                          products: favorites,
+                                        ),
+                                      );
+                                  context.read<FavoritesBloc>().add(
+                                        AddOrRemoveFavoriteProductsEvent(
+                                          item.getCartProduct.id,
+                                        ),
+                                      );
+                                },
+                              ),
+                              const VerticalDivider(),
+                            ],
+                          )
+                        : const Spacer();
+                  },
                 ),
-                const VerticalDivider(),
                 CustomRowTextButton(
                   text: LocaleKeys.delete.tr(),
                   textColor: AppColors.normalTextRedColorLight,
                   icon: Icons.delete,
                   iconColor: AppColors.deleteColorLight,
-                  function: () {
+                  onPressed: () {
                     context
                         .read<CartBloc>()
                         .add(DeleteAllProductsEvent(item.id));

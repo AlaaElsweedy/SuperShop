@@ -17,6 +17,7 @@ class ApiConstance {
 
   static String productDetailsPath(int id) => '/products/$id';
   static String categoryProductsPath(int id) => '/categories/$id';
+  static String cancelOrderPath(int id) => '/orders/$id/cancel';
 
   static String deleteCartProductsPath(int id) => '/carts/$id';
   static String updateCartProductsPath(int id) => '/carts/$id';

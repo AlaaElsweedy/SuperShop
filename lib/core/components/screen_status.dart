@@ -23,7 +23,19 @@ class ShowCircularLoading extends StatelessWidget {
 }
 
 class ShowLinearLoading extends StatelessWidget {
-  const ShowLinearLoading({
+  const ShowLinearLoading({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const LinearProgressIndicator(
+      backgroundColor: AppColors.backgroundProgressIndicatorColorLight,
+      color: AppColors.primaryColorLight,
+    );
+  }
+}
+
+class ShowBarLinearLoading extends StatelessWidget {
+  const ShowBarLinearLoading({
     Key? key,
   }) : super(key: key);
 

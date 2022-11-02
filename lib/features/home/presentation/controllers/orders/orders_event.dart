@@ -14,3 +14,10 @@ class AddOrderEvent extends OrdersEvent {
 }
 
 class GetOrdersEvent extends OrdersEvent {}
+
+class CancelOrderEvent extends OrdersEvent {
+  final int orderId;
+  const CancelOrderEvent({
+    required this.orderId,
+  });
+}

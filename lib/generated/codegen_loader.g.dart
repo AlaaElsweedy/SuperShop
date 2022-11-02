@@ -78,7 +78,13 @@ class CodegenLoader extends AssetLoader{
   "region": "المنطقة",
   "details": "العنوان بالتفصيل ان امكن",
   "notes": "ملحوظات حول طلبك",
-  "save": "حفظ"
+  "save": "حفظ",
+  "orderId": "رقم المنتج:",
+  "totalPriceOrder": "السعر الاجمالي للطلب:",
+  "cancel": "الغاء",
+  "cancelOrder": "هل أنت متأكد من إلغاء الطلب؟",
+  "noOrders": "ليس لديك اي طلبات!",
+  "savedOrders": "سيتم حفظ جميع طلباتك هنا للوصول إلى حالتها في أي وقت."
 };
 static const Map<String,dynamic> en = {
   "skip": "Skip",
@@ -144,7 +150,13 @@ static const Map<String,dynamic> en = {
   "region": "Region",
   "details": "Details",
   "notes": "Notes",
-  "save": "Save"
+  "save": "Save",
+  "orderId": "Order ID:",
+  "totalPriceOrder": "Total Price:",
+  "cancel": "Cancel",
+  "cancelOrder": "Are you Sure about canceling the Order?",
+  "noOrders": "You have no orders in progress!",
+  "savedOrders": "All your orders will be saved here to access their state anytime."
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

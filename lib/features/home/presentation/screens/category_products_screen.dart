@@ -63,7 +63,7 @@ class CategoryProductsScreen extends StatelessWidget {
                                     style: const TextStyle(fontSize: 50),
                                   ),
                                 )
-                              : CategoryProductItemComponent(
+                              : CategoryProductsItemComponent(
                                   product: products[index],
                                 ),
                         ),

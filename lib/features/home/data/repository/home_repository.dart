@@ -11,6 +11,8 @@ import 'package:supershop/features/home/domain/entities/categories/get_category_
 import 'package:supershop/features/home/domain/entities/favorites/get_favorite_products.dart';
 import 'package:supershop/features/home/domain/entities/favorites/post_favorite_products.dart';
 import 'package:supershop/features/home/domain/entities/home/get_home.dart';
+import 'package:supershop/features/home/domain/usecases/cancel_order_usecase.dart';
+import 'package:supershop/features/home/domain/entities/orders/cancel_orders.dart';
 import 'package:supershop/features/home/domain/usecases/delete_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/delete_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_order_usecase.dart';
@@ -226,6 +228,17 @@ class HomeRepository extends HomeBaseRepository {
       UpdateProfileUseCaseParameters parameters) async {
     try {
       final result = await repository.updateProfile(parameters);
+      return Right(result);
+    } on ServerException catch (error) {
+      return Left(NetworkExceptions.getDioException(error));
+    }
+  }
+
+  @override
+  Future<Either<NetworkExceptions, CancelOrder>> cancelOrder(
+      CancelOrderUseCaseParameters parameters) async {
+    try {
+      final result = await repository.cancelOrder(parameters);
       return Right(result);
     } on ServerException catch (error) {
       return Left(NetworkExceptions.getDioException(error));

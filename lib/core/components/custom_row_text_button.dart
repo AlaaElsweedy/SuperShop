@@ -6,7 +6,7 @@ class CustomRowTextButton extends StatelessWidget {
   final Color textColor;
   final IconData icon;
   final Color iconColor;
-  final VoidCallback function;
+  final VoidCallback onPressed;
 
   const CustomRowTextButton({
     super.key,
@@ -14,13 +14,13 @@ class CustomRowTextButton extends StatelessWidget {
     required this.textColor,
     required this.icon,
     required this.iconColor,
-    required this.function,
+    required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: function,
+      onPressed: onPressed,
       child: Row(
         children: [
           Icon(

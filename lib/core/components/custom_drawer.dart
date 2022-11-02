@@ -5,12 +5,16 @@ import 'package:supershop/features/home/presentation/screens/cart_screen.dart';
 import 'package:supershop/features/home/presentation/screens/categories_screen.dart';
 import 'package:supershop/features/home/presentation/screens/favorites_screen.dart';
 import 'package:supershop/features/home/presentation/screens/home_screen.dart';
+import 'package:supershop/features/home/presentation/screens/orders_screen.dart';
 import 'package:supershop/generated/locale_keys.g.dart';
 
 class CustomDrawer extends StatelessWidget {
   final Map<int, bool>? favorites;
 
-  const CustomDrawer({Key? key, this.favorites = const {}}) : super(key: key);
+  const CustomDrawer({
+    Key? key,
+    this.favorites = const {},
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +56,15 @@ class CustomDrawer extends StatelessWidget {
               title: LocaleKeys.cart.tr(),
               function: () {
                 Navigator.of(context).pop();
-                navigateTo(context, CartScreen());
+                navigateTo(context, CartScreen(favorites: favorites!));
+              },
+            ),
+            DrawerItem(
+              icon: Icons.menu,
+              title: LocaleKeys.orders.tr(),
+              function: () {
+                Navigator.of(context).pop();
+                navigateTo(context, const OrdersScreen());
               },
             ),
           ],

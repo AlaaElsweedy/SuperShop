@@ -65,5 +65,11 @@ abstract class  LocaleKeys {
   static const details = 'details';
   static const notes = 'notes';
   static const save = 'save';
+  static const orderId = 'orderId';
+  static const totalPriceOrder = 'totalPriceOrder';
+  static const cancel = 'cancel';
+  static const cancelOrder = 'cancelOrder';
+  static const noOrders = 'noOrders';
+  static const savedOrders = 'savedOrders';
 
 }

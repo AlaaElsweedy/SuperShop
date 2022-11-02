@@ -19,8 +19,7 @@ class CategoriesItemComponent extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       child: InkWell(
         onTap: () {
-          BlocProvider.of<HomeBloc>(context)
-              .add(GetCategoryProductsEvent(data.id));
+          context.read<HomeBloc>().add(GetCategoryProductsEvent(data.id));
           navigateTo(
             context,
             CategoryProductsScreen(
@@ -36,7 +35,7 @@ class CategoriesItemComponent extends StatelessWidget {
               height: 80.0,
               fit: BoxFit.cover,
             ),
-            AppSize.sizedBox20,
+            AppSize.sizedBoxW10,
             Text(
               data.name,
               style: const TextStyle(

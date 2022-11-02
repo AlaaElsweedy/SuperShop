@@ -26,6 +26,8 @@ class AppColors {
 
   //BACKGROUND
   static const backgroundColorLight = Color(0xffffffff);
+  static const greyBackgroundColorLight = Color(0xffF2F2F2);
+  static const blackBackgroundColorLight = Colors.black;
   static const backgroundFavoriteColorLight = Colors.red;
   static const backgroundUnFavoriteColorLight = Color(0xffF2F2F2);
   static const backgroundProgressIndicatorColorLight = Color(0xFFFF9040);
@@ -34,6 +36,9 @@ class AppColors {
   static const textFiledFillColorLight = Color(0xffF2F2F2);
   static const textFiledHintColorLight = Color(0xffB6B7B7);
   static const iconTextFiledColorLight = Color(0xff7C7D7E);
+
+  //Border
+  static const borderColorLight = Color(0xff4A4B4D);
 
   //Toast
   static const toastErrorColorLight = Colors.red;

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supershop/core/components/custom_app_bar.dart';
 import 'package:supershop/core/components/custom_drawer.dart';
 import 'package:supershop/core/components/navigation.dart';
 import 'package:supershop/core/components/screen_status.dart';
@@ -8,7 +9,7 @@ import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/enums.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
 import 'package:supershop/features/home/presentation/components/carousal_slider_component.dart';
-import 'package:supershop/features/home/presentation/components/categories_component.dart';
+import 'package:supershop/features/home/presentation/components/home_categories_component.dart';
 import 'package:supershop/features/home/presentation/components/product_grid_view_component.dart';
 import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
 import 'package:supershop/features/home/presentation/screens/favorites_screen.dart';
@@ -41,19 +42,20 @@ class HomeScreen extends StatelessWidget {
               }
               return Scaffold(
                 drawer: CustomDrawer(favorites: favorites),
-                appBar: AppBar(
-                  actions: [
-                    IconButton(
-                      onPressed: () {
-                        navigateTo(
-                          context,
-                          FavoritesScreen(favorites: favorites),
-                        );
-                      },
-                      icon: const Icon(Icons.favorite),
-                    ),
-                  ],
-                ),
+                appBar: const CustomAppBar(),
+                // appBar: AppBar(
+                //   actions: [
+                //     IconButton(
+                //       onPressed: () {
+                //         navigateTo(
+                //           context,
+                //           FavoritesScreen(favorites: favorites),
+                //         );
+                //       },
+                //       icon: const Icon(Icons.favorite),
+                //     ),
+                //   ],
+                // ),
                 body: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Column(
@@ -74,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 8),
                         height: 100,
-                        child: CategoriesComponent(
+                        child: HomeCategoriesComponent(
                           categories: state.getCategories!,
                         ),
                       ),
