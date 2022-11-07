@@ -34,7 +34,7 @@ class NoOrdersComponent extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: CustomTextButton(
-              child: LocaleKeys.backHome.tr(),
+              title: LocaleKeys.backHome.tr(),
               onPressed: () {
                 Navigator.pop(context);
               },

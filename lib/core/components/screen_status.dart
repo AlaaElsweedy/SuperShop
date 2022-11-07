@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:supershop/core/error/network_exceptions.dart';
+import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
 
 class ShowCircularLoading extends StatelessWidget {
@@ -27,9 +28,12 @@ class ShowLinearLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const LinearProgressIndicator(
-      backgroundColor: AppColors.backgroundProgressIndicatorColorLight,
-      color: AppColors.primaryColorLight,
+    return const Padding(
+      padding: AppSize.paddingHorizontal10,
+      child: LinearProgressIndicator(
+        backgroundColor: AppColors.backgroundProgressIndicatorColorLight,
+        color: AppColors.primaryColorLight,
+      ),
     );
   }
 }

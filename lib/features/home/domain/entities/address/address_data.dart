@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class AddOrDeleteAddressData extends Equatable {
+class AddressData extends Equatable {
   final String name;
   final String city;
   final String region;
@@ -10,7 +10,7 @@ class AddOrDeleteAddressData extends Equatable {
   final String notes;
   final int id;
 
-  const AddOrDeleteAddressData({
+  const AddressData({
     required this.name,
     required this.city,
     required this.region,

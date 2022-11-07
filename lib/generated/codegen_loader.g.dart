@@ -84,7 +84,18 @@ class CodegenLoader extends AssetLoader{
   "cancel": "الغاء",
   "cancelOrder": "هل أنت متأكد من إلغاء الطلب؟",
   "noOrders": "ليس لديك اي طلبات!",
-  "savedOrders": "سيتم حفظ جميع طلباتك هنا للوصول إلى حالتها في أي وقت."
+  "savedOrders": "سيتم حفظ جميع طلباتك هنا للوصول إلى حالتها في أي وقت.",
+  "addAddressFirst": "يجب عليك إضافة عنوان أولا للمتابعة!",
+  "darkMode": "الوضع الداكن",
+  "language": "اللغة",
+  "reachUs": "تواصل معنا",
+  "questions": "أسئلة وأجوبة",
+  "contactUs": "تواصل معنا",
+  "yourAddresses": "العناوين",
+  "edit": "تعديل",
+  "remove": "حذف",
+  "update": "تحديث",
+  "profile": "الملف الشخصي"
 };
 static const Map<String,dynamic> en = {
   "skip": "Skip",
@@ -156,7 +167,18 @@ static const Map<String,dynamic> en = {
   "cancel": "Cancel",
   "cancelOrder": "Are you Sure about canceling the Order?",
   "noOrders": "You have no orders in progress!",
-  "savedOrders": "All your orders will be saved here to access their state anytime."
+  "savedOrders": "All your orders will be saved here to access their state anytime.",
+  "addAddressFirst": "You must add an address first to continue!",
+  "darkMode": "Dark Mode",
+  "language": "Language",
+  "reachUs": "Reach out to us",
+  "questions": "FAQS",
+  "contactUs": "Contact Us",
+  "yourAddresses": "Your Addresses",
+  "edit": "Edit",
+  "remove": "Remove",
+  "update": "Update",
+  "profile": "My Profile"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

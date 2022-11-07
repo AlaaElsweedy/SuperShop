@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:supershop/core/error/exception.dart';
 import 'package:supershop/core/error/network_exceptions.dart';
 import 'package:supershop/features/home/domain/entities/address/get_address.dart';
-import 'package:supershop/features/home/domain/entities/address/add_or_delete_address.dart';
+import 'package:supershop/features/home/domain/entities/address/address.dart';
 import 'package:supershop/features/home/domain/entities/cart/add_cart_product.dart';
 import 'package:supershop/features/home/domain/entities/cart/get_cart_products.dart';
 import 'package:supershop/features/home/domain/entities/cart/update_or_delete_cart_products.dart';
@@ -11,13 +11,14 @@ import 'package:supershop/features/home/domain/entities/categories/get_category_
 import 'package:supershop/features/home/domain/entities/favorites/get_favorite_products.dart';
 import 'package:supershop/features/home/domain/entities/favorites/post_favorite_products.dart';
 import 'package:supershop/features/home/domain/entities/home/get_home.dart';
+import 'package:supershop/features/home/domain/entities/profile/update_profile.dart';
 import 'package:supershop/features/home/domain/usecases/cancel_order_usecase.dart';
 import 'package:supershop/features/home/domain/entities/orders/cancel_orders.dart';
 import 'package:supershop/features/home/domain/usecases/delete_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/delete_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_order_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_address_usecase.dart';
-import 'package:supershop/features/home/domain/entities/profile/get_or_update_profile.dart';
+import 'package:supershop/features/home/domain/entities/profile/get_profile.dart';
 import 'package:supershop/features/home/domain/entities/orders/get_orders.dart';
 import 'package:supershop/features/home/domain/entities/orders/add_order.dart';
 import 'package:supershop/features/home/domain/usecases/get_category_products_usecase.dart';
@@ -26,6 +27,7 @@ import 'package:supershop/features/home/domain/usecases/search_products_usecase.
 import 'package:supershop/features/home/domain/usecases/add_cart_product_usecase.dart';
 import 'package:supershop/features/home/domain/entities/products/search_product.dart';
 import 'package:supershop/features/home/domain/entities/products/get_product_details.dart';
+import 'package:supershop/features/home/domain/usecases/update_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_profile_usecase.dart';
 
@@ -139,7 +141,7 @@ class HomeRepository extends HomeBaseRepository {
   }
 
   @override
-  Future<Either<NetworkExceptions, AddOrDeleteAddress>> addAddress(
+  Future<Either<NetworkExceptions, Address>> addAddress(
       AddAddressUseCaseParameters parameters) async {
     try {
       final result = await repository.addAddress(parameters);
@@ -161,7 +163,7 @@ class HomeRepository extends HomeBaseRepository {
   }
 
   @override
-  Future<Either<NetworkExceptions, AddOrDeleteAddress>> deleteAddress(
+  Future<Either<NetworkExceptions, Address>> deleteAddress(
       DeleteAddressUseCaseParameters parameters) async {
     try {
       final result = await repository.deleteAddress(parameters);
@@ -203,7 +205,7 @@ class HomeRepository extends HomeBaseRepository {
   }
 
   @override
-  Future<Either<NetworkExceptions, GetOrUpdateProfile>> getProfile() async {
+  Future<Either<NetworkExceptions, GetProfile>> getProfile() async {
     try {
       final result = await repository.getProfile();
       return Right(result);
@@ -224,7 +226,7 @@ class HomeRepository extends HomeBaseRepository {
   }
 
   @override
-  Future<Either<NetworkExceptions, GetOrUpdateProfile>> updateProfile(
+  Future<Either<NetworkExceptions, UpdateProfile>> updateProfile(
       UpdateProfileUseCaseParameters parameters) async {
     try {
       final result = await repository.updateProfile(parameters);
@@ -239,6 +241,17 @@ class HomeRepository extends HomeBaseRepository {
       CancelOrderUseCaseParameters parameters) async {
     try {
       final result = await repository.cancelOrder(parameters);
+      return Right(result);
+    } on ServerException catch (error) {
+      return Left(NetworkExceptions.getDioException(error));
+    }
+  }
+
+  @override
+  Future<Either<NetworkExceptions, Address>> updateAddress(
+      UpdateAddressUseCaseParameters parameters) async {
+    try {
+      final result = await repository.updateAddress(parameters);
       return Right(result);
     } on ServerException catch (error) {
       return Left(NetworkExceptions.getDioException(error));

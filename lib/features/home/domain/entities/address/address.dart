@@ -1,12 +1,13 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:supershop/features/home/domain/entities/address/add_or_delete_address_data.dart';
+import 'package:supershop/features/home/domain/entities/address/address_data.dart';
 
-class AddOrDeleteAddress extends Equatable {
+// This class for add, update and delete
+class Address extends Equatable {
   final bool status;
   final String message;
-  final AddOrDeleteAddressData addOrDeleteAddressData;
-  const AddOrDeleteAddress({
+  final AddressData addOrDeleteAddressData;
+  const Address({
     required this.status,
     required this.message,
     required this.addOrDeleteAddressData,

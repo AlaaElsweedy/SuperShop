@@ -18,7 +18,7 @@ Future<dynamic> bottomModelSheetComponent(BuildContext context) {
     builder: (context) => SizedBox(
       width: double.infinity,
       child: Padding(
-        padding: AppSize.paddingAll,
+        padding: AppSize.paddingAll20,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -41,7 +41,7 @@ Future<dynamic> bottomModelSheetComponent(BuildContext context) {
               onPressed: () {
                 navigateTo(context, HomeScreen());
               },
-              child: 'Back To Home',
+              title: 'Back To Home',
             ),
           ],
         ),

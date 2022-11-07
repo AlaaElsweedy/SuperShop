@@ -44,7 +44,7 @@ class SignUpScreen extends StatelessWidget {
           body: Center(
             child: SingleChildScrollView(
               child: Padding(
-                padding: AppSize.paddingAll,
+                padding: AppSize.paddingAll20,
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Form(
@@ -65,7 +65,7 @@ class SignUpScreen extends StatelessWidget {
                               onPressed: () {
                                 navigateTo(context, LoginScreen());
                               },
-                              child: LocaleKeys.signIn.tr(),
+                              title: LocaleKeys.signIn.tr(),
                             ),
                           ],
                         ),

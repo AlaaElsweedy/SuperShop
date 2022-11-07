@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:supershop/features/home/domain/entities/address/add_or_delete_address.dart';
+import 'package:supershop/features/home/domain/entities/address/address.dart';
 import 'package:supershop/features/home/domain/entities/address/get_address.dart';
 import 'package:supershop/features/home/domain/entities/cart/add_cart_product.dart';
 import 'package:supershop/features/home/domain/entities/cart/get_cart_products.dart';
@@ -14,7 +14,8 @@ import 'package:supershop/features/home/domain/entities/orders/cancel_orders.dar
 import 'package:supershop/features/home/domain/entities/orders/get_orders.dart';
 import 'package:supershop/features/home/domain/entities/products/get_product_details.dart';
 import 'package:supershop/features/home/domain/entities/products/search_product.dart';
-import 'package:supershop/features/home/domain/entities/profile/get_or_update_profile.dart';
+import 'package:supershop/features/home/domain/entities/profile/get_profile.dart';
+import 'package:supershop/features/home/domain/entities/profile/update_profile.dart';
 import 'package:supershop/features/home/domain/usecases/add_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_cart_product_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_or_remove_favorite_product.dart';
@@ -25,6 +26,7 @@ import 'package:supershop/features/home/domain/usecases/delete_cart_products_use
 import 'package:supershop/features/home/domain/usecases/get_category_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_product_details_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/search_products_usecase.dart';
+import 'package:supershop/features/home/domain/usecases/update_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_profile_usecase.dart';
 import '../../../../../core/error/network_exceptions.dart';
@@ -68,16 +70,19 @@ abstract class HomeBaseRepository {
   Future<Either<NetworkExceptions, CancelOrder>> cancelOrder(
       CancelOrderUseCaseParameters parameters);
 
-  Future<Either<NetworkExceptions, AddOrDeleteAddress>> addAddress(
+  Future<Either<NetworkExceptions, Address>> addAddress(
       AddAddressUseCaseParameters parameters);
 
   Future<Either<NetworkExceptions, GetAddress>> getAddress();
 
-  Future<Either<NetworkExceptions, AddOrDeleteAddress>> deleteAddress(
+  Future<Either<NetworkExceptions, Address>> deleteAddress(
       DeleteAddressUseCaseParameters parameters);
 
-  Future<Either<NetworkExceptions, GetOrUpdateProfile>> getProfile();
+  Future<Either<NetworkExceptions, Address>> updateAddress(
+      UpdateAddressUseCaseParameters parameters);
 
-  Future<Either<NetworkExceptions, GetOrUpdateProfile>> updateProfile(
+  Future<Either<NetworkExceptions, GetProfile>> getProfile();
+
+  Future<Either<NetworkExceptions, UpdateProfile>> updateProfile(
       UpdateProfileUseCaseParameters parameters);
 }

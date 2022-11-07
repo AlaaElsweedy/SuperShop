@@ -23,7 +23,7 @@ class CategoryProductsScreen extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.getCategoryProductsState != current.getCategoryProductsState,
       builder: (context, state) {
-        print('Category Products State $state');
+        //print('Category Products State $state');
         switch (state.getCategoryProductsState) {
           case RequestState.isLoading:
             return const ShowCircularLoading();
@@ -41,7 +41,7 @@ class CategoryProductsScreen extends StatelessWidget {
                       Container(
                         width: double.infinity,
                         color: AppColors.backgroundColorLight,
-                        padding: AppSize.paddingAll,
+                        padding: AppSize.paddingAll20,
                         child: Text(
                           '$categoryTitle'.toUpperCase(),
                           style: Theme.of(context).textTheme.bodySmall,

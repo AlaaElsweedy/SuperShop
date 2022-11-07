@@ -15,7 +15,11 @@ class AppSize {
 
   static const sizedBoxW5 = SizedBox(width: 5);
 
-  static const paddingAll = EdgeInsets.all(20);
+  static const paddingAll10 = EdgeInsets.all(10);
 
-  static const paddingHorizontal = EdgeInsets.symmetric(horizontal: 20);
+  static const paddingAll20 = EdgeInsets.all(20);
+
+  static const paddingHorizontal10 = EdgeInsets.symmetric(horizontal: 10);
+
+  static const paddingHorizontal20 = EdgeInsets.symmetric(horizontal: 20);
 }

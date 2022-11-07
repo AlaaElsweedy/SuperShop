@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:supershop/core/components/custom_app_bar.dart';
 import 'package:supershop/core/components/custom_row_button.dart';
-import 'package:supershop/core/components/my_divider.dart';
+import 'package:supershop/core/components/my_dividers.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/enums.dart';
@@ -28,7 +28,7 @@ class ProductDetailsScreen extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.getProductDetailsState != current.getProductDetailsState,
       builder: (context, state) {
-        print('Product Detail State $state');
+        //print('Product Detail State $state');
         switch (state.getProductDetailsState) {
           case RequestState.isLoading:
             return const ShowCircularLoading();
@@ -42,7 +42,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
-                      padding: AppSize.paddingAll,
+                      padding: AppSize.paddingAll20,
                       child: Column(
                         children: [
                           SizedBox(
@@ -145,13 +145,13 @@ class AddToCartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartBloc, CartState>(
       builder: (context, state) {
-        print('Cart Screen in details $state');
+        //print('Cart Screen in details $state');
         if (state.addCartProductState == RequestState.isLoading) {
           return const ShowCircularLoading();
         }
 
         return Padding(
-          padding: AppSize.paddingAll,
+          padding: AppSize.paddingAll20,
           child: CartBloc.cartIds.contains(product.id)
               ? Container(
                   alignment: Alignment.center,

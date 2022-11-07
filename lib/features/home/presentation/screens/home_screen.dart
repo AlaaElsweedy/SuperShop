@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supershop/core/components/custom_app_bar.dart';
 import 'package:supershop/core/components/custom_drawer.dart';
-import 'package:supershop/core/components/navigation.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/enums.dart';
@@ -12,7 +11,6 @@ import 'package:supershop/features/home/presentation/components/carousal_slider_
 import 'package:supershop/features/home/presentation/components/home_categories_component.dart';
 import 'package:supershop/features/home/presentation/components/product_grid_view_component.dart';
 import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
-import 'package:supershop/features/home/presentation/screens/favorites_screen.dart';
 import 'package:supershop/generated/locale_keys.g.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -29,7 +27,7 @@ class HomeScreen extends StatelessWidget {
           previous.getHomeDataState != current.getHomeDataState,
       builder: (context, state) {
         {
-          print('Home screen State $state');
+          //print('Home screen State $state');
           switch (state.getHomeDataState) {
             case RequestState.isLoading:
               return const ShowCircularLoading();

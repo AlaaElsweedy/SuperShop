@@ -1,3 +1,4 @@
+import 'package:buildcondition/buildcondition.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +12,15 @@ import 'package:supershop/core/utils/enums.dart';
 import 'package:supershop/features/home/presentation/controllers/address/address_bloc.dart';
 import 'package:supershop/generated/locale_keys.g.dart';
 
-class AddAddressScreen extends StatelessWidget {
+class AddOrUpdateAddressScreen extends StatelessWidget {
+  final bool? editAddress;
+  final int? addressId;
+  final String? name;
+  final String? city;
+  final String? region;
+  final String? details;
+  final String? notes;
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController cityController = TextEditingController();
@@ -19,10 +28,27 @@ class AddAddressScreen extends StatelessWidget {
   final TextEditingController detailsController = TextEditingController();
   final TextEditingController notesController = TextEditingController();
 
-  AddAddressScreen({Key? key}) : super(key: key);
+  AddOrUpdateAddressScreen({
+    Key? key,
+    this.editAddress = false,
+    this.addressId,
+    this.name,
+    this.city,
+    this.region,
+    this.details,
+    this.notes,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    if (editAddress!) {
+      nameController.text = name!;
+      cityController.text = city!;
+      regionController.text = region!;
+      detailsController.text = details!;
+      notesController.text = notes!;
+    }
+
     return Scaffold(
       appBar: const CustomAppBar(),
       body: Center(
@@ -107,32 +133,63 @@ class AddAddressScreen extends StatelessWidget {
                   BlocConsumer<AddressBloc, AddressState>(
                     listener: (context, state) {
                       if (state.addAddressState == RequestState.success) {
-                        showSuccessMessage(state.addAddress!.message);
+                        Navigator.pop(context);
+                      }
+
+                      if (state.updateAddressState == RequestState.success) {
+                        showSuccessMessage(state.updateAddress!.message);
+                        Navigator.pop(context);
                       }
                     },
+                    buildWhen: (previous, current) =>
+                        previous.getAddressState != current.getAddressState,
                     builder: (context, state) {
-                      if (state.addAddressState == RequestState.isLoading) {
+                      print('add address $state');
+                      if (state.addAddressState == RequestState.isLoading ||
+                          state.updateAddressState == RequestState.isLoading) {
                         return const ShowCircularLoading();
                       }
 
                       return Column(
                         children: [
-                          CustomButton(
-                            title: LocaleKeys.save.tr(),
-                            onPressed: () {
-                              if (formKey.currentState!.validate()) {
-                                FocusScope.of(context).unfocus();
-                                context.read<AddressBloc>().add(
-                                      AddAddressEvent(
-                                        name: nameController.text,
-                                        city: cityController.text,
-                                        region: regionController.text,
-                                        details: detailsController.text,
-                                        notes: notesController.text,
-                                      ),
-                                    );
-                              }
-                            },
+                          BuildCondition(
+                            condition: state.addAddressState !=
+                                    RequestState.isLoading ||
+                                state.updateAddressState !=
+                                    RequestState.isLoading,
+                            builder: (context) => CustomButton(
+                              title: editAddress!
+                                  ? LocaleKeys.edit.tr()
+                                  : LocaleKeys.save.tr(),
+                              onPressed: () {
+                                if (formKey.currentState!.validate()) {
+                                  FocusScope.of(context).unfocus();
+                                  if (editAddress!) {
+                                    context
+                                        .read<AddressBloc>()
+                                        .add(UpdateAddressesEvent(
+                                          addressId: addressId!,
+                                          name: nameController.text,
+                                          city: cityController.text,
+                                          region: regionController.text,
+                                          details: detailsController.text,
+                                          notes: notesController.text,
+                                        ));
+                                  } else {
+                                    context.read<AddressBloc>().add(
+                                          AddAddressEvent(
+                                            name: nameController.text,
+                                            city: cityController.text,
+                                            region: regionController.text,
+                                            details: detailsController.text,
+                                            notes: notesController.text,
+                                          ),
+                                        );
+                                  }
+                                }
+                              },
+                            ),
+                            fallback: (context) => const ShowCircularLoading(),
                           ),
                           AppSize.sizedBox10,
                         ],

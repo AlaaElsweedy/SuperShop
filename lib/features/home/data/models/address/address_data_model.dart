@@ -1,7 +1,7 @@
-import 'package:supershop/features/home/domain/entities/address/add_or_delete_address_data.dart';
+import 'package:supershop/features/home/domain/entities/address/address_data.dart';
 
-class AddOrDeleteAddressDataModel extends AddOrDeleteAddressData {
-  const AddOrDeleteAddressDataModel({
+class AddressDataModel extends AddressData {
+  const AddressDataModel({
     required super.name,
     required super.city,
     required super.region,
@@ -10,8 +10,8 @@ class AddOrDeleteAddressDataModel extends AddOrDeleteAddressData {
     required super.id,
   });
 
-  factory AddOrDeleteAddressDataModel.fromJson(Map<String, dynamic> json) {
-    return AddOrDeleteAddressDataModel(
+  factory AddressDataModel.fromJson(Map<String, dynamic> json) {
+    return AddressDataModel(
       name: json['name'],
       city: json['city'],
       region: json['region'],

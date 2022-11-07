@@ -71,5 +71,16 @@ abstract class  LocaleKeys {
   static const cancelOrder = 'cancelOrder';
   static const noOrders = 'noOrders';
   static const savedOrders = 'savedOrders';
+  static const addAddressFirst = 'addAddressFirst';
+  static const darkMode = 'darkMode';
+  static const language = 'language';
+  static const reachUs = 'reachUs';
+  static const questions = 'questions';
+  static const contactUs = 'contactUs';
+  static const yourAddresses = 'yourAddresses';
+  static const edit = 'edit';
+  static const remove = 'remove';
+  static const update = 'update';
+  static const profile = 'profile';
 
 }

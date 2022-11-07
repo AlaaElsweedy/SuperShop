@@ -58,7 +58,7 @@ class LoginScreen extends StatelessWidget {
               child: Form(
                 key: _formKey,
                 child: Padding(
-                  padding: AppSize.paddingAll,
+                  padding: AppSize.paddingAll20,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -75,7 +75,7 @@ class LoginScreen extends StatelessWidget {
                             onPressed: () {
                               navigateTo(context, SignUpScreen());
                             },
-                            child: LocaleKeys.signUp.tr(),
+                            title: LocaleKeys.signUp.tr(),
                           ),
                         ],
                       ),

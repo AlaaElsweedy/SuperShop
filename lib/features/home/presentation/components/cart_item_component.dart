@@ -148,7 +148,6 @@ class CartItemComponent extends StatelessWidget {
                                 icon: Icons.favorite_border,
                                 iconColor: AppColors.mediumTextColorLight,
                                 onPressed: () {
-                                  print('sa');
                                   context.read<FavoritesBloc>().add(
                                         ChangeFavoriteStatusEvent(
                                           productId: item.getCartProduct.id,
@@ -184,19 +183,6 @@ class CartItemComponent extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class VerticalDivider extends StatelessWidget {
-  const VerticalDivider({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 20,
-      width: 2,
-      color: AppColors.productGridViewColorLight,
     );
   }
 }

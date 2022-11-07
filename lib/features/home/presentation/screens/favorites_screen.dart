@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:supershop/core/components/my_divider.dart';
+import 'package:supershop/core/components/my_dividers.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/utils/enums.dart';
 import 'package:supershop/features/home/presentation/components/favorite_item_component.dart';
@@ -22,7 +22,7 @@ class FavoritesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FavoritesBloc, FavoritesState>(
       builder: (context, state) {
-        print('favorite state $state');
+        //print('favorite state $state');
 
         switch (state.getFavoritesState) {
           case RequestState.isLoading:

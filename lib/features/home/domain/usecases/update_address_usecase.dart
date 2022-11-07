@@ -1,32 +1,32 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-
 import 'package:supershop/core/error/network_exceptions.dart';
 import 'package:supershop/core/usecase/base_use_case.dart';
 import 'package:supershop/features/home/domain/entities/address/address.dart';
 import 'package:supershop/features/home/domain/repository/home_base_repository.dart';
 
-class AddAddressUseCase
-    extends BaseUseCase<Address, AddAddressUseCaseParameters> {
+class UpdateAddressUseCase
+    extends BaseUseCase<Address, UpdateAddressUseCaseParameters> {
   final HomeBaseRepository repository;
 
-  AddAddressUseCase(this.repository);
+  UpdateAddressUseCase(this.repository);
 
   @override
   Future<Either<NetworkExceptions, Address>> call(
-      AddAddressUseCaseParameters parameters) async {
-    return await repository.addAddress(parameters);
+      UpdateAddressUseCaseParameters parameters) async {
+    return await repository.updateAddress(parameters);
   }
 }
 
-class AddAddressUseCaseParameters extends Equatable {
+class UpdateAddressUseCaseParameters extends Equatable {
+  final int addressId;
   final String name;
   final String city;
   final String region;
   final String details;
   final String notes;
-
-  const AddAddressUseCaseParameters({
+  const UpdateAddressUseCaseParameters({
+    required this.addressId,
     required this.name,
     required this.city,
     required this.region,

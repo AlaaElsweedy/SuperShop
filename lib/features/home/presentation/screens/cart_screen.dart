@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supershop/core/components/custom_app_bar.dart';
 import 'package:supershop/core/components/custom_button.dart';
-import 'package:supershop/core/components/my_divider.dart';
+import 'package:supershop/core/components/my_dividers.dart';
 import 'package:supershop/core/components/navigation.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/utils/app_size.dart';
@@ -12,7 +12,7 @@ import 'package:supershop/core/utils/enums.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
 import 'package:supershop/features/home/presentation/components/cart_item_component.dart';
 import 'package:supershop/features/home/presentation/controllers/cart/cart_bloc.dart';
-import 'package:supershop/features/home/presentation/screens/addresses_screen.dart';
+import 'package:supershop/features/home/presentation/screens/checkout_screen.dart';
 import 'package:supershop/generated/locale_keys.g.dart';
 
 class CartScreen extends StatelessWidget {
@@ -29,7 +29,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartBloc, CartState>(
       builder: (context, state) {
-        print('Cart Screen state $state');
+        //print('Cart Screen state $state');
         switch (state.getCartProductsState) {
           case RequestState.isLoading:
             return const ShowCircularLoading();
@@ -40,7 +40,7 @@ class CartScreen extends StatelessWidget {
             var total = state.getCartProducts!.getCart.totalPrice;
             var cartLength = products.length;
 
-            var shippingFee = subTotal * (0.9 / 100);
+            var shippingFee = subTotal * (7.142);
             var totalPrice = (total + shippingFee);
 
             return Scaffold(
@@ -135,11 +135,11 @@ class CartScreen extends StatelessWidget {
                       ),
                       AppSize.sizedBox15,
                       Padding(
-                        padding: AppSize.paddingHorizontal,
+                        padding: AppSize.paddingHorizontal20,
                         child: CustomButton(
-                          title: LocaleKeys.checkout.tr(),
+                          title: LocaleKeys.addOrder.tr(),
                           onPressed: () {
-                            navigateTo(context, const AddressesScreen());
+                            navigateTo(context, const CheckoutScreen());
                           },
                         ),
                       ),

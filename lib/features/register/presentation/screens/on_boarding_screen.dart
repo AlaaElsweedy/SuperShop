@@ -80,7 +80,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         ],
       ),
       body: Padding(
-        padding: AppSize.paddingAll,
+        padding: AppSize.paddingAll20,
         child: Column(
           children: [
             Expanded(

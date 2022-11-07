@@ -30,7 +30,7 @@ class OrderItemComponent extends StatelessWidget {
           borderRadius: BorderRadius.circular(25),
         ),
         child: Padding(
-          padding: AppSize.paddingAll,
+          padding: AppSize.paddingAll20,
           child: Column(
             children: [
               Row(

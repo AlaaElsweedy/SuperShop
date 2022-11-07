@@ -18,7 +18,7 @@ class OrdersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<OrdersBloc, OrdersState>(
       builder: (context, state) {
-        print('OrdersScreen $state');
+        //print('OrdersScreen $state');
         switch (state.getOrdersState) {
           case RequestState.isLoading:
             return const ShowCircularLoading();

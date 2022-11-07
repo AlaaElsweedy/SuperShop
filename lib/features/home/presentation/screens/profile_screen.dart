@@ -1,14 +1,24 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:buildcondition/buildcondition.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:queen_validators/queen_validators.dart';
+import 'package:supershop/core/components/custom_app_bar.dart';
 import 'package:supershop/core/components/custom_button.dart';
+import 'package:supershop/core/components/custom_text_form_field.dart';
 import 'package:supershop/core/components/screen_status.dart';
+import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/enums.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
 import 'package:supershop/features/home/presentation/controllers/profile/profile_bloc.dart';
+import 'package:supershop/generated/locale_keys.g.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+
+  ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,78 +30,89 @@ class ProfileScreen extends StatelessWidget {
 
           case RequestState.success:
             var profile = state.getProfile!.getProfileData;
-            var image = state.getProfile!.getProfileData.image;
+
+            nameController.text = profile.name;
+            emailController.text = profile.email;
+            phoneController.text = profile.phone;
+
             return Scaffold(
+              appBar: const CustomAppBar(),
               body: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
+                padding: AppSize.paddingHorizontal20,
+                child: Form(
+                  key: formKey,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Stack(
-                        alignment: Alignment.bottomRight,
-                        children: [
-                          CircleAvatar(
-                            radius: 88,
-                            backgroundColor: AppColors.primaryColorLight,
-                            child: CircleAvatar(
-                              radius: 84,
-                              backgroundColor: AppColors.backgroundColorLight,
-                              child: CircleAvatar(
-                                radius: 80,
-                                child: CachedNetworkImage(
-                                  imageUrl: image,
-                                  placeholder: (context, url) => const Center(
-                                      child: CircularProgressIndicator(
-                                    strokeWidth: 1.5,
-                                  )),
-                                  errorWidget: (context, url, error) =>
-                                      const Icon(
-                                    Icons.error,
-                                    color: AppColors.primaryColorLight,
-                                  ),
-                                  imageBuilder: (context, imageProvider) =>
-                                      CircleAvatar(
-                                    backgroundImage: imageProvider,
-                                    radius: 80,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          CircleAvatar(
-                            radius: 25,
-                            backgroundColor: Colors.white,
-                            child: CircleAvatar(
-                              radius: 22,
-                              backgroundColor: Colors.grey[50],
-                              child: IconButton(
-                                splashRadius: 22,
-                                onPressed: () {},
-                                icon: const Icon(Icons.camera),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
-                        child: Text(
-                          profile.name,
-                          style: const TextStyle(fontSize: 18),
-                        ),
-                      ),
                       Text(
-                        profile.email,
-                        style:
-                            const TextStyle(fontSize: 15, color: Colors.grey),
+                        LocaleKeys.profile.tr(),
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
-                      const SizedBox(
-                        height: 40,
+                      AppSize.sizedBox28,
+                      CustomTextFormField(
+                        context: context,
+                        hintText: LocaleKeys.name.tr(),
+                        validator: qValidator([
+                          IsRequired(LocaleKeys.requiredField.tr()),
+                        ]),
+                        controller: nameController,
+                        type: TextInputType.name,
+                        prefixIcon: const Icon(Icons.person),
                       ),
-                      CustomButton(
-                        title: 'Logout',
-                        onPressed: () {},
+                      AppSize.sizedBox15,
+                      CustomTextFormField(
+                        context: context,
+                        hintText: LocaleKeys.email.tr(),
+                        validator: qValidator([
+                          IsRequired(LocaleKeys.requiredField.tr()),
+                          IsEmail(LocaleKeys.emailAddressFormat.tr()),
+                        ]),
+                        controller: emailController,
+                        type: TextInputType.emailAddress,
+                        prefixIcon: const Icon(Icons.email),
+                      ),
+                      AppSize.sizedBox15,
+                      CustomTextFormField(
+                        context: context,
+                        hintText: LocaleKeys.phone.tr(),
+                        validator: qValidator([
+                          IsRequired(LocaleKeys.requiredField.tr()),
+                          IsEgyptianPhone(LocaleKeys.isPhoneNumber.tr()),
+                        ]),
+                        controller: phoneController,
+                        type: TextInputType.phone,
+                        prefixIcon: const Icon(Icons.phone),
+                      ),
+                      AppSize.sizedBox28,
+                      BuildCondition(
+                        condition:
+                            state.updateProfileState != RequestState.isLoading,
+                        builder: (context) =>
+                            BlocListener<ProfileBloc, ProfileState>(
+                          listener: (context, state) {
+                            if (state.updateProfileState ==
+                                RequestState.success) {
+                              showSuccessMessage(state.updateProfile!.message);
+                            }
+                          },
+                          child: CustomButton(
+                            title: LocaleKeys.update.tr(),
+                            onPressed: () {
+                              if (formKey.currentState!.validate()) {
+                                FocusScope.of(context).unfocus();
+                                context.read<ProfileBloc>().add(
+                                      UpdateProfileEvent(
+                                        name: nameController.text,
+                                        email: emailController.text,
+                                        phoneNumber: phoneController.text,
+                                      ),
+                                    );
+                              }
+                            },
+                          ),
+                        ),
+                        fallback: (context) => const ShowCircularLoading(),
                       ),
                     ],
                   ),

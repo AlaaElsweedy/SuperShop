@@ -3,7 +3,7 @@ import 'package:supershop/core/helpers/dio_helper.dart';
 import 'package:supershop/core/network/api_constance.dart';
 import 'package:supershop/core/network/error_message_model.dart';
 import 'package:supershop/core/utils/constance.dart';
-import 'package:supershop/features/home/data/models/address/add_or_delete_address_model.dart';
+import 'package:supershop/features/home/data/models/address/address_model.dart';
 import 'package:supershop/features/home/data/models/address/get_address_model.dart';
 import 'package:supershop/features/home/data/models/cart/get_cart_products_model.dart';
 import 'package:supershop/features/home/data/models/cart/add_cart_products_model.dart';
@@ -18,7 +18,8 @@ import 'package:supershop/features/home/data/models/orders/cancel_order_model.da
 import 'package:supershop/features/home/data/models/orders/get_orders_model.dart';
 import 'package:supershop/features/home/data/models/products/get_product_details_model.dart';
 import 'package:supershop/features/home/data/models/products/search_product_model.dart';
-import 'package:supershop/features/home/data/models/profile/get_or_update_profile_model.dart';
+import 'package:supershop/features/home/data/models/profile/get_profile_model.dart';
+import 'package:supershop/features/home/data/models/profile/update_profile.dart';
 import 'package:supershop/features/home/domain/usecases/add_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_cart_product_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_order_usecase.dart';
@@ -28,6 +29,7 @@ import 'package:supershop/features/home/domain/usecases/delete_cart_products_use
 import 'package:supershop/features/home/domain/usecases/get_category_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_product_details_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/search_products_usecase.dart';
+import 'package:supershop/features/home/domain/usecases/update_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_profile_usecase.dart';
 
@@ -63,18 +65,18 @@ abstract class HomeBaseRemoteDataSource {
   Future<UpdateOrDeleteCartProductsModel> deleteCartProducts(
       DeleteCartProductsUseCaseParameters parameters);
 
-  Future<GetOrUpdateProfileModel> getProfile();
+  Future<GetProfileModel> getProfile();
 
-  Future<GetOrUpdateProfileModel> updateProfile(
+  Future<UpdateProfileModel> updateProfile(
       UpdateProfileUseCaseParameters parameters);
 
-  Future<AddOrDeleteAddressModel> addAddress(
-      AddAddressUseCaseParameters parameters);
+  Future<AddressModel> addAddress(AddAddressUseCaseParameters parameters);
 
   Future<GetAddressModel> getAddress();
 
-  Future<AddOrDeleteAddressModel> deleteAddress(
-      DeleteAddressUseCaseParameters parameters);
+  Future<AddressModel> updateAddress(UpdateAddressUseCaseParameters parameters);
+
+  Future<AddressModel> deleteAddress(DeleteAddressUseCaseParameters parameters);
 
   Future<GetOrdersModel> getOrders();
 
@@ -281,7 +283,7 @@ class HomeRemoteDataSource extends HomeBaseRemoteDataSource {
   }
 
   @override
-  Future<AddOrDeleteAddressModel> addAddress(
+  Future<AddressModel> addAddress(
       AddAddressUseCaseParameters parameters) async {
     final response = await DioHelper.postData(
       path: ApiConstance.getAddressesPath,
@@ -298,7 +300,66 @@ class HomeRemoteDataSource extends HomeBaseRemoteDataSource {
     );
 
     if (response.statusCode == 200) {
-      return AddOrDeleteAddressModel.fromJson(response.data);
+      return AddressModel.fromJson(response.data);
+    } else {
+      throw ServerException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data),
+      );
+    }
+  }
+
+  @override
+  Future<AddressModel> updateAddress(
+      UpdateAddressUseCaseParameters parameters) async {
+    final response = await DioHelper.updateData(
+      path: ApiConstance.updateAddressPath(parameters.addressId),
+      data: {
+        'name': parameters.name,
+        'city': parameters.city,
+        'region': parameters.region,
+        'details': parameters.details,
+        'notes': parameters.notes,
+        'latitude': 31.4175,
+        'longitude': 31.8144,
+      },
+      token: token,
+    );
+
+    if (response.statusCode == 200) {
+      return AddressModel.fromJson(response.data);
+    } else {
+      throw ServerException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data),
+      );
+    }
+  }
+
+  @override
+  Future<AddressModel> deleteAddress(
+      DeleteAddressUseCaseParameters parameters) async {
+    final response = await DioHelper.deleteData(
+      path: ApiConstance.deleteAddressPath(parameters.addressId),
+      token: token,
+    );
+
+    if (response.statusCode == 200) {
+      return AddressModel.fromJson(response.data);
+    } else {
+      throw ServerException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data),
+      );
+    }
+  }
+
+  @override
+  Future<GetAddressModel> getAddress() async {
+    final response = await DioHelper.getData(
+      path: ApiConstance.getAddressesPath,
+      token: token,
+    );
+
+    if (response.statusCode == 200) {
+      return GetAddressModel.fromJson(response.data);
     } else {
       throw ServerException(
         errorMessageModel: ErrorMessageModel.fromJson(response.data),
@@ -328,22 +389,6 @@ class HomeRemoteDataSource extends HomeBaseRemoteDataSource {
   }
 
   @override
-  Future<GetAddressModel> getAddress() async {
-    final response = await DioHelper.getData(
-      path: ApiConstance.getAddressesPath,
-      token: token,
-    );
-
-    if (response.statusCode == 200) {
-      return GetAddressModel.fromJson(response.data);
-    } else {
-      throw ServerException(
-        errorMessageModel: ErrorMessageModel.fromJson(response.data),
-      );
-    }
-  }
-
-  @override
   Future<GetOrdersModel> getOrders() async {
     final response = await DioHelper.getData(
       path: ApiConstance.getOrdersPath,
@@ -360,14 +405,14 @@ class HomeRemoteDataSource extends HomeBaseRemoteDataSource {
   }
 
   @override
-  Future<GetOrUpdateProfileModel> getProfile() async {
+  Future<GetProfileModel> getProfile() async {
     final response = await DioHelper.getData(
       path: ApiConstance.getProfilePath,
       token: token,
     );
 
     if (response.statusCode == 200) {
-      return GetOrUpdateProfileModel.fromJson(response.data);
+      return GetProfileModel.fromJson(response.data);
     } else {
       throw ServerException(
         errorMessageModel: ErrorMessageModel.fromJson(response.data),
@@ -376,7 +421,7 @@ class HomeRemoteDataSource extends HomeBaseRemoteDataSource {
   }
 
   @override
-  Future<GetOrUpdateProfileModel> updateProfile(
+  Future<UpdateProfileModel> updateProfile(
       UpdateProfileUseCaseParameters parameters) async {
     final response = await DioHelper.updateData(
       path: ApiConstance.updateProfilePath,
@@ -384,31 +429,12 @@ class HomeRemoteDataSource extends HomeBaseRemoteDataSource {
         'name': parameters.name,
         'phone': parameters.phone,
         'email': parameters.email,
-        'password': parameters.password,
-        'image': parameters.image,
       },
       token: token,
     );
 
     if (response.statusCode == 200) {
-      return GetOrUpdateProfileModel.fromJson(response.data);
-    } else {
-      throw ServerException(
-        errorMessageModel: ErrorMessageModel.fromJson(response.data),
-      );
-    }
-  }
-
-  @override
-  Future<AddOrDeleteAddressModel> deleteAddress(
-      DeleteAddressUseCaseParameters parameters) async {
-    final response = await DioHelper.deleteData(
-      path: ApiConstance.deleteAddressPath(parameters.addressId),
-      token: token,
-    );
-
-    if (response.statusCode == 200) {
-      return AddOrDeleteAddressModel.fromJson(response.data);
+      return UpdateProfileModel.fromJson(response.data);
     } else {
       throw ServerException(
         errorMessageModel: ErrorMessageModel.fromJson(response.data),

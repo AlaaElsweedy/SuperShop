@@ -5,15 +5,13 @@ class GetOrUpdateProfileData extends Equatable {
   final String name;
   final String email;
   final String phone;
-  final String image;
   final String token;
   const GetOrUpdateProfileData({
     required this.id,
     required this.name,
     required this.email,
     required this.phone,
-    this.image =
-        'https://icon-library.com/images/no-profile-picture-icon/no-profile-picture-icon-6.jpg',
+  
     required this.token,
   });
 
@@ -24,7 +22,6 @@ class GetOrUpdateProfileData extends Equatable {
       name,
       email,
       phone,
-      image,
       token,
     ];
   }

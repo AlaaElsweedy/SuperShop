@@ -8,12 +8,13 @@ import 'package:supershop/features/home/presentation/controllers/cart/cart_bloc.
 import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/orders/orders_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/profile/profile_bloc.dart';
 import 'package:supershop/localization/localization_service.dart';
 
 import 'core/helpers/dio_helper.dart';
 import 'core/services/service_locator.dart';
 import 'core/utils/app_string.dart';
-import 'core/utils/startScreen.dart';
+import 'core/utils/start_screen.dart';
 import 'core/utils/styles/app_themes/light_theme.dart';
 
 void main() async {
@@ -26,7 +27,7 @@ void main() async {
   Widget startWidget = await startScreen();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
-    (value) {
+    (_) {
       runApp(
         initialLocalization(
             child: MyApp(
@@ -66,6 +67,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => sl<OrdersBloc>()..add(GetOrdersEvent()),
+        ),
+        BlocProvider(
+          create: (context) => sl<ProfileBloc>()..add(GetProfileEvent()),
         ),
       ],
       child: ScreenUtilInit(

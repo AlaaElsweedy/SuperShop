@@ -21,7 +21,7 @@ class FavoriteItemComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: AppSize.paddingAll,
+      padding: AppSize.paddingAll20,
       child: SizedBox(
         height: 120.0,
         child: Row(
