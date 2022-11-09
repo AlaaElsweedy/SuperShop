@@ -2,6 +2,7 @@ import 'package:buildcondition/buildcondition.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/enums.dart';
@@ -32,30 +33,30 @@ class OrdersScreen extends StatelessWidget {
                 title: Text(LocaleKeys.orders.tr()),
                 actions: [
                   Padding(
-                    padding: const EdgeInsets.all(10),
+                    padding: AppSize.paddingAll10,
                     child: Row(
                       children: [
                         Stack(
                           alignment: Alignment.center,
                           children: [
                             Container(
-                              width: 35,
-                              height: 35,
+                              width: 35.w,
+                              height: 35.h,
                               decoration: BoxDecoration(
-                                color: AppColors.primaryColorLight,
-                                borderRadius: BorderRadius.circular(10),
+                                color: Theme.of(context).primaryColor,
+                                borderRadius: BorderRadius.circular(10.r),
                               ),
                             ),
                             Text(
                               '${orders.length}',
                               style: const TextStyle(
-                                color: AppColors.normalTextWitheColorLight,
+                                color: AppColors.normalTextWitheColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
                         ),
-                        AppSize.sizedBoxW10,
+                        AppSize.sizedBoxW10(context),
                         Text(
                           LocaleKeys.items.tr(),
                           style: Theme.of(context).textTheme.bodySmall,
@@ -75,7 +76,7 @@ class OrdersScreen extends StatelessWidget {
                             if (state.cancelOrderState ==
                                 RequestState.isLoading)
                               const ShowLinearLoading(),
-                            AppSize.sizedBox10,
+                            AppSize.sizedBox10(context),
                             ListView.separated(
                               itemBuilder: (context, index) =>
                                   OrderItemComponent(

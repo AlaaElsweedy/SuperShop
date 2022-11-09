@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supershop/core/components/custom_button.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
@@ -20,14 +21,16 @@ class OrderItemComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.greyBackgroundColorLight,
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.greyBackgroundColorDark
+              : AppColors.greyBackgroundColorLight,
           border: Border.all(
             color: AppColors.borderColorLight,
           ),
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(25.r),
         ),
         child: Padding(
           padding: AppSize.paddingAll20,
@@ -42,7 +45,7 @@ class OrderItemComponent extends StatelessWidget {
                         LocaleKeys.orderId.tr(),
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
-                      AppSize.sizedBoxW5,
+                      AppSize.sizedBoxW5(context),
                       Text(
                         order.id.toString(),
                         style: Theme.of(context).textTheme.bodyMedium,
@@ -55,7 +58,7 @@ class OrderItemComponent extends StatelessWidget {
                   ),
                 ],
               ),
-              AppSize.sizedBox10,
+              AppSize.sizedBox10(context),
               Row(
                 children: [
                   Text(
@@ -63,12 +66,12 @@ class OrderItemComponent extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   Text(
-                    " ${NumberFormat.currency(decimalDigits: 0, symbol: "").format(order.totalPrice)} ${LocaleKeys.currency.tr()}",
+                    ' ${NumberFormat.currency(decimalDigits: 0).format(order.totalPrice)}',
                     style: Theme.of(context).textTheme.displayMedium,
                   ),
                 ],
               ),
-              AppSize.sizedBox10,
+              AppSize.sizedBox10(context),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -79,7 +82,7 @@ class OrderItemComponent extends StatelessWidget {
                           ? AppColors.productInfoColorLight
                           : AppColors.deleteColorLight,
                       fontWeight: FontWeight.w900,
-                      fontSize: 20,
+                      fontSize: 20.sp,
                     ),
                   ),
                   if (order.status == "New")
@@ -87,6 +90,8 @@ class OrderItemComponent extends StatelessWidget {
                       title: LocaleKeys.cancel.tr(),
                       onPressed: () {
                         AwesomeDialog(
+                          dialogBackgroundColor:
+                              Theme.of(context).backgroundColor,
                           context: context,
                           dialogType: DialogType.question,
                           animType: AnimType.scale,
@@ -99,8 +104,7 @@ class OrderItemComponent extends StatelessWidget {
                           btnCancelOnPress: () {},
                         ).show();
                       },
-                      width: 100,
-                      height: 30,
+                      width: 100.w,
                     ),
                 ],
               ),

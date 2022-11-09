@@ -16,23 +16,21 @@ class NoOrdersComponent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset('assets/images/no_data.svg'),
-          AppSize.sizedBox20,
+          AppSize.sizedBox20(context),
           Text(
             LocaleKeys.noOrders.tr(),
             style: Theme.of(context).textTheme.bodyLarge,
             textAlign: TextAlign.center,
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          AppSize.sizedBox10(context),
           Text(
             LocaleKeys.savedOrders.tr(),
             style: Theme.of(context).textTheme.bodySmall,
             textAlign: TextAlign.center,
           ),
-          AppSize.sizedBox20,
+          AppSize.sizedBox20(context),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: AppSize.paddingAll10,
             child: CustomTextButton(
               title: LocaleKeys.backHome.tr(),
               onPressed: () {

@@ -56,7 +56,7 @@ class AddOrUpdateAddressScreen extends StatelessWidget {
           child: Form(
             key: formKey,
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: AppSize.paddingAll10,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -64,7 +64,7 @@ class AddOrUpdateAddressScreen extends StatelessWidget {
                     LocaleKeys.yourAddress.tr(),
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                  AppSize.sizedBox20,
+                  AppSize.sizedBox20(context),
                   CustomTextFormField(
                     context: context,
                     hintText: LocaleKeys.name.tr(),
@@ -77,7 +77,7 @@ class AddOrUpdateAddressScreen extends StatelessWidget {
                     type: TextInputType.name,
                     prefixIcon: const Icon(Icons.person),
                   ),
-                  AppSize.sizedBox10,
+                  AppSize.sizedBox10(context),
                   CustomTextFormField(
                     context: context,
                     hintText: LocaleKeys.city.tr(),
@@ -90,7 +90,7 @@ class AddOrUpdateAddressScreen extends StatelessWidget {
                     type: TextInputType.text,
                     prefixIcon: const Icon(Icons.location_city),
                   ),
-                  AppSize.sizedBox10,
+                  AppSize.sizedBox10(context),
                   CustomTextFormField(
                     context: context,
                     hintText: LocaleKeys.region.tr(),
@@ -103,7 +103,7 @@ class AddOrUpdateAddressScreen extends StatelessWidget {
                     type: TextInputType.name,
                     prefixIcon: const Icon(Icons.gps_fixed),
                   ),
-                  AppSize.sizedBox10,
+                  AppSize.sizedBox10(context),
                   CustomTextFormField(
                     context: context,
                     hintText: LocaleKeys.details.tr(),
@@ -116,7 +116,7 @@ class AddOrUpdateAddressScreen extends StatelessWidget {
                     type: TextInputType.text,
                     prefixIcon: const Icon(Icons.details),
                   ),
-                  AppSize.sizedBox10,
+                  AppSize.sizedBox10(context),
                   CustomTextFormField(
                     context: context,
                     hintText: LocaleKeys.notes.tr(),
@@ -129,7 +129,7 @@ class AddOrUpdateAddressScreen extends StatelessWidget {
                     type: TextInputType.text,
                     prefixIcon: const Icon(Icons.note),
                   ),
-                  AppSize.sizedBox15,
+                  AppSize.sizedBox15(context),
                   BlocConsumer<AddressBloc, AddressState>(
                     listener: (context, state) {
                       if (state.addAddressState == RequestState.success) {
@@ -141,10 +141,8 @@ class AddOrUpdateAddressScreen extends StatelessWidget {
                         Navigator.pop(context);
                       }
                     },
-                    buildWhen: (previous, current) =>
-                        previous.getAddressState != current.getAddressState,
                     builder: (context, state) {
-                      print('add address $state');
+                      //print('add address $state');
                       if (state.addAddressState == RequestState.isLoading ||
                           state.updateAddressState == RequestState.isLoading) {
                         return const ShowCircularLoading();
@@ -191,7 +189,7 @@ class AddOrUpdateAddressScreen extends StatelessWidget {
                             ),
                             fallback: (context) => const ShowCircularLoading(),
                           ),
-                          AppSize.sizedBox10,
+                          AppSize.sizedBox10(context),
                         ],
                       );
                     },

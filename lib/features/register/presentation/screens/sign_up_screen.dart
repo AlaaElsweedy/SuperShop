@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen_validators/queen_validators.dart';
 import 'package:supershop/core/components/build_header.dart';
 import 'package:supershop/core/components/build_second_header.dart';
+import 'package:supershop/core/components/custom_button.dart';
 import 'package:supershop/core/components/custom_text_button.dart';
 import 'package:supershop/core/components/custom_text_form_field.dart';
 import 'package:supershop/core/components/navigation.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/services/service_locator.dart';
 import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/features/register/presentation/components/sign_up_custom_button_component.dart';
 import 'package:supershop/features/register/presentation/components/sign_up_password_field_component.dart';
 import 'package:supershop/features/register/presentation/controller/register_bloc/register_bloc.dart';
 import 'package:supershop/generated/locale_keys.g.dart';
@@ -69,7 +69,7 @@ class SignUpScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        AppSize.sizedBox28,
+                        AppSize.sizedBox28(context),
                         CustomTextFormField(
                           prefixIcon: const Icon(Icons.person),
                           context: context,
@@ -80,7 +80,7 @@ class SignUpScreen extends StatelessWidget {
                           controller: fullNameController,
                           type: TextInputType.name,
                         ),
-                        AppSize.sizedBox15,
+                        AppSize.sizedBox15(context),
                         CustomTextFormField(
                           prefixIcon: const Icon(Icons.email),
                           context: context,
@@ -92,11 +92,11 @@ class SignUpScreen extends StatelessWidget {
                           controller: emailController,
                           type: TextInputType.emailAddress,
                         ),
-                        AppSize.sizedBox15,
+                        AppSize.sizedBox15(context),
                         SignUpPasswordFieldComponent(
                           passwordController: passwordController,
                         ),
-                        AppSize.sizedBox15,
+                        AppSize.sizedBox15(context),
                         CustomTextFormField(
                           prefixIcon: const Icon(Icons.phone),
                           context: context,
@@ -108,13 +108,31 @@ class SignUpScreen extends StatelessWidget {
                           controller: phoneController,
                           type: TextInputType.phone,
                         ),
-                        AppSize.sizedBox15,
-                        SignUpCustomButtonComponent(
-                          formKey: _formKey,
-                          emailController: emailController,
-                          fullNameController: fullNameController,
-                          passwordController: passwordController,
-                          phoneController: phoneController,
+                        AppSize.sizedBox15(context),
+                        BlocBuilder<RegisterBloc, RegisterState>(
+                          builder: (context, state) {
+                            //print('Sign Up Screen $state');
+                            if (state is RegisterLoadingState) {
+                              return const ShowCircularLoading();
+                            }
+
+                            return CustomButton(
+                              title: LocaleKeys.signUp.tr(),
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  FocusScope.of(context).unfocus();
+                                  context.read<RegisterBloc>().add(
+                                        UserSignUpEvent(
+                                          emailController.text,
+                                          fullNameController.text,
+                                          passwordController.text,
+                                          phoneController.text,
+                                        ),
+                                      );
+                                }
+                              },
+                            );
+                          },
                         ),
                       ],
                     ),

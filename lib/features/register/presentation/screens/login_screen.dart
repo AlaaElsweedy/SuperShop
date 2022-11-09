@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen_validators/queen_validators.dart';
 import 'package:supershop/core/components/build_header.dart';
 import 'package:supershop/core/components/build_second_header.dart';
+import 'package:supershop/core/components/custom_button.dart';
 import 'package:supershop/core/components/custom_text_button.dart';
 import 'package:supershop/core/components/custom_text_form_field.dart';
 import 'package:supershop/core/components/navigation.dart';
@@ -13,7 +14,6 @@ import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/constance.dart';
 import 'package:supershop/core/utils/token_secure_storage.dart';
 import 'package:supershop/features/home/presentation/screens/home_screen.dart';
-import 'package:supershop/features/register/presentation/components/login_custom_button_component.dart';
 import 'package:supershop/features/register/presentation/components/login_password_field_component.dart';
 import 'package:supershop/features/register/presentation/controller/login_bloc/login_bloc.dart';
 import 'package:supershop/generated/locale_keys.g.dart';
@@ -79,7 +79,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      AppSize.sizedBox28,
+                      AppSize.sizedBox28(context),
                       CustomTextFormField(
                         prefixIcon: const Icon(Icons.email),
                         context: context,
@@ -91,15 +91,33 @@ class LoginScreen extends StatelessWidget {
                         controller: emailController,
                         type: TextInputType.emailAddress,
                       ),
-                      AppSize.sizedBox15,
+                      AppSize.sizedBox15(context),
                       LoginPasswordFieldComponent(
                         passwordController: passwordController,
                       ),
-                      AppSize.sizedBox15,
-                      LoginCustomButtonComponent(
-                        formKey: _formKey,
-                        emailController: emailController,
-                        passwordController: passwordController,
+                      AppSize.sizedBox15(context),
+                      BlocBuilder<LoginBloc, LoginState>(
+                        builder: (context, state) {
+                          //print('Login Screen $state');
+                          if (state is LoginLoadingState) {
+                            return const ShowCircularLoading();
+                          }
+
+                          return CustomButton(
+                            title: LocaleKeys.signIn.tr(),
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                FocusScope.of(context).unfocus();
+                                context.read<LoginBloc>().add(
+                                      UserSignInEvent(
+                                        emailController.text,
+                                        passwordController.text,
+                                      ),
+                                    );
+                              }
+                            },
+                          );
+                        },
                       ),
                     ],
                   ),

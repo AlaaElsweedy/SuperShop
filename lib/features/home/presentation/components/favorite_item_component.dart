@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
 import 'package:supershop/features/home/domain/entities/favorites/get_favorite_product.dart';
@@ -23,7 +24,7 @@ class FavoriteItemComponent extends StatelessWidget {
     return Padding(
       padding: AppSize.paddingAll20,
       child: SizedBox(
-        height: 120.0,
+        height: 120.0.h,
         child: Row(
           children: [
             Stack(
@@ -31,24 +32,24 @@ class FavoriteItemComponent extends StatelessWidget {
               children: [
                 CachedNetworkImage(
                   imageUrl: data.favoriteProducts.image,
-                  width: 120.0,
-                  height: 120.0,
+                  width: 120.0.w,
+                  height: 120.0.h,
                 ),
                 if (data.favoriteProducts.discount != 0)
                   Container(
                     color: AppColors.discountColorLight,
-                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                    padding: EdgeInsets.symmetric(horizontal: 5.0.w),
                     child: Text(
                       LocaleKeys.discount.tr(),
-                      style: const TextStyle(
-                        fontSize: 8.0,
-                        color: AppColors.normalTextWitheColorLight,
+                      style: TextStyle(
+                        fontSize: 8.0.sp,
+                        color: AppColors.normalTextWitheColor,
                       ),
                     ),
                   ),
               ],
             ),
-            const SizedBox(width: 20.0),
+            AppSize.sizedBoxW10(context),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,28 +58,30 @@ class FavoriteItemComponent extends StatelessWidget {
                     data.favoriteProducts.name,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 14.0,
-                      height: 1.3,
+                    style: TextStyle(
+                      fontSize: 16.0.sp,
+                      height: 1.3.h,
                     ),
                   ),
                   const Spacer(),
                   Row(
                     children: [
                       Text(
-                        '\$${data.favoriteProducts.price}',
-                        style: const TextStyle(
-                          fontSize: 12.0,
+                        NumberFormat.currency(decimalDigits: 2)
+                            .format(data.favoriteProducts.price),
+                        style: TextStyle(
+                          fontSize: 16.0.sp,
                           fontWeight: FontWeight.bold,
                           color: AppColors.primaryColorLight,
                         ),
                       ),
-                      AppSize.sizedBoxW5,
+                      AppSize.sizedBoxW5(context),
                       if (data.favoriteProducts.discount != 0)
                         Text(
-                          '\$${data.favoriteProducts.oldPrice}',
+                          NumberFormat.currency(decimalDigits: 2)
+                              .format(data.favoriteProducts.oldPrice),
                           style: const TextStyle(
-                            fontSize: 10.0,
+                            fontSize: 14.0,
                             color: AppColors.mediumTextColorLight,
                             decoration: TextDecoration.lineThrough,
                           ),
@@ -123,12 +126,12 @@ class FavoriteIconButton extends StatelessWidget {
               ),
             );
       },
-      icon: const CircleAvatar(
-        radius: 15.0,
+      icon: CircleAvatar(
+        radius: 15.0.r,
         backgroundColor: AppColors.backgroundFavoriteColorLight,
         child: Icon(
           Icons.favorite,
-          size: 14.0,
+          size: 14.0.w,
           color: AppColors.favoriteIconColorLight,
         ),
       ),

@@ -12,6 +12,8 @@ class ApiConstance {
   static const getOrdersPath = '/orders';
   static const getCartPath = '/carts';
   static const getProfilePath = '/profile';
+  static const signOutPath = '/logout';
+  static const changePasswordPath = '/change-password';
   static const updateProfilePath = '/update-profile';
   static const getAddressesPath = '/addresses';
 

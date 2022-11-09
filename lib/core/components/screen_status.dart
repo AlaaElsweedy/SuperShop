@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:supershop/core/error/network_exceptions.dart';
 import 'package:supershop/core/utils/app_size.dart';
@@ -12,12 +13,9 @@ class ShowCircularLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.backgroundColorLight,
+      color: Theme.of(context).backgroundColor,
       child: const Center(
-        child: CircularProgressIndicator(
-          backgroundColor: AppColors.backgroundProgressIndicatorColorLight,
-          color: AppColors.primaryColorLight,
-        ),
+        child: CircularProgressIndicator(),
       ),
     );
   }
@@ -28,9 +26,9 @@ class ShowLinearLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return Padding(
       padding: AppSize.paddingHorizontal10,
-      child: LinearProgressIndicator(
+      child: const LinearProgressIndicator(
         backgroundColor: AppColors.backgroundProgressIndicatorColorLight,
         color: AppColors.primaryColorLight,
       ),
@@ -45,12 +43,12 @@ class ShowBarLinearLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.backgroundColorLight,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(top: 30),
-          child: LinearProgressIndicator(
+          padding: EdgeInsets.only(top: 30.h),
+          child: const LinearProgressIndicator(
             minHeight: 20,
             backgroundColor: AppColors.backgroundProgressIndicatorColorLight,
             color: AppColors.primaryColorLight,
@@ -88,7 +86,7 @@ showToastError(NetworkExceptions errorMessage) {
     timeInSecForIosWeb: 1,
     backgroundColor: AppColors.toastErrorColorLight,
     textColor: AppColors.toastTextMessageColorLight,
-    fontSize: 16.0,
+    fontSize: 16.0.sp,
   );
 }
 
@@ -100,6 +98,6 @@ showSuccessMessage(String message) {
     timeInSecForIosWeb: 1,
     backgroundColor: AppColors.productInfoColorLight,
     textColor: AppColors.toastTextMessageColorLight,
-    fontSize: 16.0,
+    fontSize: 16.0.sp,
   );
 }

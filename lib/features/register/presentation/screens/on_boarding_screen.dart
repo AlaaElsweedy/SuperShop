@@ -1,9 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:supershop/core/components/navigation.dart';
+import 'package:supershop/core/helpers/cache_helper.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
 import 'package:supershop/features/register/presentation/screens/sign_up_screen.dart';
@@ -51,8 +53,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   bool isLast = false;
 
   void submit() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isOnBoardingSeen', true).then((value) {
+    CacheHelper.saveData(key: 'isOnBoardingSeen', value: true).then((value) {
       if (value) {
         navigateAndFinish(
           context,
@@ -71,9 +72,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             onPressed: submit,
             child: Text(
               LocaleKeys.skip.tr(),
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColors.primaryColorLight,
-                fontSize: 18.0,
+                fontSize: 18.0.sp,
               ),
             ),
           ),
@@ -110,13 +111,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               children: [
                 SmoothPageIndicator(
                   controller: pageController,
-                  effect: const ExpandingDotsEffect(
+                  effect: ExpandingDotsEffect(
                     dotColor: AppColors.pageIndicatorInActiveDotColorLight,
                     activeDotColor: AppColors.pageIndicatorActiveDotColorLight,
-                    dotHeight: 10,
-                    expansionFactor: 3,
-                    dotWidth: 10,
-                    spacing: 5.0,
+                    dotHeight: 10.h,
+                    expansionFactor: 3.w,
+                    dotWidth: 10.w,
+                    spacing: 5.0.w,
                   ),
                   count: boarding.length,
                 ),
@@ -134,9 +135,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       );
                     }
                   },
-                  child: const Icon(
+                  child: Icon(
                     Icons.arrow_forward,
-                    size: 25,
+                    size: 25.w,
                   ),
                 ),
               ],
@@ -153,17 +154,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           Expanded(
             child: SvgPicture.asset(model.image),
           ),
-          AppSize.sizedBox28,
+          AppSize.sizedBox28(context),
           Text(
             model.title,
             style: Theme.of(context).textTheme.titleMedium,
           ),
-          AppSize.sizedBox15,
+          AppSize.sizedBox15(context),
           Text(
             model.body,
             style: Theme.of(context).textTheme.titleSmall,
           ),
-          AppSize.sizedBox28,
+          AppSize.sizedBox28(context),
         ],
       );
 }

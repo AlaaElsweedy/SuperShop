@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supershop/core/utils/app_size.dart';
 
 class CustomRowTextButton extends StatelessWidget {
   final String text;
-  final Color textColor;
   final IconData icon;
   final Color iconColor;
   final VoidCallback onPressed;
@@ -11,7 +11,6 @@ class CustomRowTextButton extends StatelessWidget {
   const CustomRowTextButton({
     super.key,
     required this.text,
-    required this.textColor,
     required this.icon,
     required this.iconColor,
     required this.onPressed,
@@ -25,17 +24,13 @@ class CustomRowTextButton extends StatelessWidget {
         children: [
           Icon(
             icon,
+            size: 20.w,
             color: iconColor,
-            size: 18,
           ),
-          AppSize.sizedBoxW5,
+          AppSize.sizedBoxW5(context),
           Text(
             text,
-            style: TextStyle(
-              color: textColor,
-              fontSize: 18,
-              fontWeight: FontWeight.w400,
-            ),
+            style: Theme.of(context).textTheme.bodySmall,
           ),
         ],
       ),

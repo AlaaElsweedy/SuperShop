@@ -36,11 +36,15 @@ import 'package:supershop/features/register/domain/usecases/user_sign_up_usecase
 import 'package:supershop/features/register/presentation/controller/cubit/password_visibility_cubit.dart';
 import 'package:supershop/features/register/presentation/controller/login_bloc/login_bloc.dart';
 import 'package:supershop/features/register/presentation/controller/register_bloc/register_bloc.dart';
+import 'package:supershop/general/cubit/app_cubit.dart';
 
 final sl = GetIt.instance;
 
 class ServiceLocator {
   static void init() {
+    // CUBIT
+    sl.registerFactory(() => AppCubit());
+
     // BLOC
     sl.registerFactory(() => RegisterBloc(sl()));
     sl.registerFactory(() => LoginBloc(sl()));

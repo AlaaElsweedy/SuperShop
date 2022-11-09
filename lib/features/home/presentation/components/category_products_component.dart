@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supershop/core/components/navigation.dart';
+import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
 import 'package:supershop/features/home/domain/entities/categories/get_category_product_data.dart';
 import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
@@ -25,8 +27,8 @@ class CategoryProductsItemComponent extends StatelessWidget {
         navigateTo(context, ProductDetailsScreen());
       },
       child: Container(
-        color: AppColors.backgroundColorLight,
-        padding: const EdgeInsetsDirectional.only(start: 8, bottom: 8),
+        color: Theme.of(context).backgroundColor,
+        padding: EdgeInsetsDirectional.only(start: 8.w, bottom: 8.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -35,54 +37,43 @@ class CategoryProductsItemComponent extends StatelessWidget {
               children: [
                 CachedNetworkImage(
                   imageUrl: product.image,
-                  height: 150,
-                  width: 150,
+                  height: 150.h,
+                  width: 150.w,
                 ),
                 if (product.discount != 0)
                   Container(
                     color: AppColors.discountColorLight,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      padding: EdgeInsets.symmetric(horizontal: 5.w),
                       child: Text(
                         LocaleKeys.discount.tr(),
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: AppColors.normalTextWitheColorLight,
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          color: AppColors.normalTextWitheColor,
                         ),
                       ),
                     ),
                   ),
               ],
             ),
+            AppSize.sizedBox10(context),
             Text(
               product.name,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
-            const Spacer(),
-            Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          '${LocaleKeys.currency.tr()} ${product.price}',
-                          style: Theme.of(context).textTheme.displayMedium,
-                        ),
-                      ],
-                    ),
-                    if (product.discount != 0)
-                      Text(
-                        '${LocaleKeys.currency.tr()} ${product.oldPrice}',
-                        style: Theme.of(context).textTheme.displaySmall,
-                      ),
-                  ],
-                ),
-              ],
-            )
+            AppSize.sizedBox28(context),
+            Text(
+              NumberFormat.currency(decimalDigits: 2).format(product.price),
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
+            if (product.discount != 0)
+              Text(
+                NumberFormat.currency(decimalDigits: 2)
+                    .format(product.oldPrice),
+                style: Theme.of(context).textTheme.displaySmall,
+              )
           ],
         ),
       ),

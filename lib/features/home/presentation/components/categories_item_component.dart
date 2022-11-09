@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supershop/core/components/navigation.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/features/home/domain/entities/categories/get_category_data.dart';
@@ -16,7 +17,7 @@ class CategoriesItemComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: AppSize.paddingAll10,
       child: InkWell(
         onTap: () {
           context.read<HomeBloc>().add(GetCategoryProductsEvent(data.id));
@@ -31,15 +32,15 @@ class CategoriesItemComponent extends StatelessWidget {
           children: [
             CachedNetworkImage(
               imageUrl: data.image,
-              width: 80.0,
-              height: 80.0,
+              width: 80.0.w,
+              height: 80.0.h,
               fit: BoxFit.cover,
             ),
-            AppSize.sizedBoxW10,
+            AppSize.sizedBoxW10(context),
             Text(
               data.name,
-              style: const TextStyle(
-                fontSize: 20.0,
+              style: TextStyle(
+                fontSize: 20.0.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),

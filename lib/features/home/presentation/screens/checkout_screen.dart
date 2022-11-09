@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supershop/core/components/custom_app_bar.dart';
 import 'package:supershop/core/components/custom_button.dart';
 import 'package:supershop/core/components/custom_text_button.dart';
@@ -42,7 +43,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             return Scaffold(
               appBar: const CustomAppBar(),
               body: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: AppSize.paddingAll10,
                 child: Column(
                   children: [
                     Row(
@@ -53,8 +54,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         CustomTextButton(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
                           onPressed: () {
                             navigateTo(context, AddOrUpdateAddressScreen());
                           },
@@ -62,10 +61,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         ),
                       ],
                     ),
-                    AppSize.sizedBox15,
+                    AppSize.sizedBox15(context),
                     addresses.isEmpty
                         ? Padding(
-                            padding: const EdgeInsets.only(top: 200),
+                            padding: EdgeInsets.only(top: 200.h),
                             child: Text(
                               LocaleKeys.addAddressFirst.tr(),
                               style: Theme.of(context).textTheme.titleMedium,
@@ -77,12 +76,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                               itemBuilder: (context, index) =>
                                   addressItemComponent(index, addresses),
                               separatorBuilder: (context, index) =>
-                                  AppSize.sizedBox10,
+                                  AppSize.sizedBox10(context),
                               itemCount: addresses.length,
                             ),
                           ),
                     if (addresses.isEmpty) const Spacer(),
-                    AppSize.sizedBox10,
+                    AppSize.sizedBox10(context),
                     addresses.isEmpty
                         ? Container()
                         : BlocBuilder<OrdersBloc, OrdersState>(
@@ -134,44 +133,44 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         });
       },
       child: Container(
-        padding: const EdgeInsets.all(8.0),
+        padding: AppSize.paddingAll10,
         decoration: BoxDecoration(
           color: selectedIndex == index
               ? AppColors.primaryColorLight
               : AppColors.textFiledFillColorLight,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(4),
+          borderRadius: BorderRadius.all(
+            Radius.circular(4.r),
           ),
         ),
         child: Row(
           children: [
             Icon(
               Icons.location_on_outlined,
-              size: 26,
+              size: 35.r,
               color: selectedIndex == index
                   ? AppColors.backgroundColorLight
                   : AppColors.primaryColorLight,
             ),
-            AppSize.sizedBoxW10,
+            AppSize.sizedBoxW10(context),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   '${addresses[index].city}, ${addresses[index].region}',
                   style: selectedIndex == index
-                      ? const TextStyle(
-                          color: AppColors.normalTextWitheColorLight,
-                          fontSize: 18.0,
+                      ? TextStyle(
+                          color: AppColors.normalTextWitheColor,
+                          fontSize: 20.0.sp,
                         )
                       : Theme.of(context).textTheme.bodyMedium,
                 ),
-                AppSize.sizedBox10,
+                AppSize.sizedBox10(context),
                 Text(
                   addresses[index].details,
                   style: selectedIndex == index
-                      ? const TextStyle(
-                          color: AppColors.normalTextWitheColorLight,
-                          fontSize: 18.0,
+                      ? TextStyle(
+                          color: AppColors.normalTextWitheColor,
+                          fontSize: 20.0.sp,
                         )
                       : Theme.of(context).textTheme.bodyMedium,
                 ),

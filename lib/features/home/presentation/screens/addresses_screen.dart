@@ -28,7 +28,7 @@ class AddressesScreen extends StatelessWidget {
             var addresses = state.getAddress!.getAddressInfo.getAddressData;
 
             return Scaffold(
-              backgroundColor: AppColors.greyBackgroundColorLight,
+              backgroundColor: Theme.of(context).backgroundColor,
               appBar: const CustomAppBar(),
               body: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
@@ -52,11 +52,7 @@ class AddressesScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      if(state.deleteAddressState == RequestState.isLoading)
-                      AppSize.sizedBox12,
-                      if(state.deleteAddressState == RequestState.isLoading)
-                      const ShowLinearLoading(),
-                      AppSize.sizedBox12,
+                      AppSize.sizedBox10(context),
                       ListView.separated(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
@@ -64,7 +60,7 @@ class AddressesScreen extends StatelessWidget {
                           address: addresses[index],
                         ),
                         separatorBuilder: (context, index) =>
-                            AppSize.sizedBox10,
+                            AppSize.sizedBox10(context),
                         itemCount: addresses.length,
                       ),
                     ],
@@ -80,5 +76,3 @@ class AddressesScreen extends StatelessWidget {
     );
   }
 }
-
-

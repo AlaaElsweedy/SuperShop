@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supershop/core/components/custom_app_bar.dart';
 import 'package:supershop/core/components/custom_drawer.dart';
 import 'package:supershop/core/components/screen_status.dart';
@@ -62,32 +63,32 @@ class HomeScreen extends StatelessWidget {
                       CarousalSliderComponent(
                         homeBanner: state.getHomeData!,
                       ),
-                      AppSize.sizedBox15,
+                      AppSize.sizedBox20(context),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
+                        padding: EdgeInsets.only(left: 10.0.w),
                         child: Text(
                           LocaleKeys.categories.tr(),
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ),
-                      AppSize.sizedBox10,
+                      AppSize.sizedBox10(context),
                       Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 8),
-                        height: 100,
+                        margin: EdgeInsets.symmetric(horizontal: 10.w),
+                        height: 100.h,
                         child: HomeCategoriesComponent(
                           categories: state.getCategories!,
                         ),
                       ),
-                      AppSize.sizedBox20,
+                      AppSize.sizedBox20(context),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
+                        padding: EdgeInsets.only(left: 10.0.w),
                         child: Text(
                           LocaleKeys.newProducts.tr(),
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 22.0),
+                        padding: EdgeInsets.symmetric(vertical: 22.0.h),
                         child: Container(
                           color: AppColors.productGridViewColorLight,
                           child: ProductGridViewComponent(

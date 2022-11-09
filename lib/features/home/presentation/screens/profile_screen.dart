@@ -49,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
                         LocaleKeys.profile.tr(),
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
-                      AppSize.sizedBox28,
+                      AppSize.sizedBox28(context),
                       CustomTextFormField(
                         context: context,
                         hintText: LocaleKeys.name.tr(),
@@ -60,7 +60,7 @@ class ProfileScreen extends StatelessWidget {
                         type: TextInputType.name,
                         prefixIcon: const Icon(Icons.person),
                       ),
-                      AppSize.sizedBox15,
+                      AppSize.sizedBox15(context),
                       CustomTextFormField(
                         context: context,
                         hintText: LocaleKeys.email.tr(),
@@ -72,7 +72,7 @@ class ProfileScreen extends StatelessWidget {
                         type: TextInputType.emailAddress,
                         prefixIcon: const Icon(Icons.email),
                       ),
-                      AppSize.sizedBox15,
+                      AppSize.sizedBox15(context),
                       CustomTextFormField(
                         context: context,
                         hintText: LocaleKeys.phone.tr(),
@@ -84,7 +84,7 @@ class ProfileScreen extends StatelessWidget {
                         type: TextInputType.phone,
                         prefixIcon: const Icon(Icons.phone),
                       ),
-                      AppSize.sizedBox28,
+                      AppSize.sizedBox28(context),
                       BuildCondition(
                         condition:
                             state.updateProfileState != RequestState.isLoading,

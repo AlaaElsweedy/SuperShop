@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:supershop/core/components/custom_app_bar.dart';
 import 'package:supershop/core/components/screen_status.dart';
@@ -35,12 +36,14 @@ class CategoryProductsScreen extends StatelessWidget {
               body: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Container(
-                  color: AppColors.productGridViewColorLight,
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? AppColors.greyBackgroundColorDark
+                      : AppColors.greyBackgroundColorLight,
                   child: Column(
                     children: [
                       Container(
                         width: double.infinity,
-                        color: AppColors.backgroundColorLight,
+                        color: Theme.of(context).backgroundColor,
                         padding: AppSize.paddingAll20,
                         child: Text(
                           '$categoryTitle'.toUpperCase(),
@@ -48,19 +51,19 @@ class CategoryProductsScreen extends StatelessWidget {
                         ),
                       ),
                       GridView.count(
-                        crossAxisCount: 2,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        crossAxisSpacing: 2,
-                        childAspectRatio: 0.6,
-                        mainAxisSpacing: 2,
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 1.h,
+                        crossAxisSpacing: 2.w,
+                        childAspectRatio: 0.66.h,
                         children: List.generate(
                           products.length,
                           (index) => products.isEmpty
                               ? Center(
                                   child: Text(
                                     LocaleKeys.soon.tr(),
-                                    style: const TextStyle(fontSize: 50),
+                                    style: TextStyle(fontSize: 50.sp),
                                   ),
                                 )
                               : CategoryProductsItemComponent(

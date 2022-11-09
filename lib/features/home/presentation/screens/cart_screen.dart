@@ -2,6 +2,7 @@ import 'package:buildcondition/buildcondition.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supershop/core/components/custom_app_bar.dart';
 import 'package:supershop/core/components/custom_button.dart';
 import 'package:supershop/core/components/my_dividers.dart';
@@ -39,8 +40,12 @@ class CartScreen extends StatelessWidget {
             var subTotal = state.getCartProducts!.getCart.subTotalPrice;
             var total = state.getCartProducts!.getCart.totalPrice;
             var cartLength = products.length;
+            var result = 0.0;
+            for (var element in state.getCartProducts!.getCart.getCartItems) {
+              result += element.quantity * element.getCartProduct.price;
+            }
 
-            var shippingFee = subTotal * (7.142);
+            var shippingFee = result * (0.1);
             var totalPrice = (total + shippingFee);
 
             return Scaffold(
@@ -69,9 +74,10 @@ class CartScreen extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        color: AppColors.productGridViewColorLight
-                            .withOpacity(0.6),
-                        padding: const EdgeInsets.all(15),
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? AppColors.greyBackgroundColorDark
+                            : AppColors.greyBackgroundColorLight,
+                        padding: AppSize.paddingAll10,
                         child: Column(
                           children: [
                             Row(
@@ -82,13 +88,16 @@ class CartScreen extends StatelessWidget {
                                 ),
                                 const Spacer(),
                                 Text(
-                                  '${LocaleKeys.currency.tr()} ${NumberFormat.currency(decimalDigits: 2, symbol: "").format(subTotal)}',
+                                  NumberFormat.currency(
+                                    decimalDigits: 2,
+                                    symbol: "",
+                                  ).format(subTotal),
                                   style:
                                       Theme.of(context).textTheme.displaySmall,
                                 ),
                               ],
                             ),
-                            AppSize.sizedBox15,
+                            AppSize.sizedBox15(context),
                             Row(
                               children: [
                                 Text(
@@ -97,14 +106,17 @@ class CartScreen extends StatelessWidget {
                                 ),
                                 const Spacer(),
                                 Text(
-                                  '${LocaleKeys.currency.tr()} ${NumberFormat.currency(decimalDigits: 2, symbol: "").format(shippingFee)}',
+                                  NumberFormat.currency(
+                                    decimalDigits: 2,
+                                    symbol: "",
+                                  ).format(shippingFee),
                                   style: const TextStyle(
                                     color: AppColors.productInfoColorLight,
                                   ),
                                 )
                               ],
                             ),
-                            AppSize.sizedBox20,
+                            AppSize.sizedBox20(context),
                             Row(
                               textBaseline: TextBaseline.alphabetic,
                               crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -114,17 +126,21 @@ class CartScreen extends StatelessWidget {
                                   style:
                                       Theme.of(context).textTheme.displayMedium,
                                 ),
+                                AppSize.sizedBoxW5(context),
                                 Text(
                                   LocaleKeys.vat.tr(),
-                                  style: const TextStyle(
-                                    fontSize: 10,
-                                    color: Colors.grey,
+                                  style: TextStyle(
+                                    fontSize: 10.sp,
+                                    color: AppColors.normalTextWitheColor,
                                     fontStyle: FontStyle.italic,
                                   ),
                                 ),
                                 const Spacer(),
                                 Text(
-                                  '${LocaleKeys.currency.tr()} ${NumberFormat.currency(decimalDigits: 2, symbol: "").format(totalPrice)}',
+                                  NumberFormat.currency(
+                                    decimalDigits: 2,
+                                    symbol: "",
+                                  ).format(totalPrice),
                                   style:
                                       Theme.of(context).textTheme.displayMedium,
                                 ),
@@ -133,7 +149,7 @@ class CartScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      AppSize.sizedBox15,
+                      AppSize.sizedBox15(context),
                       Padding(
                         padding: AppSize.paddingHorizontal20,
                         child: CustomButton(
@@ -143,7 +159,7 @@ class CartScreen extends StatelessWidget {
                           },
                         ),
                       ),
-                      AppSize.sizedBox20,
+                      AppSize.sizedBox20(context),
                     ],
                   );
                 },

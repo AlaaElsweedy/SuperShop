@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supershop/core/components/navigation.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
@@ -25,7 +26,7 @@ class HomeCategoriesComponent extends StatelessWidget {
       itemBuilder: (context, index) => CategoryItem(
         data: categories.data.products[index],
       ),
-      separatorBuilder: (context, index) => AppSize.sizedBoxW10,
+      separatorBuilder: (context, index) => AppSize.sizedBoxW10(context),
       itemCount: categories.data.products.length,
     );
   }
@@ -51,13 +52,13 @@ class CategoryItem extends StatelessWidget {
         children: [
           CachedNetworkImage(
             imageUrl: data.image,
-            height: 100.0,
-            width: 100.0,
+            height: 100.0.h,
+            width: 100.0.w,
             fit: BoxFit.cover,
           ),
           Container(
             color: AppColors.blackBackgroundColorLight,
-            width: 100.0,
+            width: 100.0.w,
             child: Text(
               data.name,
               textAlign: TextAlign.center,

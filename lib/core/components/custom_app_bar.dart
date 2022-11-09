@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:supershop/core/utils/app_string.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   const CustomAppBar({
@@ -8,7 +9,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Super Shop'),
+      title: const Text(AppString.appName),
     );
   }
 

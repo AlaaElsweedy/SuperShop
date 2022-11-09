@@ -1,25 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppSize {
-  static const sizedBox12 = SizedBox(height: 12);
+  static sizedBox28(BuildContext context) =>
+      SizedBox(height: MediaQuery.of(context).size.height / 20);
 
-  static const sizedBox28 = SizedBox(height: 28);
+  static sizedBox20(BuildContext context) =>
+      SizedBox(height: MediaQuery.of(context).size.height / 40);
 
-  static const sizedBox20 = SizedBox(height: 20);
+  static SizedBox sizedBox10(BuildContext context) =>
+      SizedBox(height: MediaQuery.of(context).size.height / 60);
 
-  static const sizedBox10 = SizedBox(height: 10);
+  static SizedBox sizedBox15(BuildContext context) =>
+      SizedBox(height: MediaQuery.of(context).size.height / 40);
 
-  static const sizedBox15 = SizedBox(height: 15);
+  static SizedBox sizedBoxW10(BuildContext context) =>
+      SizedBox(width: MediaQuery.of(context).size.width / 60);
 
-  static const sizedBoxW10 = SizedBox(width: 10);
+  static SizedBox sizedBoxW5(BuildContext context) =>
+      SizedBox(width: MediaQuery.of(context).size.width / 80);
 
-  static const sizedBoxW5 = SizedBox(width: 5);
+  static EdgeInsets paddingAll10 = EdgeInsets.all(10.r);
 
-  static const paddingAll10 = EdgeInsets.all(10);
+  static EdgeInsets paddingAll20 = EdgeInsets.all(20.r);
 
-  static const paddingAll20 = EdgeInsets.all(20);
+  static EdgeInsets paddingHorizontal5 = EdgeInsets.symmetric(horizontal: 5.w);
 
-  static const paddingHorizontal10 = EdgeInsets.symmetric(horizontal: 10);
+  static EdgeInsets paddingHorizontal10 =
+      EdgeInsets.symmetric(horizontal: 10.w);
 
-  static const paddingHorizontal20 = EdgeInsets.symmetric(horizontal: 20);
+  static EdgeInsets paddingHorizontal20 =
+      EdgeInsets.symmetric(horizontal: 20.w);
 }

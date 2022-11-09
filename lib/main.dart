@@ -3,12 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:supershop/core/helpers/cache_helper.dart';
+import 'package:supershop/core/utils/constance.dart';
+import 'package:supershop/core/utils/styles/app_themes/dark_theme.dart';
+import 'package:supershop/core/utils/token_secure_storage.dart';
 import 'package:supershop/features/home/presentation/controllers/address/address_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/cart/cart_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/orders/orders_bloc.dart';
 import 'package:supershop/features/home/presentation/controllers/profile/profile_bloc.dart';
+import 'package:supershop/features/home/presentation/screens/home_screen.dart';
+import 'package:supershop/features/register/presentation/screens/login_screen.dart';
+import 'package:supershop/features/register/presentation/screens/on_boarding_screen.dart';
+import 'package:supershop/general/cubit/app_cubit.dart';
 import 'package:supershop/localization/localization_service.dart';
 
 import 'core/helpers/dio_helper.dart';
@@ -24,7 +32,26 @@ void main() async {
   ServiceLocator.init();
 
   await EasyLocalization.ensureInitialized();
-  Widget startWidget = await startScreen();
+  await ScreenUtil.ensureScreenSize();
+  await CacheHelper.init();
+  token = await TokenSecureStorage.readSecureToken();
+
+  Object? onBoardingSeen = CacheHelper.getData(key: 'isOnBoardingSeen');
+  var isDark = CacheHelper.getData(key: 'isDark');
+  isDark ??= false;
+  //print('Main token $token');
+
+  Widget startWidget;
+
+  if (token == null) {
+    if (onBoardingSeen == null) {
+      startWidget = const OnBoardingScreen();
+    } else {
+      startWidget = LoginScreen();
+    }
+  } else {
+    startWidget = HomeScreen();
+  }
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (_) {
@@ -32,6 +59,7 @@ void main() async {
         initialLocalization(
             child: MyApp(
           startWidget: startWidget,
+          isDark: isDark,
         )),
       );
     },
@@ -40,10 +68,12 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final Widget startWidget;
+  final bool isDark;
 
   const MyApp({
     super.key,
     required this.startWidget,
+    required this.isDark,
   });
 
   @override
@@ -71,19 +101,31 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => sl<ProfileBloc>()..add(GetProfileEvent()),
         ),
+        BlocProvider(
+          create: (context) =>
+              sl<AppCubit>()..changeModeTheme(fromShared: isDark),
+        ),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
         splitScreenMode: true,
-        builder: (context, child) => MaterialApp(
-          title: AppString.appName,
-          debugShowCheckedModeBanner: false,
-          theme: LightTheme.lightTheme,
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          home: startWidget,
+        builder: (context, child) => BlocBuilder<AppCubit, AppState>(
+          builder: (context, state) {
+            return MaterialApp(
+              title: AppString.appName,
+              debugShowCheckedModeBanner: false,
+              themeMode: AppCubit.get(context).isDark
+                  ? ThemeMode.dark
+                  : ThemeMode.light,
+              theme: LightTheme.lightTheme,
+              darkTheme: DarkTheme.darkTheme,
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              home: startWidget,
+            );
+          },
         ),
       ),
     );

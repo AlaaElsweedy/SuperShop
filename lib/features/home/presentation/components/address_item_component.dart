@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supershop/core/components/custom_text_button.dart';
 import 'package:supershop/core/components/my_dividers.dart';
 import 'package:supershop/core/components/navigation.dart';
 import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/enums.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
 import 'package:supershop/features/home/domain/entities/address/get_address_data.dart';
 import 'package:supershop/features/home/presentation/controllers/address/address_bloc.dart';
@@ -24,47 +24,52 @@ class AddressItemComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.greyBackgroundColorLight,
-        borderRadius: BorderRadius.circular(10.0),
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.greyBackgroundColorDark
+            : AppColors.greyBackgroundColorLight,
+        borderRadius: BorderRadius.circular(10.0.r),
       ),
       child: Card(
+        color: Theme.of(context).brightness == Brightness.dark
+            ? AppColors.greyBackgroundColorDark
+            : AppColors.greyBackgroundColorLight,
         child: Padding(
-          padding: AppSize.paddingAll10,
+          padding: AppSize.paddingAll20,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  const Icon(Icons.location_pin),
-                  AppSize.sizedBoxW5,
+                  Icon(
+                    Icons.location_pin,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
+                  AppSize.sizedBoxW5(context),
                   Text(
                     address.name,
                     style: Theme.of(context).textTheme.bodyMedium,
                   )
                 ],
               ),
-              AppSize.sizedBox10,
+              AppSize.sizedBox10(context),
               const MyDivider(),
-              AppSize.sizedBox10,
+              AppSize.sizedBox10(context),
               Text(
                 '${address.city}, ${address.region}, ${address.details}',
                 style: Theme.of(context).textTheme.bodySmall,
               ),
-              AppSize.sizedBox10,
+              AppSize.sizedBox10(context),
               Row(
                 children: [
                   Text('${LocaleKeys.notes.tr()}:'),
                   Text(' ${address.notes}'),
                 ],
               ),
-              AppSize.sizedBox20,
+              AppSize.sizedBox20(context),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   CustomTextButton(
-                    padding: EdgeInsets.zero,
-                    size: Size.zero,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     onPressed: () {
                       navigateTo(
                         context,
@@ -80,22 +85,17 @@ class AddressItemComponent extends StatelessWidget {
                       );
                     },
                     title: LocaleKeys.edit.tr(),
-                    titleColor: AppColors.productInfoColorLight,
                   ),
-                  AppSize.sizedBoxW10,
+                  AppSize.sizedBoxW10(context),
                   const MyVerticalDivider(),
-                  AppSize.sizedBoxW10,
+                  AppSize.sizedBoxW10(context),
                   CustomTextButton(
-                    padding: EdgeInsets.zero,
-                    size: Size.zero,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     onPressed: () {
                       context
                           .read<AddressBloc>()
                           .add(DeleteAddressesEvent(addressId: address.id));
                     },
                     title: LocaleKeys.remove.tr(),
-                    titleColor: AppColors.deleteColorLight,
                   ),
                 ],
               ),

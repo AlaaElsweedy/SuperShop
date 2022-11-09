@@ -5,7 +5,6 @@ import 'package:supershop/features/home/presentation/screens/cart_screen.dart';
 import 'package:supershop/features/home/presentation/screens/categories_screen.dart';
 import 'package:supershop/features/home/presentation/screens/favorites_screen.dart';
 import 'package:supershop/features/home/presentation/screens/home_screen.dart';
-import 'package:supershop/features/home/presentation/screens/orders_screen.dart';
 import 'package:supershop/features/home/presentation/screens/profile_screen.dart';
 import 'package:supershop/features/home/presentation/screens/settings_screen.dart';
 import 'package:supershop/generated/locale_keys.g.dart';
@@ -45,7 +44,6 @@ class CustomDrawer extends StatelessWidget {
               icon: Icons.favorite,
               title: LocaleKeys.favorites.tr(),
               function: () {
-                //sl<FavoritesBloc>().add(GetFavoriteProductEvent());
                 Navigator.of(context).pop();
                 navigateTo(
                   context,
@@ -61,14 +59,14 @@ class CustomDrawer extends StatelessWidget {
                 navigateTo(context, CartScreen(favorites: favorites!));
               },
             ),
-            DrawerItem(
-              icon: Icons.menu,
-              title: LocaleKeys.orders.tr(),
-              function: () {
-                Navigator.of(context).pop();
-                navigateTo(context, const OrdersScreen());
-              },
-            ),
+            // DrawerItem(
+            //   icon: Icons.menu,
+            //   title: LocaleKeys.orders.tr(),
+            //   function: () {
+            //     Navigator.of(context).pop();
+            //     navigateTo(context, const OrdersScreen());
+            //   },
+            // ),
             DrawerItem(
               icon: Icons.person,
               title: LocaleKeys.profile.tr(),

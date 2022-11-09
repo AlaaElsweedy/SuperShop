@@ -16,16 +16,20 @@ import 'package:supershop/features/home/domain/entities/products/get_product_det
 import 'package:supershop/features/home/domain/entities/products/search_product.dart';
 import 'package:supershop/features/home/domain/entities/profile/get_profile.dart';
 import 'package:supershop/features/home/domain/entities/profile/update_profile.dart';
+import 'package:supershop/features/home/domain/entities/signout/change_password.dart';
+import 'package:supershop/features/home/domain/entities/signout/sign_out.dart';
 import 'package:supershop/features/home/domain/usecases/add_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_cart_product_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_or_remove_favorite_product.dart';
 import 'package:supershop/features/home/domain/usecases/add_order_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/cancel_order_usecase.dart';
+import 'package:supershop/features/home/domain/usecases/change_password_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/delete_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/delete_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_category_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_product_details_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/search_products_usecase.dart';
+import 'package:supershop/features/home/domain/usecases/sign_out_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_profile_usecase.dart';
@@ -85,4 +89,10 @@ abstract class HomeBaseRepository {
 
   Future<Either<NetworkExceptions, UpdateProfile>> updateProfile(
       UpdateProfileUseCaseParameters parameters);
+
+  Future<Either<NetworkExceptions, SignOut>> singOut(
+      SignOutUseCaseParameters parameters);
+
+  Future<Either<NetworkExceptions, ChangePassword>> changePassword(
+      ChangePasswordUseCaseParameters parameters);
 }

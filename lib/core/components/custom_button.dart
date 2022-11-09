@@ -1,38 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../utils/styles/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
-  final Color color;
   final String title;
   final VoidCallback onPressed;
-  final Color textColor;
   final double width;
   final double height;
 
   const CustomButton({
     Key? key,
-    this.color = AppColors.primaryColorLight,
     required this.title,
-    this.textColor = Colors.white,
-    this.width = double.infinity,
-    this.height = 56,
     required this.onPressed,
+    this.width = double.infinity,
+    this.height = 56.0,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: onPressed,
-      color: color,
-      textColor: textColor,
+      color: Theme.of(context).primaryColor,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(5.r),
       ),
-      height: height,
-      minWidth: width,
+      height: height.h,
+      minWidth: width.w,
       child: Text(
         title,
-        style: const TextStyle(fontSize: 20),
+        style: Theme.of(context).textTheme.bodyMedium,
       ),
     );
   }
