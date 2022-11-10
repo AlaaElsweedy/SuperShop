@@ -13,6 +13,12 @@ import 'package:supershop/core/services/service_locator.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/constance.dart';
 import 'package:supershop/core/utils/token_secure_storage.dart';
+import 'package:supershop/features/home/presentation/controllers/address/address_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/cart/cart_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/orders/orders_bloc.dart';
+import 'package:supershop/features/home/presentation/controllers/profile/profile_bloc.dart';
 import 'package:supershop/features/home/presentation/screens/home_screen.dart';
 import 'package:supershop/features/register/presentation/components/login_password_field_component.dart';
 import 'package:supershop/features/register/presentation/controller/login_bloc/login_bloc.dart';
@@ -36,10 +42,16 @@ class LoginScreen extends StatelessWidget {
             initial: () => const ShowCircularLoading(),
             loading: () => const ShowCircularLoading(),
             success: (register) {
+              token = register.registerData.token;
               TokenSecureStorage.saveSecureToken(
-                register.registerData.token,
+                token!,
               ).then((value) {
-                token = register.registerData.token;
+                context.read<HomeBloc>().add(GetHomeDataEvent());
+                context.read<FavoritesBloc>().add(GetFavoriteProductEvent());
+                context.read<CartBloc>().add(GetCartProductsEvent());
+                context.read<AddressBloc>().add(GetAddressesEvent());
+                context.read<OrdersBloc>().add(GetOrdersEvent());
+                context.read<ProfileBloc>().add(GetProfileEvent());
                 navigateAndFinish(context, HomeScreen());
               });
               //print('token is:/// ${register.registerData.token}');

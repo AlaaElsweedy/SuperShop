@@ -96,16 +96,13 @@ class SettingsScreen extends StatelessWidget {
                     ? AppColors.backgroundColorDark
                     : AppColors.backgroundColorLight,
                 onPressed: () async {
+                  navigateAndFinish(context, LoginScreen());
                   context.read<ProfileBloc>().add(
                         SignOutEvent(
                           token: token!,
                         ),
                       );
-                  token = await TokenSecureStorage.deleteSecureToken()
-                      .then((value) {
-                    navigateAndFinish(context, LoginScreen());
-                  });
-
+                  token = await TokenSecureStorage.deleteSecureToken();
                   print(token);
                 },
                 textColor: AppColors.deleteColorLight,

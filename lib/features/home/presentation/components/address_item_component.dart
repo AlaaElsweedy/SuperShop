@@ -22,17 +22,20 @@ class AddressItemComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).brightness == Brightness.dark
-            ? AppColors.greyBackgroundColorDark
-            : AppColors.greyBackgroundColorLight,
-        borderRadius: BorderRadius.circular(10.0.r),
-      ),
-      child: Card(
-        color: Theme.of(context).brightness == Brightness.dark
-            ? AppColors.greyBackgroundColorDark
-            : AppColors.greyBackgroundColorLight,
+    return Card(
+      elevation: 1,
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? AppColors.borderColorDark
+                : AppColors.borderColorLight,
+          ),
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.greyBackgroundColorDark
+              : AppColors.greyBackgroundColorLight,
+          borderRadius: BorderRadius.circular(10.0.r),
+        ),
         child: Padding(
           padding: AppSize.paddingAll20,
           child: Column(

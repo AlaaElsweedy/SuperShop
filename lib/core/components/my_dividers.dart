@@ -8,9 +8,9 @@ class MyDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: MediaQuery.of(context).platformBrightness == Brightness.dark
-          ? AppColors.backgroundColorLight
-          : AppColors.greyBackgroundColorLight,
+      color: Theme.of(context).brightness == Brightness.dark
+          ? AppColors.borderColorDark
+          : AppColors.borderColorLight,
       height: 1.h,
       width: double.infinity,
     );

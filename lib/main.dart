@@ -37,7 +37,7 @@ void main() async {
   Object? onBoardingSeen = CacheHelper.getData(key: 'isOnBoardingSeen');
   var isDark = CacheHelper.getData(key: 'isDark');
   isDark ??= false;
-  //print('Main token $token');
+  token = await TokenSecureStorage.readSecureToken();
 
   Widget startWidget;
 
