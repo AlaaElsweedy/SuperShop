@@ -11,9 +11,12 @@ import 'package:supershop/features/home/domain/entities/categories/get_category_
 import 'package:supershop/features/home/domain/entities/favorites/get_favorite_products.dart';
 import 'package:supershop/features/home/domain/entities/favorites/post_favorite_products.dart';
 import 'package:supershop/features/home/domain/entities/home/get_home.dart';
+import 'package:supershop/features/home/domain/entities/profile/sign_out.dart';
+import 'package:supershop/features/home/domain/entities/profile/change_password.dart';
 import 'package:supershop/features/home/domain/entities/profile/update_profile.dart';
 import 'package:supershop/features/home/domain/usecases/cancel_order_usecase.dart';
 import 'package:supershop/features/home/domain/entities/orders/cancel_orders.dart';
+import 'package:supershop/features/home/domain/usecases/change_password_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/delete_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/delete_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_order_usecase.dart';
@@ -27,6 +30,7 @@ import 'package:supershop/features/home/domain/usecases/search_products_usecase.
 import 'package:supershop/features/home/domain/usecases/add_cart_product_usecase.dart';
 import 'package:supershop/features/home/domain/entities/products/search_product.dart';
 import 'package:supershop/features/home/domain/entities/products/get_product_details.dart';
+import 'package:supershop/features/home/domain/usecases/sign_out_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_profile_usecase.dart';
@@ -120,7 +124,7 @@ class HomeRepository extends HomeBaseRepository {
   }
 
   @override
-  Future<Either<NetworkExceptions, List<SearchProduct>>> searchProducts(
+  Future<Either<NetworkExceptions, SearchProduct>> searchProducts(
       SearchProductsUseCaseParameters parameters) async {
     try {
       final result = await repository.searchProducts(parameters);
@@ -252,6 +256,28 @@ class HomeRepository extends HomeBaseRepository {
       UpdateAddressUseCaseParameters parameters) async {
     try {
       final result = await repository.updateAddress(parameters);
+      return Right(result);
+    } on ServerException catch (error) {
+      return Left(NetworkExceptions.getDioException(error));
+    }
+  }
+
+  @override
+  Future<Either<NetworkExceptions, ChangePassword>> changePassword(
+      ChangePasswordUseCaseParameters parameters) async {
+    try {
+      final result = await repository.changePassword(parameters);
+      return Right(result);
+    } on ServerException catch (error) {
+      return Left(NetworkExceptions.getDioException(error));
+    }
+  }
+
+  @override
+  Future<Either<NetworkExceptions, SignOut>> singOut(
+      SignOutUseCaseParameters parameters) async {
+    try {
+      final result = await repository.signOut(parameters);
       return Right(result);
     } on ServerException catch (error) {
       return Left(NetworkExceptions.getDioException(error));

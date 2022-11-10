@@ -7,7 +7,6 @@ import 'package:supershop/core/components/navigation.dart';
 import 'package:supershop/core/components/screen_status.dart';
 import 'package:supershop/core/utils/app_size.dart';
 import 'package:supershop/core/utils/enums.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
 import 'package:supershop/features/home/presentation/components/address_item_component.dart';
 import 'package:supershop/features/home/presentation/controllers/address/address_bloc.dart';
 import 'package:supershop/features/home/presentation/screens/add_or_update_address_screen.dart';

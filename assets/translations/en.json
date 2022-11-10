@@ -79,5 +79,6 @@
   "edit": "Edit",
   "remove": "Remove",
   "update": "Update",
-  "profile": "My Profile"
+  "profile": "My Profile",
+  "signOut": "Sign Out"
 }

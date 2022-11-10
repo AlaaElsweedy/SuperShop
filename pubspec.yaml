@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^4.0.6
+  dropdown_button2: ^1.8.9
   easy_localization: ^3.0.1
   equatable: ^2.0.3
   flutter:

@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supershop/core/helpers/cache_helper.dart';
 import 'package:supershop/core/helpers/dio_helper.dart';
 import 'package:supershop/core/services/service_locator.dart';

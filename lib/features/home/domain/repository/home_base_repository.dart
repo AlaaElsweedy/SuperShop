@@ -14,10 +14,10 @@ import 'package:supershop/features/home/domain/entities/orders/cancel_orders.dar
 import 'package:supershop/features/home/domain/entities/orders/get_orders.dart';
 import 'package:supershop/features/home/domain/entities/products/get_product_details.dart';
 import 'package:supershop/features/home/domain/entities/products/search_product.dart';
+import 'package:supershop/features/home/domain/entities/profile/change_password.dart';
 import 'package:supershop/features/home/domain/entities/profile/get_profile.dart';
+import 'package:supershop/features/home/domain/entities/profile/sign_out.dart';
 import 'package:supershop/features/home/domain/entities/profile/update_profile.dart';
-import 'package:supershop/features/home/domain/entities/signout/change_password.dart';
-import 'package:supershop/features/home/domain/entities/signout/sign_out.dart';
 import 'package:supershop/features/home/domain/usecases/add_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_cart_product_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_or_remove_favorite_product.dart';
@@ -52,7 +52,7 @@ abstract class HomeBaseRepository {
   Future<Either<NetworkExceptions, GetProductDetails>> getProductDetails(
       GetProductDetailsUseCaseParameters parameters);
 
-  Future<Either<NetworkExceptions, List<SearchProduct>>> searchProducts(
+  Future<Either<NetworkExceptions, SearchProduct>> searchProducts(
       SearchProductsUseCaseParameters parameters);
 
   Future<Either<NetworkExceptions, AddCartProduct>> addCartProduct(

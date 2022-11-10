@@ -7,6 +7,12 @@ class ProfileState extends Equatable {
   final UpdateProfile? updateProfile;
   final RequestState? updateProfileState;
   final NetworkExceptions? updateProfileErrorMessage;
+  final SignOut? signOut;
+  final RequestState? signOutState;
+  final NetworkExceptions? signOutErrorMessage;
+  final ChangePassword? changePassword;
+  final RequestState? changePasswordState;
+  final NetworkExceptions? changePasswordErrorMessage;
 
   const ProfileState({
     this.getProfile,
@@ -15,7 +21,46 @@ class ProfileState extends Equatable {
     this.updateProfile,
     this.updateProfileState,
     this.updateProfileErrorMessage,
+    this.signOut,
+    this.signOutState,
+    this.signOutErrorMessage,
+    this.changePassword,
+    this.changePasswordState,
+    this.changePasswordErrorMessage,
   });
+
+  ProfileState copyWith({
+    GetProfile? getProfile,
+    RequestState? getProfileState,
+    NetworkExceptions? getProfileErrorMessage,
+    UpdateProfile? updateProfile,
+    RequestState? updateProfileState,
+    NetworkExceptions? updateProfileErrorMessage,
+    SignOut? signOut,
+    RequestState? signOutState,
+    NetworkExceptions? signOutErrorMessage,
+    ChangePassword? changePassword,
+    RequestState? changePasswordState,
+    NetworkExceptions? changePasswordErrorMessage,
+  }) {
+    return ProfileState(
+      getProfile: getProfile ?? this.getProfile,
+      getProfileState: getProfileState ?? this.getProfileState,
+      getProfileErrorMessage:
+          getProfileErrorMessage ?? this.getProfileErrorMessage,
+      updateProfile: updateProfile ?? this.updateProfile,
+      updateProfileState: updateProfileState ?? this.updateProfileState,
+      updateProfileErrorMessage:
+          updateProfileErrorMessage ?? this.updateProfileErrorMessage,
+      signOut: signOut ?? this.signOut,
+      signOutState: signOutState ?? this.signOutState,
+      signOutErrorMessage: signOutErrorMessage ?? this.signOutErrorMessage,
+      changePassword: changePassword ?? this.changePassword,
+      changePasswordState: changePasswordState ?? this.changePasswordState,
+      changePasswordErrorMessage:
+          changePasswordErrorMessage ?? this.changePasswordErrorMessage,
+    );
+  }
 
   @override
   List<Object?> get props {
@@ -26,26 +71,12 @@ class ProfileState extends Equatable {
       updateProfile,
       updateProfileState,
       updateProfileErrorMessage,
+      signOut,
+      signOutState,
+      signOutErrorMessage,
+      changePassword,
+      changePasswordState,
+      changePasswordErrorMessage,
     ];
-  }
-
-  
-
-  ProfileState copyWith({
-    GetProfile? getProfile,
-    RequestState? getProfileState,
-    NetworkExceptions? getProfileErrorMessage,
-    UpdateProfile? updateProfile,
-    RequestState? updateProfileState,
-    NetworkExceptions? updateProfileErrorMessage,
-  }) {
-    return ProfileState(
-      getProfile: getProfile ?? this.getProfile,
-      getProfileState: getProfileState ?? this.getProfileState,
-      getProfileErrorMessage: getProfileErrorMessage ?? this.getProfileErrorMessage,
-      updateProfile: updateProfile ?? this.updateProfile,
-      updateProfileState: updateProfileState ?? this.updateProfileState,
-      updateProfileErrorMessage: updateProfileErrorMessage ?? this.updateProfileErrorMessage,
-    );
   }
 }

@@ -82,5 +82,6 @@ abstract class  LocaleKeys {
   static const remove = 'remove';
   static const update = 'update';
   static const profile = 'profile';
+  static const signOut = 'signOut';
 
 }

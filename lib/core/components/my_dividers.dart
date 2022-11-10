@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
-import 'package:supershop/core/utils/styles/app_themes/dark_theme.dart';
 
 class MyDivider extends StatelessWidget {
   const MyDivider({Key? key}) : super(key: key);

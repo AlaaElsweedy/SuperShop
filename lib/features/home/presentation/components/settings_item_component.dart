@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supershop/core/components/my_dividers.dart';
 import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
 
 class SettingItemComponent extends StatelessWidget {
   final IconData icon;

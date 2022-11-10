@@ -13,7 +13,7 @@ class HomeState extends Equatable {
   final GetProductDetails? getProductDetails;
   final RequestState getProductDetailsState;
   final NetworkExceptions? getProductDetailsErrorMessage;
-  final List<SearchProduct> searchProducts;
+  final SearchProduct? searchProducts;
   final RequestState searchProductsState;
   final NetworkExceptions? searchProductsErrorMessage;
 
@@ -30,7 +30,7 @@ class HomeState extends Equatable {
     this.getProductDetails,
     this.getProductDetailsState = RequestState.isLoading,
     this.getProductDetailsErrorMessage,
-    this.searchProducts = const [],
+    this.searchProducts,
     this.searchProductsState = RequestState.isLoading,
     this.searchProductsErrorMessage,
   });
@@ -69,7 +69,7 @@ class HomeState extends Equatable {
     GetProductDetails? getProductDetails,
     RequestState? getProductDetailsState,
     NetworkExceptions? getProductDetailsErrorMessage,
-    List<SearchProduct>? searchProducts,
+    SearchProduct? searchProducts,
     RequestState? searchProductsState,
     NetworkExceptions? searchProductsErrorMessage,
   }) {

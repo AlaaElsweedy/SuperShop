@@ -117,7 +117,7 @@ class DarkTheme {
       contentPadding:
           EdgeInsets.symmetric(vertical: 20.0.h, horizontal: 25.0.w),
       hintStyle: const TextStyle(
-        color: AppColors.textFiledHintColorDark,
+        color: AppColors.textHintColorDark,
       ),
       filled: true,
       fillColor: AppColors.greyBackgroundColorDark,

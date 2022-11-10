@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supershop/core/utils/app_size.dart';
-import '../utils/styles/app_colors.dart';
 
 class CustomRowButton extends StatelessWidget {
   final String title;
@@ -34,7 +33,10 @@ class CustomRowButton extends StatelessWidget {
         children: [
           Icon(icon),
           AppSize.sizedBoxW10(context),
-          Text(title, style: Theme.of(context).textTheme.bodyMedium),
+          Text(
+            title,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
         ],
       ),
     );

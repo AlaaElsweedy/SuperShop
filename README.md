@@ -9,7 +9,8 @@ A new open source E-commerce App created using Flutter, API and Bloc as State Ma
 * Using Bloc as a state management.
 * Using API.
 * Support Localization.
-* Using Responsive UI (soon).
+* Support Dark Mode.
+* Using Responsive UI.
 
 ## Screen Shots
 <img src="screenshots/image1.jpg" width="300" height="650"> <img src="screenshots/image2.jpg" width="300" height="650">

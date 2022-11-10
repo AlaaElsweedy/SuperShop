@@ -7,6 +7,7 @@ import 'package:supershop/features/home/domain/usecases/add_cart_product_usecase
 import 'package:supershop/features/home/domain/usecases/add_or_remove_favorite_product.dart';
 import 'package:supershop/features/home/domain/usecases/add_order_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/cancel_order_usecase.dart';
+import 'package:supershop/features/home/domain/usecases/change_password_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/delete_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/delete_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_address_usecase.dart';
@@ -19,6 +20,7 @@ import 'package:supershop/features/home/domain/usecases/get_orders_usecase.dart'
 import 'package:supershop/features/home/domain/usecases/get_product_details_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_profile_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/search_products_usecase.dart';
+import 'package:supershop/features/home/domain/usecases/sign_out_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_profile_usecase.dart';
@@ -55,7 +57,7 @@ class ServiceLocator {
     sl.registerFactory(() => CartBloc(sl(), sl(), sl(), sl()));
     sl.registerFactory(() => AddressBloc(sl(), sl(), sl(), sl()));
     sl.registerFactory(() => OrdersBloc(sl(), sl(), sl()));
-    sl.registerFactory(() => ProfileBloc(sl(), sl()));
+    sl.registerFactory(() => ProfileBloc(sl(), sl(), sl(), sl()));
 
 // USECASES
     sl.registerLazySingleton(() => UserLoginUseCase(baseRepository: sl()));
@@ -86,6 +88,8 @@ class ServiceLocator {
 
     sl.registerLazySingleton(() => GetProfileUseCase(sl()));
     sl.registerLazySingleton(() => UpdateProfileUseCase(sl()));
+    sl.registerLazySingleton(() => SignOutUseCase(sl()));
+    sl.registerLazySingleton(() => ChangePasswordUseCase(sl()));
 
 // REPOSITORY
     sl.registerLazySingleton<RegisterBaseRepository>(

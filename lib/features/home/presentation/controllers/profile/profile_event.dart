@@ -18,3 +18,20 @@ class UpdateProfileEvent extends ProfileEvent {
     required this.phoneNumber,
   });
 }
+
+class SignOutEvent extends ProfileEvent {
+  final String token;
+  const SignOutEvent({
+    required this.token,
+  });
+}
+
+class ChangePasswordEvent extends ProfileEvent {
+  final String currentPassword;
+  final String newPassword;
+
+  const ChangePasswordEvent({
+    required this.currentPassword,
+    required this.newPassword,
+  });
+}

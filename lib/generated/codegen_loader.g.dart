@@ -95,7 +95,8 @@ class CodegenLoader extends AssetLoader{
   "edit": "تعديل",
   "remove": "حذف",
   "update": "تحديث",
-  "profile": "الملف الشخصي"
+  "profile": "الملف الشخصي",
+  "signOut": "تسجيل الخروج"
 };
 static const Map<String,dynamic> en = {
   "skip": "Skip",
@@ -178,7 +179,8 @@ static const Map<String,dynamic> en = {
   "edit": "Edit",
   "remove": "Remove",
   "update": "Update",
-  "profile": "My Profile"
+  "profile": "My Profile",
+  "signOut": "Sign Out"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

@@ -15,6 +15,7 @@ class TokenSecureStorage {
       value: token,
       aOptions: _getAndroidOptions(),
     );
+    readSecureToken();
   }
 
   static Future<String?> readSecureToken() async {
@@ -29,5 +30,6 @@ class TokenSecureStorage {
       key: _tokenKey,
       aOptions: _getAndroidOptions(),
     );
+    readSecureToken();
   }
 }

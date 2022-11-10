@@ -18,17 +18,21 @@ import 'package:supershop/features/home/data/models/orders/cancel_order_model.da
 import 'package:supershop/features/home/data/models/orders/get_orders_model.dart';
 import 'package:supershop/features/home/data/models/products/get_product_details_model.dart';
 import 'package:supershop/features/home/data/models/products/search_product_model.dart';
+import 'package:supershop/features/home/data/models/profile/change_password_model.dart';
 import 'package:supershop/features/home/data/models/profile/get_profile_model.dart';
+import 'package:supershop/features/home/data/models/profile/sing_out_model.dart';
 import 'package:supershop/features/home/data/models/profile/update_profile.dart';
 import 'package:supershop/features/home/domain/usecases/add_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_cart_product_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/add_order_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/cancel_order_usecase.dart';
+import 'package:supershop/features/home/domain/usecases/change_password_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/delete_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/delete_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_category_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/get_product_details_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/search_products_usecase.dart';
+import 'package:supershop/features/home/domain/usecases/sign_out_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_address_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_cart_products_usecase.dart';
 import 'package:supershop/features/home/domain/usecases/update_profile_usecase.dart';
@@ -51,7 +55,7 @@ abstract class HomeBaseRemoteDataSource {
   Future<GetProductDetailsModel> getProductDetails(
       GetProductDetailsUseCaseParameters parameters);
 
-  Future<List<SearchProductModel>> searchProducts(
+  Future<SearchProductModel> searchProducts(
       SearchProductsUseCaseParameters parameters);
 
   Future<AddCartProductsModel> addCartProduct(
@@ -69,6 +73,11 @@ abstract class HomeBaseRemoteDataSource {
 
   Future<UpdateProfileModel> updateProfile(
       UpdateProfileUseCaseParameters parameters);
+
+  Future<SignOutModel> signOut(SignOutUseCaseParameters parameters);
+
+  Future<ChangePasswordModel> changePassword(
+      ChangePasswordUseCaseParameters parameters);
 
   Future<AddressModel> addAddress(AddAddressUseCaseParameters parameters);
 
@@ -192,7 +201,7 @@ class HomeRemoteDataSource extends HomeBaseRemoteDataSource {
   }
 
   @override
-  Future<List<SearchProductModel>> searchProducts(
+  Future<SearchProductModel> searchProducts(
       SearchProductsUseCaseParameters parameters) async {
     final response = await DioHelper.postData(
       path: ApiConstance.searchProductsPath,
@@ -203,8 +212,7 @@ class HomeRemoteDataSource extends HomeBaseRemoteDataSource {
     );
 
     if (response.statusCode == 200) {
-      return List<SearchProductModel>.from(response.data['data']
-          .map((product) => SearchProductModel.fromJson(product)));
+      return SearchProductModel.fromJson(response.data);
     } else {
       throw ServerException(
         errorMessageModel: ErrorMessageModel.fromJson(response.data),
@@ -452,6 +460,46 @@ class HomeRemoteDataSource extends HomeBaseRemoteDataSource {
 
     if (response.statusCode == 200) {
       return CancelOrderModel.fromJson(response.data);
+    } else {
+      throw ServerException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data),
+      );
+    }
+  }
+
+  @override
+  Future<ChangePasswordModel> changePassword(
+      ChangePasswordUseCaseParameters parameters) async {
+    final response = await DioHelper.postData(
+      path: ApiConstance.changePasswordPath,
+      data: {
+        'current_password': parameters.currentPassword,
+        'new_password': parameters.newPassword,
+      },
+      token: token,
+    );
+
+    if (response.statusCode == 200) {
+      return ChangePasswordModel.fromJson(response.data);
+    } else {
+      throw ServerException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data),
+      );
+    }
+  }
+
+  @override
+  Future<SignOutModel> signOut(SignOutUseCaseParameters parameters) async {
+    final response = await DioHelper.postData(
+      path: ApiConstance.signOutPath,
+      data: {
+        'fcm_token': parameters.token,
+      },
+      token: token,
+    );
+
+    if (response.statusCode == 200) {
+      return SignOutModel.fromJson(response.data);
     } else {
       throw ServerException(
         errorMessageModel: ErrorMessageModel.fromJson(response.data),

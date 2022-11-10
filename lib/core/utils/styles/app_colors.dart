@@ -18,6 +18,8 @@ class AppColors {
 
   //Text
   static const mediumTextColorLight = Color(0xff4A4B4D);
+  static const mediumTextColorDark = Color(0xffB6B7B7);
+
   static const smallTextColorLight = Color(0xff7C7D7E);
   static const normalTextWitheColor = Colors.white;
   static const normalTextRedColorLight = Colors.red;
@@ -46,8 +48,8 @@ class AppColors {
   static const textFiledFillColorLight = Color(0xffF2F2F2);
   static const textFiledFillColorDark = Color(0xff484848);
 
-  static const textFiledHintColorLight = Color(0xffB6B7B7);
-  static const textFiledHintColorDark = Color(0xff0d0d0d);
+  static const textHintColorLight = Color(0xffB6B7B7);
+  static const textHintColorDark = Color(0xffffffff);
 
   static const iconTextFiledColorLight = Color(0xff7C7D7E);
   static const iconTextFiledColorDark = Color(0xfffc4811);
@@ -57,8 +59,9 @@ class AppColors {
   static const borderColorDark = Color(0xff9c9ea2);
 
   //Toast
-  static const toastErrorColorLight = Colors.red;
-  static const toastTextMessageColorLight = Colors.white;
+  static const toastErrorColor = Colors.red;
+  static const toastSuccessColor = Colors.green;
+  static const toastTextMessageColor = Colors.white;
 
   //BOTTOM VAV BAR
   static const bottomNavBackgroundColorLight = Colors.white;

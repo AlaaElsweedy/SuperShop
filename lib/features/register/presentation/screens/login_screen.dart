@@ -71,6 +71,7 @@ class LoginScreen extends StatelessWidget {
                           BuildSecondHeader(
                             title: LocaleKeys.haveNotAccount.tr(),
                           ),
+                          AppSize.sizedBoxW5(context),
                           CustomTextButton(
                             onPressed: () {
                               navigateTo(context, SignUpScreen());

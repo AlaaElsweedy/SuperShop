@@ -72,7 +72,9 @@ class FavoriteItemComponent extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 16.0.sp,
                           fontWeight: FontWeight.bold,
-                          color: AppColors.primaryColorLight,
+                          color: Theme.of(context).brightness == ThemeMode.dark
+                              ? AppColors.primaryColorDark
+                              : AppColors.primaryColorLight,
                         ),
                       ),
                       AppSize.sizedBoxW5(context),
@@ -80,9 +82,12 @@ class FavoriteItemComponent extends StatelessWidget {
                         Text(
                           NumberFormat.currency(decimalDigits: 2)
                               .format(data.favoriteProducts.oldPrice),
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 14.0,
-                            color: AppColors.mediumTextColorLight,
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? AppColors.mediumTextColorDark
+                                    : AppColors.mediumTextColorLight,
                             decoration: TextDecoration.lineThrough,
                           ),
                         ),

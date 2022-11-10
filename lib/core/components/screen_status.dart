@@ -15,7 +15,9 @@ class ShowCircularLoading extends StatelessWidget {
     return Container(
       color: Theme.of(context).backgroundColor,
       child: const Center(
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(
+          backgroundColor: AppColors.backgroundProgressIndicatorColorDark,
+        ),
       ),
     );
   }
@@ -28,9 +30,10 @@ class ShowLinearLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: AppSize.paddingHorizontal10,
-      child: const LinearProgressIndicator(
-        backgroundColor: AppColors.backgroundProgressIndicatorColorLight,
-        color: AppColors.primaryColorLight,
+      child: LinearProgressIndicator(
+        backgroundColor:
+            Theme.of(context).progressIndicatorTheme.refreshBackgroundColor,
+        color: Theme.of(context).primaryColor,
       ),
     );
   }
@@ -44,14 +47,15 @@ class ShowBarLinearLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColorLight,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(top: 30.h),
-          child: const LinearProgressIndicator(
-            minHeight: 20,
-            backgroundColor: AppColors.backgroundProgressIndicatorColorLight,
-            color: AppColors.primaryColorLight,
+          child: LinearProgressIndicator(
+            minHeight: 20.h,
+            backgroundColor:
+                Theme.of(context).progressIndicatorTheme.refreshBackgroundColor,
+            color: Theme.of(context).primaryColor,
           ),
         ),
       ),
@@ -70,7 +74,7 @@ class ShowError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.backgroundColorLight,
+      color: Theme.of(context).backgroundColor,
       child: Center(
         child: Text(NetworkExceptions.getErrorMessage(networkExceptions)),
       ),
@@ -84,8 +88,8 @@ showToastError(NetworkExceptions errorMessage) {
     toastLength: Toast.LENGTH_LONG,
     gravity: ToastGravity.BOTTOM,
     timeInSecForIosWeb: 1,
-    backgroundColor: AppColors.toastErrorColorLight,
-    textColor: AppColors.toastTextMessageColorLight,
+    backgroundColor: AppColors.toastErrorColor,
+    textColor: AppColors.toastTextMessageColor,
     fontSize: 16.0.sp,
   );
 }
@@ -96,8 +100,8 @@ showSuccessMessage(String message) {
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.BOTTOM,
     timeInSecForIosWeb: 1,
-    backgroundColor: AppColors.productInfoColorLight,
-    textColor: AppColors.toastTextMessageColorLight,
+    backgroundColor: AppColors.toastSuccessColor,
+    textColor: AppColors.toastTextMessageColor,
     fontSize: 16.0.sp,
   );
 }

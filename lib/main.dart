@@ -22,7 +22,6 @@ import 'package:supershop/localization/localization_service.dart';
 import 'core/helpers/dio_helper.dart';
 import 'core/services/service_locator.dart';
 import 'core/utils/app_string.dart';
-import 'core/utils/start_screen.dart';
 import 'core/utils/styles/app_themes/light_theme.dart';
 
 void main() async {
@@ -34,7 +33,6 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
   await CacheHelper.init();
-  token = await TokenSecureStorage.readSecureToken();
 
   Object? onBoardingSeen = CacheHelper.getData(key: 'isOnBoardingSeen');
   var isDark = CacheHelper.getData(key: 'isDark');

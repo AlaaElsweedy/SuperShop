@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class SignOutData extends Equatable {
-  final String id;
+  final int id;
   final String token;
   const SignOutData({
     required this.id,

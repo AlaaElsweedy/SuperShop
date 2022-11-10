@@ -6,13 +6,13 @@ import 'package:supershop/features/home/domain/entities/products/search_product.
 import 'package:supershop/features/home/domain/repository/home_base_repository.dart';
 
 class SearchProductsUseCase
-    extends BaseUseCase<List<SearchProduct>, SearchProductsUseCaseParameters> {
+    extends BaseUseCase<SearchProduct, SearchProductsUseCaseParameters> {
   final HomeBaseRepository repository;
 
   SearchProductsUseCase(this.repository);
 
   @override
-  Future<Either<NetworkExceptions, List<SearchProduct>>> call(
+  Future<Either<NetworkExceptions, SearchProduct>> call(
     SearchProductsUseCaseParameters parameters,
   ) async {
     return await repository.searchProducts(parameters);

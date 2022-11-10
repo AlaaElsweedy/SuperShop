@@ -5,11 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:supershop/core/components/custom_app_bar.dart';
 import 'package:supershop/core/components/navigation.dart';
 import 'package:supershop/core/utils/app_size.dart';
+import 'package:supershop/core/utils/constance.dart';
 import 'package:supershop/core/utils/styles/app_colors.dart';
-import 'package:supershop/core/utils/styles/app_themes/dark_theme.dart';
+import 'package:supershop/core/utils/token_secure_storage.dart';
 import 'package:supershop/features/home/presentation/components/settings_item_component.dart';
+import 'package:supershop/features/home/presentation/controllers/profile/profile_bloc.dart';
 import 'package:supershop/features/home/presentation/screens/addresses_screen.dart';
 import 'package:supershop/features/home/presentation/screens/orders_screen.dart';
+import 'package:supershop/features/register/presentation/screens/login_screen.dart';
 import 'package:supershop/general/cubit/app_cubit.dart';
 import 'package:supershop/generated/locale_keys.g.dart';
 
@@ -79,6 +82,48 @@ class SettingsScreen extends StatelessWidget {
               icon: Icons.call,
               title: LocaleKeys.contactUs.tr(),
             ),
+            AppSize.sizedBox28(context),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 10.0.w),
+              height: 56.0.h,
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: AppColors.deleteColorLight,
+                  ),
+                  borderRadius: BorderRadius.circular(5.0.r)),
+              child: MaterialButton(
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? AppColors.backgroundColorDark
+                    : AppColors.backgroundColorLight,
+                onPressed: () async {
+                  context.read<ProfileBloc>().add(
+                        SignOutEvent(
+                          token: token!,
+                        ),
+                      );
+                  token = await TokenSecureStorage.deleteSecureToken()
+                      .then((value) {
+                    navigateAndFinish(context, LoginScreen());
+                  });
+
+                  print(token);
+                },
+                textColor: AppColors.deleteColorLight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.logout_outlined),
+                    AppSize.sizedBoxW5(context),
+                    Text(
+                      LocaleKeys.signOut.tr(),
+                      style: TextStyle(
+                        fontSize: 20.sp,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -105,31 +150,3 @@ class TitleText extends StatelessWidget {
     );
   }
 }
-
-// class DarkModeComponent extends StatelessWidget {
-//   final ValueNotifier<ThemeMode> _notifier = ValueNotifier(ThemeMode.light);
-
-//   DarkModeComponent({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SettingItemComponent(
-//       onPressed: () {},
-//       icon: Icons.dark_mode_sharp,
-//       title: LocaleKeys.darkMode.tr(),
-//       trailing: Switch.adaptive(
-//         activeColor: AppColors.backgroundColorLight,
-//         inactiveThumbColor: AppColors.greyBackgroundColorLight,
-//         activeTrackColor:
-//             AppColors.pageIndicatorActiveDotColorLight.withOpacity(0.5),
-//         value: false,
-//         focusColor: Colors.yellow,
-//         hoverColor: Colors.blue,
-//         inactiveTrackColor: AppColors.pageIndicatorInActiveDotColorLight,
-//         onChanged: (value) {
-//           MediaQuery.of(context).platformBrightness == Brightness.dark;
-//         },
-//       ),
-//     );
-//   }
-// }

@@ -119,7 +119,7 @@ class LightTheme {
       contentPadding:
           EdgeInsets.symmetric(vertical: 20.0.h, horizontal: 25.0.w),
       hintStyle: const TextStyle(
-        color: AppColors.textFiledHintColorLight,
+        color: AppColors.textHintColorLight,
       ),
       filled: true,
       fillColor: AppColors.textFiledFillColorLight,

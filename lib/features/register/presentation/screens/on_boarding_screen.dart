@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:supershop/core/components/navigation.dart';
 import 'package:supershop/core/helpers/cache_helper.dart';
@@ -68,13 +67,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          TextButton(
-            onPressed: submit,
-            child: Text(
-              LocaleKeys.skip.tr(),
-              style: TextStyle(
-                color: AppColors.primaryColorLight,
-                fontSize: 18.0.sp,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+            child: TextButton(
+              onPressed: submit,
+              child: Text(
+                LocaleKeys.skip.tr(),
+                style: TextStyle(
+                  color: AppColors.primaryColorLight,
+                  fontSize: 18.0.sp,
+                ),
               ),
             ),
           ),

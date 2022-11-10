@@ -1,15 +1,14 @@
 import 'package:equatable/equatable.dart';
-
-import 'package:supershop/features/home/domain/entities/signout/change_password_data.dart';
+import 'package:supershop/features/home/domain/entities/profile/change_password_data.dart';
 
 class ChangePassword extends Equatable {
   final bool status;
   final String message;
-  final ChangePasswordData signOutData;
+  final ChangePasswordData changePasswordData;
   const ChangePassword({
     required this.status,
     required this.message,
-    required this.signOutData,
+    required this.changePasswordData,
   });
 
   @override
