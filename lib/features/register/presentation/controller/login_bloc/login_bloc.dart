@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:supershop/core/error/network_exceptions.dart';
+
+import '../../../../../core/error/network_exceptions.dart';
 import '../../../domain/entities/register.dart';
 import '../../../domain/usecases/user_login_usecase.dart';
 
+part 'login_bloc.freezed.dart';
 part 'login_event.dart';
 part 'login_state.dart';
-part 'login_bloc.freezed.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final UserLoginUseCase userLoginUseCase;

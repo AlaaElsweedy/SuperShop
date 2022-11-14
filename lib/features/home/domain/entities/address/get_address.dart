@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:supershop/features/home/domain/entities/address/get_address_info.dart';
+import 'get_address_info.dart';
 
 class GetAddress extends Equatable {
   final bool status;

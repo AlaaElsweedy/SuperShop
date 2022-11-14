@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:supershop/features/home/domain/entities/address/get_address_data.dart';
+import 'get_address_data.dart';
 
 class GetAddressInfo extends Equatable {
   final List<GetAddressData> getAddressData;

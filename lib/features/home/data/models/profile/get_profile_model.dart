@@ -1,5 +1,5 @@
-import 'package:supershop/features/home/data/models/profile/get_profile_data_model.dart';
-import 'package:supershop/features/home/domain/entities/profile/get_profile.dart';
+import '../../../domain/entities/profile/get_profile.dart';
+import 'get_profile_data_model.dart';
 
 class GetProfileModel extends GetProfile {
   const GetProfileModel({

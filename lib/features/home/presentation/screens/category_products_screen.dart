@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:supershop/core/components/custom_app_bar.dart';
-import 'package:supershop/core/components/screen_status.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/enums.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
-import 'package:supershop/features/home/presentation/components/category_products_component.dart';
-import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+import '../../../../core/components/custom_app_bar.dart';
+import '../../../../core/components/screen_status.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../core/utils/enums.dart';
+import '../../../../core/utils/styles/app_colors.dart';
+import '../../../../generated/locale_keys.g.dart';
+import '../components/category_products_component.dart';
+import '../controllers/home/home_bloc.dart';
 
 class CategoryProductsScreen extends StatelessWidget {
   final String? categoryTitle;
@@ -56,7 +56,7 @@ class CategoryProductsScreen extends StatelessWidget {
                         crossAxisCount: 2,
                         mainAxisSpacing: 1.h,
                         crossAxisSpacing: 2.w,
-                        childAspectRatio: 0.66.h,
+                        childAspectRatio: 0.5.h,
                         children: List.generate(
                           products.length,
                           (index) => products.isEmpty

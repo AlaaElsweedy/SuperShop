@@ -2,19 +2,20 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:supershop/core/error/network_exceptions.dart';
-import 'package:supershop/core/usecase/base_use_case.dart';
-import 'package:supershop/core/utils/enums.dart';
-import 'package:supershop/features/home/domain/entities/categories/get_categories.dart';
-import 'package:supershop/features/home/domain/entities/categories/get_category_products.dart';
-import 'package:supershop/features/home/domain/entities/home/get_home.dart';
-import 'package:supershop/features/home/domain/entities/products/get_product_details.dart';
-import 'package:supershop/features/home/domain/entities/products/search_product.dart';
-import 'package:supershop/features/home/domain/usecases/get_categories_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/get_category_products_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/get_product_details_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/search_products_usecase.dart';
+
+import '../../../../../core/error/network_exceptions.dart';
+import '../../../../../core/usecase/base_use_case.dart';
+import '../../../../../core/utils/enums.dart';
+import '../../../domain/entities/categories/get_categories.dart';
+import '../../../domain/entities/categories/get_category_products.dart';
+import '../../../domain/entities/home/get_home.dart';
+import '../../../domain/entities/products/get_product_details.dart';
+import '../../../domain/entities/products/search_product.dart';
+import '../../../domain/usecases/get_categories_usecase.dart';
+import '../../../domain/usecases/get_category_products_usecase.dart';
 import '../../../domain/usecases/get_home_data_usecase.dart';
+import '../../../domain/usecases/get_product_details_usecase.dart';
+import '../../../domain/usecases/search_products_usecase.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -116,6 +117,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> _searchProducts(
       SearchProductsEvent event, Emitter<HomeState> emit) async {
+    emit(state.copyWith(searchProductsState: RequestState.isLoading));
+
     final result = await searchProductsUseCase(
         SearchProductsUseCaseParameters(title: event.title));
     result.fold((l) {

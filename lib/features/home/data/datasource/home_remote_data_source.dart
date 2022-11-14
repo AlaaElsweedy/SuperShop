@@ -1,41 +1,41 @@
-import 'package:supershop/core/error/exception.dart';
-import 'package:supershop/core/helpers/dio_helper.dart';
-import 'package:supershop/core/network/api_constance.dart';
-import 'package:supershop/core/network/error_message_model.dart';
-import 'package:supershop/core/utils/constance.dart';
-import 'package:supershop/features/home/data/models/address/address_model.dart';
-import 'package:supershop/features/home/data/models/address/get_address_model.dart';
-import 'package:supershop/features/home/data/models/cart/get_cart_products_model.dart';
-import 'package:supershop/features/home/data/models/cart/add_cart_products_model.dart';
-import 'package:supershop/features/home/data/models/cart/update_or_delete_cart_products_model.dart';
-import 'package:supershop/features/home/data/models/categories/get_categories_model.dart';
-import 'package:supershop/features/home/data/models/categories/get_category_products_model.dart';
-import 'package:supershop/features/home/data/models/favorites/get_favorite_products_model.dart';
-import 'package:supershop/features/home/data/models/favorites/post_favorites_model.dart';
-import 'package:supershop/features/home/data/models/home/home_model.dart';
-import 'package:supershop/features/home/data/models/orders/add_order_model.dart';
-import 'package:supershop/features/home/data/models/orders/cancel_order_model.dart';
-import 'package:supershop/features/home/data/models/orders/get_orders_model.dart';
-import 'package:supershop/features/home/data/models/products/get_product_details_model.dart';
-import 'package:supershop/features/home/data/models/products/search_product_model.dart';
-import 'package:supershop/features/home/data/models/profile/change_password_model.dart';
-import 'package:supershop/features/home/data/models/profile/get_profile_model.dart';
-import 'package:supershop/features/home/data/models/profile/sing_out_model.dart';
-import 'package:supershop/features/home/data/models/profile/update_profile.dart';
-import 'package:supershop/features/home/domain/usecases/add_address_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/add_cart_product_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/add_order_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/cancel_order_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/change_password_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/delete_address_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/delete_cart_products_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/get_category_products_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/get_product_details_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/search_products_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/sign_out_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/update_address_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/update_cart_products_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/update_profile_usecase.dart';
+import '../../../../core/error/exception.dart';
+import '../../../../core/helpers/dio_helper.dart';
+import '../../../../core/network/api_constance.dart';
+import '../../../../core/network/error_message_model.dart';
+import '../../../../core/utils/constance.dart';
+import '../models/address/address_model.dart';
+import '../models/address/get_address_model.dart';
+import '../models/cart/get_cart_products_model.dart';
+import '../models/cart/add_cart_products_model.dart';
+import '../models/cart/update_or_delete_cart_products_model.dart';
+import '../models/categories/get_categories_model.dart';
+import '../models/categories/get_category_products_model.dart';
+import '../models/favorites/get_favorite_products_model.dart';
+import '../models/favorites/post_favorites_model.dart';
+import '../models/home/home_model.dart';
+import '../models/orders/add_order_model.dart';
+import '../models/orders/cancel_order_model.dart';
+import '../models/orders/get_orders_model.dart';
+import '../models/products/get_product_details_model.dart';
+import '../models/products/search_product_model.dart';
+import '../models/profile/change_password_model.dart';
+import '../models/profile/get_profile_model.dart';
+import '../models/profile/sing_out_model.dart';
+import '../models/profile/update_profile.dart';
+import '../../domain/usecases/add_address_usecase.dart';
+import '../../domain/usecases/add_cart_product_usecase.dart';
+import '../../domain/usecases/add_order_usecase.dart';
+import '../../domain/usecases/cancel_order_usecase.dart';
+import '../../domain/usecases/change_password_usecase.dart';
+import '../../domain/usecases/delete_address_usecase.dart';
+import '../../domain/usecases/delete_cart_products_usecase.dart';
+import '../../domain/usecases/get_category_products_usecase.dart';
+import '../../domain/usecases/get_product_details_usecase.dart';
+import '../../domain/usecases/search_products_usecase.dart';
+import '../../domain/usecases/sign_out_usecase.dart';
+import '../../domain/usecases/update_address_usecase.dart';
+import '../../domain/usecases/update_cart_products_usecase.dart';
+import '../../domain/usecases/update_profile_usecase.dart';
 
 import '../../domain/usecases/add_or_remove_favorite_product.dart';
 
@@ -114,8 +114,7 @@ class HomeRemoteDataSource extends HomeBaseRemoteDataSource {
   @override
   Future<GetCategoriesModel> getCategories() async {
     final response = await DioHelper.getData(
-      path: ApiConstance.categoriesPath,
-    );
+        path: ApiConstance.categoriesPath, token: token);
 
     if (response.statusCode == 200) {
       return GetCategoriesModel.fromJson(response.data);

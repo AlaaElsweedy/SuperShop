@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:supershop/core/error/network_exceptions.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
+import '../error/network_exceptions.dart';
+import '../utils/app_size.dart';
+import '../utils/styles/app_colors.dart';
 
 class ShowCircularLoading extends StatelessWidget {
   const ShowCircularLoading({
@@ -82,7 +82,7 @@ class ShowError extends StatelessWidget {
   }
 }
 
-showToastError(NetworkExceptions errorMessage) {
+showToastExceptionError(NetworkExceptions errorMessage) {
   return Fluttertoast.showToast(
     msg: NetworkExceptions.getErrorMessage(errorMessage),
     toastLength: Toast.LENGTH_LONG,
@@ -94,13 +94,25 @@ showToastError(NetworkExceptions errorMessage) {
   );
 }
 
-showSuccessMessage(String message) {
+showToastSuccessMessage(String message) {
   return Fluttertoast.showToast(
     msg: message,
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.BOTTOM,
     timeInSecForIosWeb: 1,
     backgroundColor: AppColors.toastSuccessColor,
+    textColor: AppColors.toastTextMessageColor,
+    fontSize: 16.0.sp,
+  );
+}
+
+showToastErrorMessage(String errorMessage) {
+  return Fluttertoast.showToast(
+    msg: errorMessage,
+    toastLength: Toast.LENGTH_LONG,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 1,
+    backgroundColor: AppColors.toastErrorColor,
     textColor: AppColors.toastTextMessageColor,
     fontSize: 16.0.sp,
   );

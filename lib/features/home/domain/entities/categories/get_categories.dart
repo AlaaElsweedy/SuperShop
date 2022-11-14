@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:supershop/features/home/domain/entities/categories/get_categories_data.dart';
+
+import 'get_categories_data.dart';
 
 class GetCategories extends Equatable {
   final bool status;

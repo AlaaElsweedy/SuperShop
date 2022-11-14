@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:supershop/features/home/domain/entities/address/address_data.dart';
+import 'address_data.dart';
 
 // This class for add, update and delete
 class Address extends Equatable {

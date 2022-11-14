@@ -1,5 +1,5 @@
-import 'package:supershop/features/home/data/models/categories/get_categories_data_model.dart';
-import 'package:supershop/features/home/domain/entities/categories/get_categories.dart';
+import 'get_categories_data_model.dart';
+import '../../../domain/entities/categories/get_categories.dart';
 
 class GetCategoriesModel extends GetCategories {
   const GetCategoriesModel({

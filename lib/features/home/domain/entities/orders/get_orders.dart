@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:supershop/features/home/domain/entities/orders/get_orders_info.dart';
+import 'get_orders_info.dart';
 
 class GetOrders extends Equatable {
   final bool status;

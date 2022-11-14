@@ -20,15 +20,16 @@ class DarkTheme {
       iconTheme: const IconThemeData(color: AppColors.iconColorLight),
       elevation: 0.0,
       systemOverlayStyle: const SystemUiOverlayStyle(
-        //For Android
         statusBarColor: AppColors.backgroundColorDark,
-
-        //For apps with a dark background:
-        // For Android (light icons)
         statusBarIconBrightness: Brightness.light,
-        // For iOS (light icons)
         statusBarBrightness: Brightness.light,
       ),
+    ),
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: AppColors.backgroundColorDark,
+    ),
+    colorScheme: ColorScheme.fromSwatch(
+      accentColor: AppColors.greyBackgroundColorDark,
     ),
     primaryColor: AppColors.primaryColorDark,
     backgroundColor: AppColors.backgroundColorDark,
@@ -62,15 +63,11 @@ class DarkTheme {
         fontSize: 18.0.sp,
         fontWeight: FontWeight.bold,
       ),
-
-      //PRICE
       displayMedium: TextStyle(
         fontSize: 19.sp,
         color: AppColors.primaryColorDark,
         fontWeight: FontWeight.bold,
       ),
-
-      //OLD PRICE
       displaySmall: TextStyle(
         fontSize: 16.sp,
         color: AppColors.normalTextWitheColor,
@@ -83,25 +80,9 @@ class DarkTheme {
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: AppColors.primaryColorDark,
     ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all(Size(
-          double.infinity,
-          56.0.h,
-        )),
-        backgroundColor: MaterialStateProperty.all(Color(
-          AppColors.primaryColorDark.value,
-        )),
-        textStyle: MaterialStateProperty.all(
-          const TextStyle(
-            color: AppColors.mediumTextColorLight,
-          ),
-        ),
-      ),
-    ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        primary: AppColors.primaryColorDark,
+        foregroundColor: AppColors.primaryColorDark,
         minimumSize: Size.zero,
         padding: EdgeInsets.zero,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -113,29 +94,28 @@ class DarkTheme {
     ),
     inputDecorationTheme: InputDecorationTheme(
       iconColor: AppColors.primaryColorDark,
-
-      contentPadding:
-          EdgeInsets.symmetric(vertical: 20.0.h, horizontal: 25.0.w),
+      contentPadding: EdgeInsets.symmetric(
+        vertical: 20.0.h,
+        horizontal: 25.0.w,
+      ),
       hintStyle: const TextStyle(
         color: AppColors.textHintColorDark,
       ),
       filled: true,
+      prefixIconColor: AppColors.iconColorDark,
       fillColor: AppColors.greyBackgroundColorDark,
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5.r),
         borderSide: const BorderSide(
-          color: AppColors.borderColorDark,
+          color: AppColors.borderColor,
         ),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5.r),
         borderSide: const BorderSide(
-          color: AppColors.borderColorDark,
+          color: AppColors.borderColor,
         ),
       ),
-
-      //prefixIconColor: AppColors.lightThemeTextFieldBorderColor,
-      // suffixIconColor: AppColors.lightThemeTextFieldBorderColor,
     ),
     textSelectionTheme:
         const TextSelectionThemeData(cursorColor: AppColors.cursorColorLight),

@@ -18,7 +18,7 @@
   "haveAccount": "Already have an account!",
   "emailValidator": "Please enter your email ...",
   "passwordValidator": "Please enter your password...",
-  "passwordLengthValidator": "Password must has at least 8 numbers.",
+  "passwordLengthValidator": "Password must have at least 8 digits or letters.",
   "emailAddressFormat": "Please enter a valid email...",
   "paymentBody": "Pay in the safest way possible either by cash or credit cards.",
   "requiredField": "This field is required",
@@ -42,7 +42,6 @@
   "shippingFee": "Shipping Fee",
   "noFee": "No Shipping Fee",
   "totalPrice": "Total Price",
-  "moveToWishlist": "Move To Wishlist",
   "logout": "Logout",
   "inCart": "Product in the cart!",
   "subTotal": "Sub Total",
@@ -80,5 +79,13 @@
   "remove": "Remove",
   "update": "Update",
   "profile": "My Profile",
-  "signOut": "Sign Out"
+  "signOut": "Sign Out",
+  "selectLang": "Select Language",
+  "changePassword": "Change Password",
+  "currentPassword": "Current Password",
+  "newPassword": "New Password",
+  "confirmPassword": "Confirm Password",
+  "passwordMatch": "The password does not match!!",
+  "differentPassword": "The new password must be different from the current password.",
+  "addToWishlist": "Add To Wishlist"
 }

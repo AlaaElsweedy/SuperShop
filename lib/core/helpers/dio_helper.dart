@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import '../utils/constance.dart';
 
 import '../network/api_constance.dart';
 
@@ -29,11 +30,10 @@ class DioHelper {
     required String path,
     Map<String, dynamic>? query,
     required Map<String, dynamic> data,
-    String lang = 'en',
     String? token,
   }) async {
     dio.options.headers = {
-      'lang': lang,
+      'lang': apiDataLanguage,
       'Authorization': token ?? '',
       'Content-Type': 'application/json',
     };
@@ -48,11 +48,11 @@ class DioHelper {
   static Future<Response> getData({
     required String path,
     Map<String, dynamic>? query,
-    String lang = 'en',
     String? token,
+    String? lang,
   }) async {
     dio.options.headers = {
-      'lang': lang,
+      'lang': apiDataLanguage,
       'Authorization': token ?? '',
       'Content-Type': 'application/json',
     };
@@ -67,11 +67,10 @@ class DioHelper {
     required String path,
     Map<String, dynamic>? query,
     required Map<String, dynamic> data,
-    String lang = 'en',
     String? token,
   }) async {
     dio.options.headers = {
-      'lang': lang,
+      'lang': apiDataLanguage,
       'Authorization': token ?? '',
       'Content-Type': 'application/json',
     };
@@ -86,11 +85,10 @@ class DioHelper {
   static Future<Response> deleteData({
     required String path,
     Map<String, dynamic>? query,
-    String lang = 'en',
     String? token,
   }) async {
     dio.options.headers = {
-      'lang': lang,
+      'lang': apiDataLanguage,
       'Authorization': token ?? '',
       'Content-Type': 'application/json',
     };

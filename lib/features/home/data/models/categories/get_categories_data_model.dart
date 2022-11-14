@@ -1,6 +1,6 @@
-import 'package:supershop/features/home/data/models/categories/get_categories_product_data_model.dart';
-import 'package:supershop/features/home/domain/entities/categories/get_categories_data.dart';
-import 'package:supershop/features/home/domain/entities/categories/get_category_data.dart';
+import '../../../domain/entities/categories/get_categories_data.dart';
+import '../../../domain/entities/categories/get_category_data.dart';
+import 'get_categories_product_data_model.dart';
 
 class GetCategoriesDataModel extends GetCategoriesData {
   const GetCategoriesDataModel({required super.products});

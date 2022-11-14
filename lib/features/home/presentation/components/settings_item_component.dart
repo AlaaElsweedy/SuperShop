@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:supershop/core/components/my_dividers.dart';
-import 'package:supershop/core/utils/app_size.dart';
+import '../../../../core/components/my_dividers.dart';
+import '../../../../core/utils/app_size.dart';
 
 class SettingItemComponent extends StatelessWidget {
   final IconData icon;

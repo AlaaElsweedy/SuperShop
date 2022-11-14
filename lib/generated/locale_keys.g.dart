@@ -44,7 +44,6 @@ abstract class  LocaleKeys {
   static const shippingFee = 'shippingFee';
   static const noFee = 'noFee';
   static const totalPrice = 'totalPrice';
-  static const moveToWishlist = 'moveToWishlist';
   static const logout = 'logout';
   static const inCart = 'inCart';
   static const subTotal = 'subTotal';
@@ -83,5 +82,13 @@ abstract class  LocaleKeys {
   static const update = 'update';
   static const profile = 'profile';
   static const signOut = 'signOut';
+  static const selectLang = 'selectLang';
+  static const changePassword = 'changePassword';
+  static const currentPassword = 'currentPassword';
+  static const newPassword = 'newPassword';
+  static const confirmPassword = 'confirmPassword';
+  static const passwordMatch = 'passwordMatch';
+  static const differentPassword = 'differentPassword';
+  static const addToWishlist = 'addToWishlist';
 
 }

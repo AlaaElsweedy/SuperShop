@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:supershop/features/home/domain/entities/home/get_home_data.dart';
+import 'get_home_data.dart';
 
 class GetHome extends Equatable {
   final bool status;

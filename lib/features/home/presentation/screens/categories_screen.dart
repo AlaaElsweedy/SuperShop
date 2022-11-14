@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:supershop/core/components/custom_app_bar.dart';
-import 'package:supershop/core/components/screen_status.dart';
-import 'package:supershop/core/utils/enums.dart';
-import 'package:supershop/features/home/presentation/components/categories_item_component.dart';
-import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
+import '../../../../core/components/custom_app_bar.dart';
+import '../../../../core/components/screen_status.dart';
+import '../../../../core/utils/enums.dart';
+import '../components/categories_item_component.dart';
+import '../controllers/home/home_bloc.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);

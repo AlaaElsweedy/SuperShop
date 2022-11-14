@@ -1,5 +1,5 @@
-import 'package:supershop/features/home/data/models/cart/update_or_delete_cart_item_model.dart';
-import 'package:supershop/features/home/domain/entities/cart/update_or_delete_cart.dart';
+import 'update_or_delete_cart_item_model.dart';
+import '../../../domain/entities/cart/update_or_delete_cart.dart';
 
 class UpdateOrDeleteCartModel extends UpdateOrDeleteCart {
   const UpdateOrDeleteCartModel({

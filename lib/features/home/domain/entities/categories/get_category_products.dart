@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:supershop/features/home/domain/entities/categories/get_category_products_data.dart';
+import 'get_category_products_data.dart';
 
 class GetCategoryProducts extends Equatable {
   final bool status;

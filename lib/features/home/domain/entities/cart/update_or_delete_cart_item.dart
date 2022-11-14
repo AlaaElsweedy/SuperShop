@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:supershop/features/home/domain/entities/cart/update_or_delete_cart_items_data.dart';
+import 'update_or_delete_cart_items_data.dart';
 
 class UpdateOrDeleteCartItem extends Equatable {
   final int id;

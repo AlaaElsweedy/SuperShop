@@ -1,4 +1,4 @@
-import 'package:supershop/features/home/domain/entities/profile/update_profile_data.dart';
+import '../../../domain/entities/profile/update_profile_data.dart';
 
 class UpdateProfileDataModel extends UpdateProfileData {
   const UpdateProfileDataModel({

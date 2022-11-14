@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:supershop/features/home/domain/entities/home/banner.dart';
-import 'package:supershop/features/home/domain/entities/home/product.dart';
+import 'banner.dart';
+import 'product.dart';
 
 class GetHomeData extends Equatable {
   final List<Banner> banners;

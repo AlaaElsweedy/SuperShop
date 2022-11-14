@@ -1,4 +1,4 @@
-import 'package:supershop/features/home/domain/entities/profile/sign_out_data.dart';
+import '../../../domain/entities/profile/sign_out_data.dart';
 
 class SignOutDataModel extends SignOutData {
   const SignOutDataModel({

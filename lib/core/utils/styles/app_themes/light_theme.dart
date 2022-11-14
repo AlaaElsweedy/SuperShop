@@ -20,14 +20,16 @@ class LightTheme {
       iconTheme: const IconThemeData(color: AppColors.iconColorLight),
       elevation: 0.0,
       systemOverlayStyle: const SystemUiOverlayStyle(
-        //For Android
         statusBarColor: AppColors.backgroundColorLight,
-        //For apps with a dark background:
-        // For Android (light icons)
         statusBarIconBrightness: Brightness.dark,
-        // For iOS (light icons)
         statusBarBrightness: Brightness.dark,
       ),
+    ),
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: AppColors.backgroundColorLight,
+    ),
+    colorScheme: ColorScheme.fromSwatch(
+      accentColor: AppColors.accentColorLight,
     ),
     primaryColor: AppColors.primaryColorLight,
     backgroundColor: AppColors.backgroundColorLight,
@@ -62,15 +64,11 @@ class LightTheme {
         fontSize: 18.0.sp,
         fontWeight: FontWeight.bold,
       ),
-
-      //PRICE
       displayMedium: TextStyle(
         fontSize: 19.sp,
         color: AppColors.normalTextRedColorLight,
         fontWeight: FontWeight.bold,
       ),
-
-      //OLD PRICE
       displaySmall: TextStyle(
         fontSize: 16.sp,
         color: AppColors.mediumTextColorLight,
@@ -79,30 +77,13 @@ class LightTheme {
     ),
     buttonTheme: const ButtonThemeData(
       buttonColor: AppColors.primaryColorLight,
-      //disabledColor: AppColors.grey,
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: AppColors.primaryColorLight,
     ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all(Size(
-          double.infinity,
-          56.0.h,
-        )),
-        backgroundColor: MaterialStateProperty.all(Color(
-          AppColors.primaryColorLight.value,
-        )),
-        textStyle: MaterialStateProperty.all(
-          const TextStyle(
-            color: AppColors.normalTextWitheColor,
-          ),
-        ),
-      ),
-    ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        primary: AppColors.primaryColorLight,
+        foregroundColor: AppColors.primaryColorLight,
         minimumSize: Size.zero,
         padding: EdgeInsets.zero,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -115,13 +96,15 @@ class LightTheme {
     ),
     inputDecorationTheme: InputDecorationTheme(
       iconColor: AppColors.iconTextFiledColorLight,
-
-      contentPadding:
-          EdgeInsets.symmetric(vertical: 20.0.h, horizontal: 25.0.w),
+      contentPadding: EdgeInsets.symmetric(
+        vertical: 20.0.h,
+        horizontal: 25.0.w,
+      ),
       hintStyle: const TextStyle(
         color: AppColors.textHintColorLight,
       ),
       filled: true,
+      prefixIconColor: AppColors.iconColorLight,
       fillColor: AppColors.textFiledFillColorLight,
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5.r),
@@ -135,9 +118,6 @@ class LightTheme {
           color: AppColors.textFiledFillColorLight,
         ),
       ),
-
-      //prefixIconColor: AppColors.lightThemeTextFieldBorderColor,
-      // suffixIconColor: AppColors.lightThemeTextFieldBorderColor,
     ),
     textSelectionTheme:
         const TextSelectionThemeData(cursorColor: AppColors.cursorColorLight),

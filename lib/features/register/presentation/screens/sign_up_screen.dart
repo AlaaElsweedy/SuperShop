@@ -2,19 +2,19 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen_validators/queen_validators.dart';
-import 'package:supershop/core/components/build_header.dart';
-import 'package:supershop/core/components/build_second_header.dart';
-import 'package:supershop/core/components/custom_button.dart';
-import 'package:supershop/core/components/custom_text_button.dart';
-import 'package:supershop/core/components/custom_text_form_field.dart';
-import 'package:supershop/core/components/navigation.dart';
-import 'package:supershop/core/components/screen_status.dart';
-import 'package:supershop/core/services/service_locator.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/features/register/presentation/components/sign_up_password_field_component.dart';
-import 'package:supershop/features/register/presentation/controller/register_bloc/register_bloc.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
 
+import '../../../../core/components/build_header.dart';
+import '../../../../core/components/build_second_header.dart';
+import '../../../../core/components/custom_button.dart';
+import '../../../../core/components/custom_text_button.dart';
+import '../../../../core/components/custom_text_form_field.dart';
+import '../../../../core/components/navigation.dart';
+import '../../../../core/components/screen_status.dart';
+import '../../../../core/services/service_locator.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../generated/locale_keys.g.dart';
+import '../components/sign_up_password_field_component.dart';
+import '../controller/register_bloc/register_bloc.dart';
 import 'login_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -36,7 +36,8 @@ class SignUpScreen extends StatelessWidget {
             initial: () => const ShowCircularLoading(),
             loading: () => const ShowCircularLoading(),
             success: () => navigateTo(context, LoginScreen()),
-            error: (networkExceptions) => showToastError(networkExceptions),
+            error: (networkExceptions) =>
+                showToastExceptionError(networkExceptions),
           );
         },
         child: Scaffold(

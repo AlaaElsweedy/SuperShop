@@ -1,4 +1,4 @@
-import 'package:supershop/features/home/domain/entities/home/product.dart';
+import '../../../domain/entities/home/product.dart';
 
 class ProductModel extends Product {
   const ProductModel({

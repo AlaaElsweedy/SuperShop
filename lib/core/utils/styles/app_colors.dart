@@ -4,6 +4,9 @@ class AppColors {
   static const primaryColorLight = Color(0xfffc6011);
   static const primaryColorDark = Color(0xfffc4811);
 
+  static const accentColorLight = Color(0xfffd8041);
+  static const accentColorDark = Color(0xfffd6d41);
+
   static const cursorColorLight = Color(0xfffc6011);
 
   static const appBarTitleColorLight = Color(0xff4A4B4D);
@@ -11,8 +14,8 @@ class AppColors {
   static const pageIndicatorActiveDotColorLight = Color(0xfffc6011);
   static const pageIndicatorInActiveDotColorLight = Color(0xff7C7D7E);
 
-  static const discountColorLight = Colors.red;
-  static const deleteColorLight = Colors.red;
+  static const discountColor = Colors.red;
+  static const deleteColor = Colors.red;
   static const productInfoColorLight = Colors.green;
   static const productGridViewColorLight = Color(0xffB6B7B7);
 
@@ -28,7 +31,9 @@ class AppColors {
   static const favoriteIconColorLight = Colors.white;
   static const unFavoriteIconColorLight = Color(0xffB6B7B7);
   static const appBarIconColorLight = Color(0xff4A4B4D);
+
   static const iconColorLight = Color(0xfffc6011);
+  static const iconColorDark = Color(0xfffc4811);
 
   //BACKGROUND
   static const backgroundColorLight = Color(0xffffffff);
@@ -55,8 +60,7 @@ class AppColors {
   static const iconTextFiledColorDark = Color(0xfffc4811);
 
   //Border
-  static const borderColorLight = Color(0xff4A4B4D);
-  static const borderColorDark = Color(0xff9c9ea2);
+  static const borderColor = Color(0xff9c9ea2);
 
   //Toast
   static const toastErrorColor = Colors.red;

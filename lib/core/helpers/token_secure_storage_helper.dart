@@ -1,6 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class TokenSecureStorage {
+class TokenSecureStorageHelper {
   static FlutterSecureStorage storage = const FlutterSecureStorage();
 
   static AndroidOptions _getAndroidOptions() => const AndroidOptions(

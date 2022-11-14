@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:supershop/features/home/domain/entities/products/search_product_data.dart';
+import 'search_product_data.dart';
 
 class SearchProducts extends Equatable {
   final List<SearchProductData> searchProducts;

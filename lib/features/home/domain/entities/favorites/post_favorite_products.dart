@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:supershop/features/home/domain/entities/favorites/post_favorite_product.dart';
+import 'post_favorite_product.dart';
 
 class PostFavoriteProducts extends Equatable {
   final bool status;

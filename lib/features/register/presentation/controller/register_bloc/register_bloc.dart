@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:supershop/core/error/network_exceptions.dart';
+import '../../../../../core/error/network_exceptions.dart';
 
 import '../../../domain/usecases/user_sign_up_usecase.dart';
 

@@ -6,7 +6,7 @@ Widget initialLocalization({required Widget child}) {
   return EasyLocalization(
     supportedLocales: const [
       Locale('en'),
-      //Locale('ar'),
+      Locale('ar'),
     ],
     path: 'assets/translations',
     fallbackLocale: const Locale('en'),

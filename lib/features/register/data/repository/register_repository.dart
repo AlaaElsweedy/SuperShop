@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:supershop/core/error/network_exceptions.dart';
 
+import '../../../../core/error/network_exceptions.dart';
 import '../../domain/entities/register.dart';
 import '../../domain/repository/register_base_repository.dart';
 import '../../domain/usecases/user_login_usecase.dart';

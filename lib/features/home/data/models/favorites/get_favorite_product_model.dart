@@ -1,4 +1,4 @@
-import 'package:supershop/features/home/domain/entities/favorites/get_favorite_product_data.dart';
+import '../../../domain/entities/favorites/get_favorite_product_data.dart';
 
 class FavoriteProductModel extends GetFavoriteProductData {
   const FavoriteProductModel({

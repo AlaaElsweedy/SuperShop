@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:supershop/features/home/domain/entities/cart/update_or_delete_cart.dart';
+import 'update_or_delete_cart.dart';
 
 class UpdateOrDeleteCartProducts extends Equatable {
   final bool status;

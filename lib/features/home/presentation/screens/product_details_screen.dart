@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:supershop/core/components/custom_app_bar.dart';
-import 'package:supershop/core/components/custom_row_button.dart';
-import 'package:supershop/core/components/my_dividers.dart';
-import 'package:supershop/core/components/screen_status.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/enums.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
-import 'package:supershop/features/home/domain/entities/products/get_product_detail_data.dart';
-import 'package:supershop/features/home/presentation/controllers/cart/cart_bloc.dart';
-import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+import '../../../../core/components/custom_app_bar.dart';
+import '../../../../core/components/custom_row_button.dart';
+import '../../../../core/components/my_dividers.dart';
+import '../../../../core/components/screen_status.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../core/utils/enums.dart';
+import '../../../../core/utils/styles/app_colors.dart';
+import '../../domain/entities/products/get_product_detail_data.dart';
+import '../controllers/cart/cart_bloc.dart';
+import '../controllers/home/home_bloc.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   final PageController productImagesController = PageController();
@@ -25,6 +25,7 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //spiltDescription();
     return BlocBuilder<HomeBloc, HomeState>(
       buildWhen: (previous, current) =>
           previous.getProductDetailsState != current.getProductDetailsState,
@@ -36,6 +37,14 @@ class ProductDetailsScreen extends StatelessWidget {
 
           case RequestState.success:
             var product = state.getProductDetails!.data;
+            var spilt = [];
+            List<String> descriptionAfterSpilt =
+                product.description.split('\r\n');
+            for (String text in descriptionAfterSpilt) {
+              if (text.contains(':')) spilt.add(text);
+              if (spilt.length == 25) break;
+            }
+
             return Scaffold(
               appBar: const CustomAppBar(),
               body: SingleChildScrollView(
@@ -66,6 +75,9 @@ class ProductDetailsScreen extends StatelessWidget {
                                   itemBuilder: (context, index) =>
                                       CachedNetworkImage(
                                     imageUrl: product.images[index],
+                                    placeholder: (context, url) => Image.asset(
+                                      'assets/images/loading.gif',
+                                    ),
                                   ),
                                   itemCount: product.images.length,
                                 ),
@@ -92,8 +104,10 @@ class ProductDetailsScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                NumberFormat.currency(decimalDigits: 2)
-                                    .format(product.price),
+                                NumberFormat.currency(
+                                  decimalDigits: 2,
+                                  locale: '${context.locale}',
+                                ).format(product.price),
                                 style:
                                     Theme.of(context).textTheme.displayMedium,
                               ),
@@ -101,8 +115,10 @@ class ProductDetailsScreen extends StatelessWidget {
                                 AppSize.sizedBox10(context),
                               if (product.discount != 0)
                                 Text(
-                                  NumberFormat.currency(decimalDigits: 2)
-                                      .format(product.oldPrice),
+                                  NumberFormat.currency(
+                                    decimalDigits: 2,
+                                    locale: '${context.locale}',
+                                  ).format(product.oldPrice),
                                   style:
                                       Theme.of(context).textTheme.displaySmall,
                                 ),
@@ -114,7 +130,16 @@ class ProductDetailsScreen extends StatelessWidget {
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
                               AppSize.sizedBox15(context),
-                              Text(product.description),
+                              spilt.length > 3
+                                  ? ListView.builder(
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, index) =>
+                                          Text(spilt[index]),
+                                      itemCount: spilt.length,
+                                    )
+                                  : Text(product.description),
                               AppSize.sizedBox20(context),
                             ],
                           ),

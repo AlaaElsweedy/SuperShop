@@ -1,5 +1,5 @@
-import 'package:supershop/features/home/data/models/orders/get_orders_info_model.dart';
-import 'package:supershop/features/home/domain/entities/orders/get_orders.dart';
+import '../../../domain/entities/orders/get_orders.dart';
+import 'get_orders_info_model.dart';
 
 class GetOrdersModel extends GetOrders {
   const GetOrdersModel({

@@ -2,27 +2,27 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen_validators/queen_validators.dart';
-import 'package:supershop/core/components/build_header.dart';
-import 'package:supershop/core/components/build_second_header.dart';
-import 'package:supershop/core/components/custom_button.dart';
-import 'package:supershop/core/components/custom_text_button.dart';
-import 'package:supershop/core/components/custom_text_form_field.dart';
-import 'package:supershop/core/components/navigation.dart';
-import 'package:supershop/core/components/screen_status.dart';
-import 'package:supershop/core/services/service_locator.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/constance.dart';
-import 'package:supershop/core/utils/token_secure_storage.dart';
-import 'package:supershop/features/home/presentation/controllers/address/address_bloc.dart';
-import 'package:supershop/features/home/presentation/controllers/cart/cart_bloc.dart';
-import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
-import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
-import 'package:supershop/features/home/presentation/controllers/orders/orders_bloc.dart';
-import 'package:supershop/features/home/presentation/controllers/profile/profile_bloc.dart';
-import 'package:supershop/features/home/presentation/screens/home_screen.dart';
-import 'package:supershop/features/register/presentation/components/login_password_field_component.dart';
-import 'package:supershop/features/register/presentation/controller/login_bloc/login_bloc.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+import '../../../../core/components/build_header.dart';
+import '../../../../core/components/build_second_header.dart';
+import '../../../../core/components/custom_button.dart';
+import '../../../../core/components/custom_text_button.dart';
+import '../../../../core/components/custom_text_form_field.dart';
+import '../../../../core/components/navigation.dart';
+import '../../../../core/components/screen_status.dart';
+import '../../../../core/services/service_locator.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../core/utils/constance.dart';
+import '../../../../core/helpers/token_secure_storage_helper.dart';
+import '../../../home/presentation/controllers/address/address_bloc.dart';
+import '../../../home/presentation/controllers/cart/cart_bloc.dart';
+import '../../../home/presentation/controllers/favorites/favorites_bloc.dart';
+import '../../../home/presentation/controllers/home/home_bloc.dart';
+import '../../../home/presentation/controllers/orders/orders_bloc.dart';
+import '../../../home/presentation/controllers/profile/profile_bloc.dart';
+import '../../../home/presentation/screens/home_screen.dart';
+import '../components/login_password_field_component.dart';
+import '../controller/login_bloc/login_bloc.dart';
+import '../../../../generated/locale_keys.g.dart';
 import 'sign_up_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -43,7 +43,7 @@ class LoginScreen extends StatelessWidget {
             loading: () => const ShowCircularLoading(),
             success: (register) {
               token = register.registerData.token;
-              TokenSecureStorage.saveSecureToken(
+              TokenSecureStorageHelper.saveSecureToken(
                 token!,
               ).then((value) {
                 context.read<HomeBloc>().add(GetHomeDataEvent());
@@ -57,7 +57,7 @@ class LoginScreen extends StatelessWidget {
               //print('token is:/// ${register.registerData.token}');
             },
             error: (networkExceptions) {
-              showToastError(
+              showToastExceptionError(
                 networkExceptions,
               );
             },

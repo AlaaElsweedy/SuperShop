@@ -2,11 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:supershop/core/components/custom_text_button.dart';
-import 'package:supershop/core/components/navigation.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/features/home/presentation/screens/home_screen.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+import '../../../../core/components/custom_text_button.dart';
+import '../../../../core/components/navigation.dart';
+import '../../../../core/utils/app_size.dart';
+import '../screens/home_screen.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class NoOrdersComponent extends StatelessWidget {
   const NoOrdersComponent({

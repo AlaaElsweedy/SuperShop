@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
+import '../utils/styles/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
   final String title;

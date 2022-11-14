@@ -1,4 +1,4 @@
-import 'package:supershop/features/home/domain/entities/cart/get_cart_products_data.dart';
+import '../../../domain/entities/cart/get_cart_products_data.dart';
 
 class GetCartProductsDataModel extends GetCartProductsData {
   const GetCartProductsDataModel({

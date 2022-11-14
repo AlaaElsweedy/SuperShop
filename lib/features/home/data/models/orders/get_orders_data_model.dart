@@ -1,4 +1,4 @@
-import 'package:supershop/features/home/domain/entities/orders/get_orders_data.dart';
+import '../../../domain/entities/orders/get_orders_data.dart';
 
 class GetOrdersDataModel extends GetOrdersData {
   const GetOrdersDataModel({

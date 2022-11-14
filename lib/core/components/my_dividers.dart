@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
+import '../utils/styles/app_colors.dart';
 
 class MyDivider extends StatelessWidget {
   const MyDivider({Key? key}) : super(key: key);
@@ -8,9 +8,7 @@ class MyDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Theme.of(context).brightness == Brightness.dark
-          ? AppColors.borderColorDark
-          : AppColors.borderColorLight,
+      color: AppColors.borderColor,
       height: 1.h,
       width: double.infinity,
     );

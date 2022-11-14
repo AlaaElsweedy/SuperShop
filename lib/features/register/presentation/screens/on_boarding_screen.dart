@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:supershop/core/components/navigation.dart';
-import 'package:supershop/core/helpers/cache_helper.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
-import 'package:supershop/features/register/presentation/screens/sign_up_screen.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+import '../../../../core/components/navigation.dart';
+import '../../../../core/helpers/cache_helper.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../core/utils/styles/app_colors.dart';
+import 'sign_up_screen.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class BoardingModel {
   final String image;

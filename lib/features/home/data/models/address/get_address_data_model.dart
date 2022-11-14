@@ -1,4 +1,4 @@
-import 'package:supershop/features/home/domain/entities/address/get_address_data.dart';
+import '../../../domain/entities/address/get_address_data.dart';
 
 class GetAddressDataModel extends GetAddressData {
   const GetAddressDataModel({

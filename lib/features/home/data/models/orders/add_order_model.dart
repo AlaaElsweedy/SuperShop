@@ -1,5 +1,5 @@
-import 'package:supershop/features/home/data/models/orders/add_order_data_model.dart';
-import 'package:supershop/features/home/domain/entities/orders/add_order.dart';
+import '../../../domain/entities/orders/add_order.dart';
+import 'add_order_data_model.dart';
 
 class AddOrderModel extends AddOrder {
   const AddOrderModel({

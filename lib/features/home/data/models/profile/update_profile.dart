@@ -1,5 +1,5 @@
-import 'package:supershop/features/home/data/models/profile/update_profile_data_model.dart';
-import 'package:supershop/features/home/domain/entities/profile/update_profile.dart';
+import 'update_profile_data_model.dart';
+import '../../../domain/entities/profile/update_profile.dart';
 
 class UpdateProfileModel extends UpdateProfile {
   const UpdateProfileModel({

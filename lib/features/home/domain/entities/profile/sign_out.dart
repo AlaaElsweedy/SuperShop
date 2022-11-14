@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:supershop/features/home/domain/entities/profile/sign_out_data.dart';
+import 'sign_out_data.dart';
 
 class SignOut extends Equatable {
   final bool status;

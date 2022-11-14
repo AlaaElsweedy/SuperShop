@@ -3,13 +3,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:supershop/core/components/custom_row_text_button.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
-import 'package:supershop/features/home/domain/entities/cart/get_cart_items.dart';
-import 'package:supershop/features/home/presentation/controllers/cart/cart_bloc.dart';
-import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+import '../../../../core/components/custom_row_text_button.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../core/utils/styles/app_colors.dart';
+import '../../domain/entities/cart/get_cart_items.dart';
+import '../controllers/cart/cart_bloc.dart';
+import '../controllers/favorites/favorites_bloc.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class CartItemComponent extends StatelessWidget {
   final TextEditingController productController;
@@ -29,12 +29,12 @@ class CartItemComponent extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Container(
-        height: 200.h,
-        padding: AppSize.paddingAll20,
+        height: 220.h,
+        padding: AppSize.paddingAll10,
         child: Column(
           children: [
             SizedBox(
-              height: 100.h,
+              height: 120.h,
               child: Row(
                 children: [
                   CachedNetworkImage(
@@ -53,21 +53,25 @@ class CartItemComponent extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 15.sp,
                           ),
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          overflow: TextOverflow.fade,
                         ),
-                        if (item.getCartProduct.discount == 0)
-                          AppSize.sizedBox10(context),
-                        if (item.getCartProduct.discount != 0) const Spacer(),
+                        AppSize.sizedBox5(context),
                         Text(
-                          NumberFormat.currency(decimalDigits: 2)
-                              .format(item.getCartProduct.price),
+                          NumberFormat.currency(
+                            decimalDigits: 2,
+                            locale: '${context.locale}',
+                          ).format(
+                            item.getCartProduct.price,
+                          ),
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                         if (item.getCartProduct.discount != 0)
                           Text(
-                            NumberFormat.currency(decimalDigits: 2)
-                                .format(item.getCartProduct.oldPrice),
+                            NumberFormat.currency(
+                              decimalDigits: 2,
+                              locale: '${context.locale}',
+                            ).format(item.getCartProduct.oldPrice),
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
                       ],
@@ -82,61 +86,45 @@ class CartItemComponent extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    SizedBox(
-                      width: 20.w,
-                      height: 20.h,
-                      child: MaterialButton(
-                        onPressed: () {
-                          int quantity = item.quantity;
-                          if (quantity > 1) {
-                            quantity--;
-                            context.read<CartBloc>().add(
-                                  UpdateCartProductEvent(
-                                    cartId: item.id,
-                                    quantity: quantity,
-                                  ),
-                                );
-                          }
-                        },
-                        minWidth: 20.w,
-                        //shape: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                        padding: EdgeInsets.zero,
-                        child: Icon(
-                          Icons.remove,
-                          size: 17.w,
-                          color: AppColors.primaryColorLight,
-                        ),
-                      ),
+                    CounterButton(
+                      item: item,
+                      icon: Icons.remove,
+                      color: AppColors.deleteColor,
+                      onPressed: () {
+                        int quantity = item.quantity;
+                        if (quantity > 1) {
+                          quantity--;
+                          context.read<CartBloc>().add(
+                                UpdateCartProductEvent(
+                                  cartId: item.id,
+                                  quantity: quantity,
+                                ),
+                              );
+                        }
+                      },
                     ),
+                    AppSize.sizedBoxW5(context),
                     Text(
-                      '${item.quantity}',
+                      '${item.quantity}'.padLeft(2, '0'),
                       style: TextStyle(fontSize: 20.sp),
                     ),
-                    SizedBox(
-                      width: 20.w,
-                      height: 20.h,
-                      child: MaterialButton(
-                        onPressed: () {
-                          int quantity = item.quantity;
-                          if (quantity <= 7) {
-                            quantity++;
-                            context.read<CartBloc>().add(
-                                  UpdateCartProductEvent(
-                                    cartId: item.id,
-                                    quantity: quantity,
-                                  ),
-                                );
-                          }
-                        },
-                        minWidth: 10.w,
-                        //shape: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                        padding: EdgeInsets.zero,
-                        child: Icon(
-                          Icons.add,
-                          size: 17.w,
-                          color: AppColors.productInfoColorLight,
-                        ),
-                      ),
+                    AppSize.sizedBoxW5(context),
+                    CounterButton(
+                      item: item,
+                      icon: Icons.add,
+                      onPressed: () {
+                        int quantity = item.quantity;
+                        if (quantity <= 7) {
+                          quantity++;
+                          context.read<CartBloc>().add(
+                                UpdateCartProductEvent(
+                                  cartId: item.id,
+                                  quantity: quantity,
+                                ),
+                              );
+                        }
+                      },
+                      color: AppColors.productInfoColorLight,
                     ),
                   ],
                 ),
@@ -147,7 +135,7 @@ class CartItemComponent extends StatelessWidget {
                             children: [
                               const VerticalDivider(),
                               CustomRowTextButton(
-                                text: LocaleKeys.moveToWishlist.tr(),
+                                text: LocaleKeys.addToWishlist.tr(),
                                 icon: Icons.favorite_border,
                                 iconColor: Theme.of(context).iconTheme.color!,
                                 onPressed: () {
@@ -173,7 +161,7 @@ class CartItemComponent extends StatelessWidget {
                 CustomRowTextButton(
                   text: LocaleKeys.delete.tr(),
                   icon: Icons.delete,
-                  iconColor: AppColors.deleteColorLight,
+                  iconColor: AppColors.deleteColor,
                   onPressed: () {
                     context
                         .read<CartBloc>()
@@ -183,6 +171,43 @@ class CartItemComponent extends StatelessWidget {
               ],
             )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CounterButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onPressed;
+  final GetCartItems item;
+  final Color color;
+
+  const CounterButton({
+    Key? key,
+    required this.item,
+    required this.icon,
+    required this.onPressed,
+    required this.color,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 25.w,
+      height: 25.h,
+      child: MaterialButton(
+        color: color,
+        onPressed: onPressed,
+        minWidth: 20.w,
+        // shape: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(20.r),
+        // ),
+        padding: EdgeInsets.zero,
+        child: Icon(
+          icon,
+          size: 17.w,
+          color: AppColors.backgroundColorLight,
         ),
       ),
     );

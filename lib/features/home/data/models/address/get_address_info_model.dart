@@ -1,5 +1,5 @@
-import 'package:supershop/features/home/data/models/address/get_address_data_model.dart';
-import 'package:supershop/features/home/domain/entities/address/get_address_info.dart';
+import 'get_address_data_model.dart';
+import '../../../domain/entities/address/get_address_info.dart';
 
 class GetAddressInfoModel extends GetAddressInfo {
   const GetAddressInfoModel({required super.getAddressData});

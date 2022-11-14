@@ -1,15 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:supershop/core/components/navigation.dart';
-import 'package:supershop/features/home/presentation/controllers/profile/profile_bloc.dart';
-import 'package:supershop/features/home/presentation/screens/cart_screen.dart';
-import 'package:supershop/features/home/presentation/screens/categories_screen.dart';
-import 'package:supershop/features/home/presentation/screens/favorites_screen.dart';
-import 'package:supershop/features/home/presentation/screens/home_screen.dart';
-import 'package:supershop/features/home/presentation/screens/profile_screen.dart';
-import 'package:supershop/features/home/presentation/screens/settings_screen.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+import '../components/navigation.dart';
+import '../../features/home/presentation/controllers/profile/profile_bloc.dart';
+import '../../features/home/presentation/screens/cart_screen.dart';
+import '../../features/home/presentation/screens/categories_screen.dart';
+import '../../features/home/presentation/screens/favorites_screen.dart';
+import '../../features/home/presentation/screens/home_screen.dart';
+import '../../features/home/presentation/screens/profile_screen.dart';
+import '../../features/home/presentation/screens/settings_screen.dart';
+import '../../generated/locale_keys.g.dart';
 
 class CustomDrawer extends StatelessWidget {
   final Map<int, bool>? favorites;

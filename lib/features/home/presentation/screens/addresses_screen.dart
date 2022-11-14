@@ -1,16 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:supershop/core/components/custom_app_bar.dart';
-import 'package:supershop/core/components/custom_text_button.dart';
-import 'package:supershop/core/components/navigation.dart';
-import 'package:supershop/core/components/screen_status.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/enums.dart';
-import 'package:supershop/features/home/presentation/components/address_item_component.dart';
-import 'package:supershop/features/home/presentation/controllers/address/address_bloc.dart';
-import 'package:supershop/features/home/presentation/screens/add_or_update_address_screen.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+
+import '../../../../core/components/custom_app_bar.dart';
+import '../../../../core/components/custom_text_button.dart';
+import '../../../../core/components/navigation.dart';
+import '../../../../core/components/screen_status.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../core/utils/enums.dart';
+import '../../../../generated/locale_keys.g.dart';
+import '../components/address_item_component.dart';
+import '../controllers/address/address_bloc.dart';
+import 'add_or_update_address_screen.dart';
 
 class AddressesScreen extends StatelessWidget {
   const AddressesScreen({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:supershop/features/home/domain/entities/cart/get_cart.dart';
+import 'get_cart.dart';
 
 class GetCartProducts extends Equatable {
   final bool status;

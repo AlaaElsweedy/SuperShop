@@ -1,5 +1,5 @@
-import 'package:supershop/features/home/data/models/cart/get_cart_products_data_model.dart';
-import 'package:supershop/features/home/domain/entities/cart/get_cart_items.dart';
+import '../../../domain/entities/cart/get_cart_items.dart';
+import 'get_cart_products_data_model.dart';
 
 class GetCartItemsModel extends GetCartItems {
   const GetCartItemsModel({

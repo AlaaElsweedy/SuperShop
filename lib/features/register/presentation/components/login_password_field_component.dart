@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen_validators/queen_validators.dart';
-import 'package:supershop/core/components/custom_text_form_field.dart';
-import 'package:supershop/core/services/service_locator.dart';
-import 'package:supershop/features/register/presentation/controller/cubit/password_visibility_cubit.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+import '../../../../core/components/custom_text_form_field.dart';
+import '../../../../core/services/service_locator.dart';
+import '../controller/cubit/password_visibility_cubit.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class LoginPasswordFieldComponent extends StatelessWidget {
   const LoginPasswordFieldComponent({

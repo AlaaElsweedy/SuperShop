@@ -2,15 +2,16 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:supershop/core/error/network_exceptions.dart';
-import 'package:supershop/core/usecase/base_use_case.dart';
-import 'package:supershop/core/utils/enums.dart';
-import 'package:supershop/features/home/domain/entities/address/address.dart';
-import 'package:supershop/features/home/domain/entities/address/get_address.dart';
-import 'package:supershop/features/home/domain/usecases/add_address_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/delete_address_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/get_address_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/update_address_usecase.dart';
+
+import '../../../../../core/error/network_exceptions.dart';
+import '../../../../../core/usecase/base_use_case.dart';
+import '../../../../../core/utils/enums.dart';
+import '../../../domain/entities/address/address.dart';
+import '../../../domain/entities/address/get_address.dart';
+import '../../../domain/usecases/add_address_usecase.dart';
+import '../../../domain/usecases/delete_address_usecase.dart';
+import '../../../domain/usecases/get_address_usecase.dart';
+import '../../../domain/usecases/update_address_usecase.dart';
 
 part 'address_event.dart';
 part 'address_state.dart';

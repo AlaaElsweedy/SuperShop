@@ -1,5 +1,5 @@
-import 'package:supershop/features/home/data/models/favorites/get_favorites_model.dart';
-import 'package:supershop/features/home/domain/entities/favorites/get_favorites.dart';
+import 'get_favorites_model.dart';
+import '../../../domain/entities/favorites/get_favorites.dart';
 
 class GetFavoriteProductsDataModel extends GetFavorites {
   const GetFavoriteProductsDataModel({

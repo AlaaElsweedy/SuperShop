@@ -23,7 +23,7 @@ class CodegenLoader extends AssetLoader{
   "signIn": "تسجيل الدخول",
   "signUp": "تسجيل",
   "email": "البريد الإلكتروني",
-  "password": "الرقم السري",
+  "password": "كلمة المرور",
   "phone": "رقم الهاتف",
   "explore": "استكشف",
   "shipping": "الشحن",
@@ -34,7 +34,7 @@ class CodegenLoader extends AssetLoader{
   "haveAccount": "لديك حساب بالفعل!",
   "emailValidator": "من فضلك ادخل البريد الالكتروني ...",
   "passwordValidator": "من فضلك ادخل كلمة المرور ...",
-  "passwordLengthValidator": "كلمة المرور يجب ان تحتوي علي الاقل علي ٨ ارقام.",
+  "passwordLengthValidator": "يجب أن تحتوي كلمة المرور على 8 أرقام أو أحرف على الأقل.",
   "emailAddressFormat": "يرجى إدخال البريد الإلكتروني الصحيح...",
   "exploreBody": "اختر أي منتج تريده بأسهل طريقة ممكنة",
   "requiredField": "هذا الحقل مطلوب",
@@ -58,7 +58,6 @@ class CodegenLoader extends AssetLoader{
   "shippingFee": "رسوم الشحن",
   "noFee": "بدون رسوم شحن",
   "totalPrice": "السعر الاجمالي",
-  "moveToWishlist": "اضافة الي قائمة الرغبات",
   "logout": "تسجيل الخروج",
   "inCart": "المنتج في عربة التسوق!",
   "subTotal": "المبلغ الكلي",
@@ -74,7 +73,7 @@ class CodegenLoader extends AssetLoader{
   "backHome": "الرجوع الي الصفحة الرئيسية",
   "yourAddress": "العنوان",
   "name": "الاسم",
-  "city": "المدينة اوالمحافظة",
+  "city": "المدينة او المحافظة",
   "region": "المنطقة",
   "details": "العنوان بالتفصيل ان امكن",
   "notes": "ملحوظات حول طلبك",
@@ -96,7 +95,15 @@ class CodegenLoader extends AssetLoader{
   "remove": "حذف",
   "update": "تحديث",
   "profile": "الملف الشخصي",
-  "signOut": "تسجيل الخروج"
+  "signOut": "تسجيل الخروج",
+  "selectLang": "اختر اللغة",
+  "changePassword": "تغيير كلمة المرور",
+  "currentPassword": "كلمة المرور الحالية",
+  "newPassword": "كلمة المرور الجديدة",
+  "confirmPassword": "تأكيد كلمة المرور",
+  "passwordMatch": "كلمة السر غير متطابقة !!",
+  "differentPassword": "يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمة المرور الحالية.",
+  "addToWishlist": "اضافة الي المفضلة"
 };
 static const Map<String,dynamic> en = {
   "skip": "Skip",
@@ -118,7 +125,7 @@ static const Map<String,dynamic> en = {
   "haveAccount": "Already have an account!",
   "emailValidator": "Please enter your email ...",
   "passwordValidator": "Please enter your password...",
-  "passwordLengthValidator": "Password must has at least 8 numbers.",
+  "passwordLengthValidator": "Password must have at least 8 digits or letters.",
   "emailAddressFormat": "Please enter a valid email...",
   "paymentBody": "Pay in the safest way possible either by cash or credit cards.",
   "requiredField": "This field is required",
@@ -142,7 +149,6 @@ static const Map<String,dynamic> en = {
   "shippingFee": "Shipping Fee",
   "noFee": "No Shipping Fee",
   "totalPrice": "Total Price",
-  "moveToWishlist": "Move To Wishlist",
   "logout": "Logout",
   "inCart": "Product in the cart!",
   "subTotal": "Sub Total",
@@ -180,7 +186,15 @@ static const Map<String,dynamic> en = {
   "remove": "Remove",
   "update": "Update",
   "profile": "My Profile",
-  "signOut": "Sign Out"
+  "signOut": "Sign Out",
+  "selectLang": "Select Language",
+  "changePassword": "Change Password",
+  "currentPassword": "Current Password",
+  "newPassword": "New Password",
+  "confirmPassword": "Confirm Password",
+  "passwordMatch": "The password does not match!!",
+  "differentPassword": "The new password must be different from the current password.",
+  "addToWishlist": "Add To Wishlist"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": ar, "en": en};
 }

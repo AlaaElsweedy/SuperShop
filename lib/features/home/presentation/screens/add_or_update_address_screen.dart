@@ -3,14 +3,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:queen_validators/queen_validators.dart';
-import 'package:supershop/core/components/custom_app_bar.dart';
-import 'package:supershop/core/components/custom_button.dart';
-import 'package:supershop/core/components/custom_text_form_field.dart';
-import 'package:supershop/core/components/screen_status.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/enums.dart';
-import 'package:supershop/features/home/presentation/controllers/address/address_bloc.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+import '../../../../core/components/custom_app_bar.dart';
+import '../../../../core/components/custom_button.dart';
+import '../../../../core/components/custom_text_form_field.dart';
+import '../../../../core/components/screen_status.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../core/utils/enums.dart';
+import '../controllers/address/address_bloc.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class AddOrUpdateAddressScreen extends StatelessWidget {
   final bool? editAddress;
@@ -137,7 +137,7 @@ class AddOrUpdateAddressScreen extends StatelessWidget {
                       }
 
                       if (state.updateAddressState == RequestState.success) {
-                        showSuccessMessage(state.updateAddress!.message);
+                        showToastSuccessMessage(state.updateAddress!.message);
                         Navigator.pop(context);
                       }
                     },

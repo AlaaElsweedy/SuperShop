@@ -8,11 +8,14 @@ class AppSize {
   static sizedBox20(BuildContext context) =>
       SizedBox(height: MediaQuery.of(context).size.height / 40);
 
+  static SizedBox sizedBox15(BuildContext context) =>
+      SizedBox(height: MediaQuery.of(context).size.height / 40);
+
   static SizedBox sizedBox10(BuildContext context) =>
       SizedBox(height: MediaQuery.of(context).size.height / 60);
 
-  static SizedBox sizedBox15(BuildContext context) =>
-      SizedBox(height: MediaQuery.of(context).size.height / 40);
+  static SizedBox sizedBox5(BuildContext context) =>
+      SizedBox(height: MediaQuery.of(context).size.height / 100);
 
   static SizedBox sizedBoxW10(BuildContext context) =>
       SizedBox(width: MediaQuery.of(context).size.width / 60);

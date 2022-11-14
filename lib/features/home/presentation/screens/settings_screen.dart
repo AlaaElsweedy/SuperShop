@@ -1,20 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:supershop/core/components/custom_app_bar.dart';
-import 'package:supershop/core/components/navigation.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/constance.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
-import 'package:supershop/core/utils/token_secure_storage.dart';
-import 'package:supershop/features/home/presentation/components/settings_item_component.dart';
-import 'package:supershop/features/home/presentation/controllers/profile/profile_bloc.dart';
-import 'package:supershop/features/home/presentation/screens/addresses_screen.dart';
-import 'package:supershop/features/home/presentation/screens/orders_screen.dart';
-import 'package:supershop/features/register/presentation/screens/login_screen.dart';
-import 'package:supershop/general/cubit/app_cubit.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+import '../components/change_lang_drop_menu_component.dart';
+import '../components/sign_out_button_component.dart';
+import 'change_password_screen.dart';
+import '../../../../core/components/custom_app_bar.dart';
+import '../../../../core/components/navigation.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../core/utils/styles/app_colors.dart';
+import '../components/settings_item_component.dart';
+import 'addresses_screen.dart';
+import 'orders_screen.dart';
+import '../../../../general/cubit/app_cubit.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -45,6 +43,13 @@ class SettingsScreen extends StatelessWidget {
               icon: Icons.location_pin,
               title: LocaleKeys.addresses.tr(),
             ),
+            SettingItemComponent(
+              onPressed: () {
+                navigateTo(context, ChangePasswordScreen());
+              },
+              icon: Icons.vpn_key,
+              title: LocaleKeys.changePassword.tr(),
+            ),
             TitleText(title: LocaleKeys.settings.tr().toUpperCase()),
             SettingItemComponent(
               icon: Icons.dark_mode_sharp,
@@ -66,61 +71,16 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SettingItemComponent(
-              onPressed: () {},
-              icon: Icons.flag,
-              title: LocaleKeys.language.tr(),
-            ),
-            TitleText(title: LocaleKeys.reachUs.tr().toUpperCase()),
-            SettingItemComponent(
-              onPressed: () {},
-              icon: Icons.info_outline,
-              title: LocaleKeys.questions.tr(),
-            ),
-            SettingItemComponent(
-              onPressed: () {},
-              icon: Icons.call,
-              title: LocaleKeys.contactUs.tr(),
-            ),
+            const ChangeLangDropMenuComponent(),
+            // TitleText(title: LocaleKeys.reachUs.tr().toUpperCase()),
+            // SettingItemComponent(
+            //   onPressed: () {},
+            //   icon: Icons.call,
+            //   title: LocaleKeys.contactUs.tr(),
+            // ),
             AppSize.sizedBox28(context),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 10.0.w),
-              height: 56.0.h,
-              decoration: BoxDecoration(
-                  border: Border.all(
-                    color: AppColors.deleteColorLight,
-                  ),
-                  borderRadius: BorderRadius.circular(5.0.r)),
-              child: MaterialButton(
-                color: Theme.of(context).brightness == Brightness.dark
-                    ? AppColors.backgroundColorDark
-                    : AppColors.backgroundColorLight,
-                onPressed: () async {
-                  navigateAndFinish(context, LoginScreen());
-                  context.read<ProfileBloc>().add(
-                        SignOutEvent(
-                          token: token!,
-                        ),
-                      );
-                  token = await TokenSecureStorage.deleteSecureToken();
-                  print(token);
-                },
-                textColor: AppColors.deleteColorLight,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.logout_outlined),
-                    AppSize.sizedBoxW5(context),
-                    Text(
-                      LocaleKeys.signOut.tr(),
-                      style: TextStyle(
-                        fontSize: 20.sp,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            const SignOutButtonComponent(),
+            AppSize.sizedBox28(context),
           ],
         ),
       ),

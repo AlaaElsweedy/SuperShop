@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:supershop/features/home/domain/entities/profile/get_profile_data.dart';
+import 'get_profile_data.dart';
 
 class GetProfile extends Equatable {
   final bool status;

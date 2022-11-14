@@ -1,4 +1,4 @@
-import 'package:supershop/features/home/domain/entities/orders/cancel_orders.dart';
+import '../../../domain/entities/orders/cancel_orders.dart';
 
 class CancelOrderModel extends CancelOrder {
   const CancelOrderModel({

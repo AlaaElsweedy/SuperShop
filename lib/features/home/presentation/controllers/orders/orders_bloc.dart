@@ -2,15 +2,16 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:supershop/core/error/network_exceptions.dart';
-import 'package:supershop/core/usecase/base_use_case.dart';
-import 'package:supershop/core/utils/enums.dart';
-import 'package:supershop/features/home/domain/entities/orders/add_order.dart';
-import 'package:supershop/features/home/domain/entities/orders/cancel_orders.dart';
-import 'package:supershop/features/home/domain/entities/orders/get_orders.dart';
-import 'package:supershop/features/home/domain/usecases/add_order_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/cancel_order_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/get_orders_usecase.dart';
+
+import '../../../../../core/error/network_exceptions.dart';
+import '../../../../../core/usecase/base_use_case.dart';
+import '../../../../../core/utils/enums.dart';
+import '../../../domain/entities/orders/add_order.dart';
+import '../../../domain/entities/orders/cancel_orders.dart';
+import '../../../domain/entities/orders/get_orders.dart';
+import '../../../domain/usecases/add_order_usecase.dart';
+import '../../../domain/usecases/cancel_order_usecase.dart';
+import '../../../domain/usecases/get_orders_usecase.dart';
 
 part 'orders_event.dart';
 part 'orders_state.dart';

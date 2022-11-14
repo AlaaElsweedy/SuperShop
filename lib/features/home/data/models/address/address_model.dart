@@ -1,5 +1,5 @@
-import 'package:supershop/features/home/data/models/address/address_data_model.dart';
-import 'package:supershop/features/home/domain/entities/address/address.dart';
+import 'address_data_model.dart';
+import '../../../domain/entities/address/address.dart';
 
 class AddressModel extends Address {
   const AddressModel({

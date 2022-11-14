@@ -1,6 +1,6 @@
-import 'package:supershop/features/home/data/models/cart/get_cart_items_model.dart';
-import 'package:supershop/features/home/domain/entities/cart/get_cart.dart';
-import 'package:supershop/features/home/domain/entities/cart/get_cart_items.dart';
+import 'get_cart_items_model.dart';
+import '../../../domain/entities/cart/get_cart.dart';
+import '../../../domain/entities/cart/get_cart_items.dart';
 
 class GetCartModel extends GetCart {
   const GetCartModel({

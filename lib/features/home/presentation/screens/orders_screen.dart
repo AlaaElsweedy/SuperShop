@@ -3,14 +3,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:supershop/core/components/screen_status.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/enums.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
-import 'package:supershop/features/home/presentation/components/no_orders_component.dart';
-import 'package:supershop/features/home/presentation/components/order_item_component.dart';
-import 'package:supershop/features/home/presentation/controllers/orders/orders_bloc.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+import '../../../../core/components/screen_status.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../core/utils/enums.dart';
+import '../../../../core/utils/styles/app_colors.dart';
+import '../components/no_orders_component.dart';
+import '../components/order_item_component.dart';
+import '../controllers/orders/orders_bloc.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({Key? key}) : super(key: key);

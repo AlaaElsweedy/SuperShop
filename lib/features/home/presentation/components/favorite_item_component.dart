@@ -3,11 +3,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
-import 'package:supershop/features/home/domain/entities/favorites/get_favorite_product.dart';
-import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../core/utils/styles/app_colors.dart';
+import '../../domain/entities/favorites/get_favorite_product.dart';
+import '../controllers/favorites/favorites_bloc.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class FavoriteItemComponent extends StatelessWidget {
   final GetFavoriteProduct data;
@@ -37,7 +37,7 @@ class FavoriteItemComponent extends StatelessWidget {
                 ),
                 if (data.favoriteProducts.discount != 0)
                   Container(
-                    color: AppColors.discountColorLight,
+                    color: AppColors.discountColor,
                     padding: EdgeInsets.symmetric(horizontal: 5.0.w),
                     child: Text(
                       LocaleKeys.discount.tr(),
@@ -63,34 +63,46 @@ class FavoriteItemComponent extends StatelessWidget {
                       height: 1.3.h,
                     ),
                   ),
-                  const Spacer(),
+                  AppSize.sizedBox15(context),
                   Row(
                     children: [
-                      Text(
-                        NumberFormat.currency(decimalDigits: 2)
-                            .format(data.favoriteProducts.price),
-                        style: TextStyle(
-                          fontSize: 16.0.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).brightness == ThemeMode.dark
-                              ? AppColors.primaryColorDark
-                              : AppColors.primaryColorLight,
-                        ),
-                      ),
-                      AppSize.sizedBoxW5(context),
-                      if (data.favoriteProducts.discount != 0)
-                        Text(
-                          NumberFormat.currency(decimalDigits: 2)
-                              .format(data.favoriteProducts.oldPrice),
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            color:
-                                Theme.of(context).brightness == Brightness.dark
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            NumberFormat.currency(
+                              decimalDigits: 2,
+                              locale: '${context.locale}',
+                            ).format(data.favoriteProducts.price),
+                            style: TextStyle(
+                              fontSize: 16.0.sp,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  Theme.of(context).brightness == ThemeMode.dark
+                                      ? AppColors.primaryColorDark
+                                      : AppColors.primaryColorLight,
+                            ),
+                          ),
+                          if (data.favoriteProducts.discount != 0)
+                            AppSize.sizedBox5(context),
+                          if (data.favoriteProducts.discount != 0)
+                            Text(
+                              NumberFormat.currency(
+                                decimalDigits: 2,
+                                locale: '${context.locale}',
+                              ).format(data.favoriteProducts.oldPrice),
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                color: Theme.of(context).brightness ==
+                                        Brightness.dark
                                     ? AppColors.mediumTextColorDark
                                     : AppColors.mediumTextColorLight,
-                            decoration: TextDecoration.lineThrough,
-                          ),
-                        ),
+                                decoration: TextDecoration.lineThrough,
+                              ),
+                            ),
+                        ],
+                      ),
+                      AppSize.sizedBoxW5(context),
                       const Spacer(),
                       FavoriteIconButton(data: data, favorites: favorites),
                     ],

@@ -2,20 +2,21 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:supershop/core/components/custom_app_bar.dart';
-import 'package:supershop/core/components/custom_button.dart';
-import 'package:supershop/core/components/custom_text_button.dart';
-import 'package:supershop/core/components/navigation.dart';
-import 'package:supershop/core/components/screen_status.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/enums.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
-import 'package:supershop/features/home/domain/entities/address/get_address_data.dart';
-import 'package:supershop/features/home/presentation/components/bottom_model_sheet_component.dart';
-import 'package:supershop/features/home/presentation/controllers/address/address_bloc.dart';
-import 'package:supershop/features/home/presentation/controllers/orders/orders_bloc.dart';
-import 'package:supershop/features/home/presentation/screens/add_or_update_address_screen.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+
+import '../../../../core/components/custom_app_bar.dart';
+import '../../../../core/components/custom_button.dart';
+import '../../../../core/components/custom_text_button.dart';
+import '../../../../core/components/navigation.dart';
+import '../../../../core/components/screen_status.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../core/utils/enums.dart';
+import '../../../../core/utils/styles/app_colors.dart';
+import '../../../../generated/locale_keys.g.dart';
+import '../../domain/entities/address/get_address_data.dart';
+import '../components/bottom_model_sheet_component.dart';
+import '../controllers/address/address_bloc.dart';
+import '../controllers/orders/orders_bloc.dart';
+import 'add_or_update_address_screen.dart';
 
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({Key? key}) : super(key: key);

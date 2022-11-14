@@ -3,12 +3,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:supershop/core/components/custom_button.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
-import 'package:supershop/features/home/domain/entities/orders/get_orders_data.dart';
-import 'package:supershop/features/home/presentation/controllers/orders/orders_bloc.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+import '../../../../core/components/custom_button.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../core/utils/styles/app_colors.dart';
+import '../../domain/entities/orders/get_orders_data.dart';
+import '../controllers/orders/orders_bloc.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class OrderItemComponent extends StatelessWidget {
   final GetOrdersData order;
@@ -28,7 +28,7 @@ class OrderItemComponent extends StatelessWidget {
               ? AppColors.greyBackgroundColorDark
               : AppColors.greyBackgroundColorLight,
           border: Border.all(
-            color: AppColors.borderColorLight,
+            color: AppColors.borderColor,
           ),
           borderRadius: BorderRadius.circular(25.r),
         ),
@@ -66,7 +66,10 @@ class OrderItemComponent extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   Text(
-                    ' ${NumberFormat.currency(decimalDigits: 0).format(order.totalPrice)}',
+                    ' ${NumberFormat.currency(
+                      decimalDigits: 2,
+                      locale: '${context.locale}',
+                    ).format(order.totalPrice)}',
                     style: Theme.of(context).textTheme.displayMedium,
                   ),
                 ],
@@ -80,7 +83,7 @@ class OrderItemComponent extends StatelessWidget {
                     style: TextStyle(
                       color: (order.status == "New")
                           ? AppColors.productInfoColorLight
-                          : AppColors.deleteColorLight,
+                          : AppColors.deleteColor,
                       fontWeight: FontWeight.w900,
                       fontSize: 20.sp,
                     ),

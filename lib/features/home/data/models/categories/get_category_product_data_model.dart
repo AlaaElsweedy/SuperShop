@@ -1,4 +1,4 @@
-import 'package:supershop/features/home/domain/entities/categories/get_category_product_data.dart';
+import '../../../domain/entities/categories/get_category_product_data.dart';
 
 class GetCategoryProductDataModel extends GetCategoryProductData {
   const GetCategoryProductDataModel({

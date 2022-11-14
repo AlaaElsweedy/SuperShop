@@ -3,12 +3,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:supershop/core/components/my_dividers.dart';
-import 'package:supershop/core/components/screen_status.dart';
-import 'package:supershop/core/utils/enums.dart';
-import 'package:supershop/features/home/presentation/components/favorite_item_component.dart';
-import 'package:supershop/features/home/presentation/controllers/favorites/favorites_bloc.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+import '../../../../core/components/my_dividers.dart';
+import '../../../../core/components/screen_status.dart';
+import '../../../../core/utils/enums.dart';
+import '../components/favorite_item_component.dart';
+import '../controllers/favorites/favorites_bloc.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class FavoritesScreen extends StatelessWidget {
   final Map<int, bool> favorites;

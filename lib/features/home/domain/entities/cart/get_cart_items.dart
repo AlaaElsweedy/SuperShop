@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:supershop/features/home/domain/entities/cart/get_cart_products_data.dart';
+import 'get_cart_products_data.dart';
 
 class GetCartItems extends Equatable {
   final int id;

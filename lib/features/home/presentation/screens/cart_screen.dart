@@ -3,18 +3,18 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:supershop/core/components/custom_app_bar.dart';
-import 'package:supershop/core/components/custom_button.dart';
-import 'package:supershop/core/components/my_dividers.dart';
-import 'package:supershop/core/components/navigation.dart';
-import 'package:supershop/core/components/screen_status.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/enums.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
-import 'package:supershop/features/home/presentation/components/cart_item_component.dart';
-import 'package:supershop/features/home/presentation/controllers/cart/cart_bloc.dart';
-import 'package:supershop/features/home/presentation/screens/checkout_screen.dart';
-import 'package:supershop/generated/locale_keys.g.dart';
+import '../../../../core/components/custom_app_bar.dart';
+import '../../../../core/components/custom_button.dart';
+import '../../../../core/components/my_dividers.dart';
+import '../../../../core/components/navigation.dart';
+import '../../../../core/components/screen_status.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../core/utils/enums.dart';
+import '../../../../core/utils/styles/app_colors.dart';
+import '../components/cart_item_component.dart';
+import '../controllers/cart/cart_bloc.dart';
+import 'checkout_screen.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class CartScreen extends StatelessWidget {
   final Map<int, bool> favorites;
@@ -90,7 +90,7 @@ class CartScreen extends StatelessWidget {
                                 Text(
                                   NumberFormat.currency(
                                     decimalDigits: 2,
-                                    symbol: "",
+                                    locale: '${context.locale}',
                                   ).format(subTotal),
                                   style:
                                       Theme.of(context).textTheme.displaySmall,
@@ -108,7 +108,7 @@ class CartScreen extends StatelessWidget {
                                 Text(
                                   NumberFormat.currency(
                                     decimalDigits: 2,
-                                    symbol: "",
+                                    locale: '${context.locale}',
                                   ).format(shippingFee),
                                   style: const TextStyle(
                                     color: AppColors.productInfoColorLight,
@@ -139,7 +139,7 @@ class CartScreen extends StatelessWidget {
                                 Text(
                                   NumberFormat.currency(
                                     decimalDigits: 2,
-                                    symbol: "",
+                                    locale: '${context.locale}',
                                   ).format(totalPrice),
                                   style:
                                       Theme.of(context).textTheme.displayMedium,

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:supershop/features/home/domain/entities/profile/update_profile_data.dart';
+import 'update_profile_data.dart';
 
 class UpdateProfile extends Equatable {
   final bool status;

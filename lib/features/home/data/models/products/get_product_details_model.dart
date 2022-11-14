@@ -1,5 +1,5 @@
-import 'package:supershop/features/home/data/models/products/get_product_details_data_model.dart';
-import 'package:supershop/features/home/domain/entities/products/get_product_details.dart';
+import '../../../domain/entities/products/get_product_details.dart';
+import 'get_product_details_data_model.dart';
 
 class GetProductDetailsModel extends GetProductDetails {
   const GetProductDetailsModel({

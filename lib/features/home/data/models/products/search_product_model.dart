@@ -1,5 +1,5 @@
-import 'package:supershop/features/home/data/models/products/search_products_model.dart';
-import 'package:supershop/features/home/domain/entities/products/search_product.dart';
+import '../../../domain/entities/products/search_product.dart';
+import 'search_products_model.dart';
 
 class SearchProductModel extends SearchProduct {
   const SearchProductModel({

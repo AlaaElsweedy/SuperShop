@@ -1,4 +1,4 @@
-import 'package:supershop/features/home/domain/entities/products/search_product_data.dart';
+import '../../../domain/entities/products/search_product_data.dart';
 
 class SearchProductDataModel extends SearchProductData {
   const SearchProductDataModel({

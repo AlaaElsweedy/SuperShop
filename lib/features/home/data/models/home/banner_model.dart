@@ -1,4 +1,4 @@
-import 'package:supershop/features/home/domain/entities/home/banner.dart';
+import '../../../domain/entities/home/banner.dart';
 
 class BannerModel extends Banner {
   const BannerModel({

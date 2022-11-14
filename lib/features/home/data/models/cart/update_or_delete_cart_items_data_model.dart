@@ -1,4 +1,4 @@
-import 'package:supershop/features/home/domain/entities/cart/update_or_delete_cart_items_data.dart';
+import '../../../domain/entities/cart/update_or_delete_cart_items_data.dart';
 
 class UpdateOrDeleteCartItemsDataModel extends UpdateOrDeleteCartItemsData {
   const UpdateOrDeleteCartItemsDataModel({

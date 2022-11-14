@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:supershop/features/home/domain/entities/categories/get_category_product_data.dart';
+import 'get_category_product_data.dart';
 
 class GetCategoryProductsData extends Equatable {
   final List<GetCategoryProductData> categoryProducts;

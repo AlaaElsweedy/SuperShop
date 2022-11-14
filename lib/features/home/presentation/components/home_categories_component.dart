@@ -2,13 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:supershop/core/components/navigation.dart';
-import 'package:supershop/core/utils/app_size.dart';
-import 'package:supershop/core/utils/styles/app_colors.dart';
-import 'package:supershop/features/home/domain/entities/categories/get_categories.dart';
-import 'package:supershop/features/home/domain/entities/categories/get_category_data.dart';
-import 'package:supershop/features/home/presentation/controllers/home/home_bloc.dart';
-import 'package:supershop/features/home/presentation/screens/category_products_screen.dart';
+import '../../../../core/components/navigation.dart';
+import '../../../../core/utils/app_size.dart';
+import '../../../../core/utils/styles/app_colors.dart';
+import '../../domain/entities/categories/get_categories.dart';
+import '../../domain/entities/categories/get_category_data.dart';
+import '../controllers/home/home_bloc.dart';
+import '../screens/category_products_screen.dart';
 
 class HomeCategoriesComponent extends StatelessWidget {
   final GetCategories categories;

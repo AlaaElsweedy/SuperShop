@@ -2,16 +2,17 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:supershop/core/error/network_exceptions.dart';
-import 'package:supershop/core/usecase/base_use_case.dart';
-import 'package:supershop/core/utils/enums.dart';
-import 'package:supershop/features/home/domain/entities/cart/add_cart_product.dart';
-import 'package:supershop/features/home/domain/entities/cart/get_cart_products.dart';
-import 'package:supershop/features/home/domain/entities/cart/update_or_delete_cart_products.dart';
-import 'package:supershop/features/home/domain/usecases/add_cart_product_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/delete_cart_products_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/get_cart_products_usecase.dart';
-import 'package:supershop/features/home/domain/usecases/update_cart_products_usecase.dart';
+
+import '../../../../../core/error/network_exceptions.dart';
+import '../../../../../core/usecase/base_use_case.dart';
+import '../../../../../core/utils/enums.dart';
+import '../../../domain/entities/cart/add_cart_product.dart';
+import '../../../domain/entities/cart/get_cart_products.dart';
+import '../../../domain/entities/cart/update_or_delete_cart_products.dart';
+import '../../../domain/usecases/add_cart_product_usecase.dart';
+import '../../../domain/usecases/delete_cart_products_usecase.dart';
+import '../../../domain/usecases/get_cart_products_usecase.dart';
+import '../../../domain/usecases/update_cart_products_usecase.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';

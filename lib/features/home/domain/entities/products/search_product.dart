@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:supershop/features/home/domain/entities/products/search_products.dart';
+import 'search_products.dart';
 
 class SearchProduct extends Equatable {
   final bool status;
